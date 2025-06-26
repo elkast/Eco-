@@ -1,0 +1,231 @@
+/* About Section */
+.about {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-text h2 {
+    font-family: var(--font-secondary);
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: var(--primary-blue);
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--medium-gray);
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    color: var(--medium-gray);
+    line-height: 1.7;
+}
+
+.stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--medium-gray);
+}
+
+.about-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visual-element {
+    text-align: center;
+    padding: 60px 40px;
+    background: var(--light-gray);
+    border-radius: 20px;
+    border: 3px solid var(--primary-blue);
+}
+
+.visual-element i {
+    font-size: 64px;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.visual-element span {
+    font-weight: 600;
+    color: var(--dark-gray);
+}
+
+/* CEO Section */
+.ceo-section {
+    padding: 100px 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ceo-card {
+    background: var(--light-gray);
+    border-radius: 25px;
+    padding: 50px;
+    box-shadow: var(--shadow-light);
+}
+
+.ceo-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 50px;
+    align-items: center;
+}
+
+.ceo-info h3 {
+    font-family: var(--font-secondary);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 25px;
+}
+
+.ceo-quote {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 4px solid var(--primary-blue);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.ceo-quote::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 60px;
+    color: var(--primary-blue);
+    opacity: 0.3;
+    font-family: serif;
+}
+
+.ceo-quote p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--medium-gray);
+    font-style: italic;
+    margin: 0;
+}
+
+.ceo-details h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+}
+
+.mission-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.mission-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+    color: var(--medium-gray);
+}
+
+.mission-list i {
+    color: var(--primary-blue);
+    width: 20px;
+}
+
+.ceo-signature strong {
+    display: block;
+    color: var(--dark-gray);
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.ceo-signature p {
+    color: var(--medium-gray);
+    font-size: 14px;
+    margin: 0;
+}
+
+.ceo-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-container {
+    position: relative;
+    width: 250px;
+    height: 300px;
+}
+
+.photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: var(--shadow-medium);
+}
+
+.photo-frame {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 3px solid var(--primary-blue);
+    border-radius: 25px;
+    opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+    .ceo-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .ceo-card {
+        padding: 30px 20px;
+    }
+    
+    .photo-container {
+        width: 200px;
+        height: 240px;
+        margin: 0 auto;
+    }
+    
+    .ceo-info h3 {
+        font-size: 24px;
+    }
+}

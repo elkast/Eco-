@@ -1,0 +1,142 @@
+/* Services Section */
+.services {
+    padding: 100px 0;
+    background: var(--light-gray);
+}
+
+.section-title {
+    font-family: var(--font-secondary);
+    font-size: 36px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--primary-blue);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.service-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    transition: var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transition: var(--transition-fast);
+}
+
+.service-card.eco-holding::before {
+    background: var(--primary-blue);
+}
+
+.service-card.eco-immobilier::before {
+    background: var(--secondary-pink);
+}
+
+.service-card.eco-trans::before {
+    background: #28a745;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    background: var(--light-gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    transition: var(--transition-fast);
+}
+
+.eco-holding .service-icon {
+    background: rgba(11, 61, 145, 0.1);
+    color: var(--primary-blue);
+}
+
+.eco-immobilier .service-icon {
+    background: rgba(229, 46, 113, 0.1);
+    color: var(--secondary-pink);
+}
+
+.eco-trans .service-icon {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1);
+}
+
+.service-card h3 {
+    font-family: var(--font-secondary);
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--dark-gray);
+}
+
+.service-card p {
+    color: var(--medium-gray);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.service-list {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.service-list li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--medium-gray);
+}
+
+.service-list i {
+    color: #28a745;
+    font-size: 14px;
+}
+
+.service-btn {
+    background: transparent;
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.service-btn:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
