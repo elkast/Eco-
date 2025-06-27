@@ -1,19 +1,19 @@
-// UI Enhancements Module
-const UIEnhancements = {
+// Module Améliorations UI
+const AmeliorationsUI = {
     init() {
-        this.addWhatsAppButton();
+        this.ajouterBoutonWhatsApp();
     },
 
-    addWhatsAppButton() {
-        const whatsappBtn = document.createElement('div');
-        whatsappBtn.className = 'whatsapp-float';
-        whatsappBtn.innerHTML = `
+    ajouterBoutonWhatsApp() {
+        const boutonWhatsapp = document.createElement('div');
+        boutonWhatsapp.className = 'whatsapp-float';
+        boutonWhatsapp.innerHTML = `
             <a href="https://wa.me/message/LHUEHGKHUIBHJ1?text=Bonjour, je souhaite obtenir plus d'informations sur vos services" target="_blank">
                 <i class="fab fa-whatsapp"></i>
             </a>
         `;
         
-        // Add WhatsApp button styles
+        // Ajouter les styles du bouton WhatsApp
         const style = document.createElement('style');
         style.textContent = `
             .whatsapp-float {
@@ -65,6 +65,6 @@ const UIEnhancements = {
         `;
         
         document.head.appendChild(style);
-        document.body.appendChild(whatsappBtn);
+        document.body.appendChild(boutonWhatsapp);
     }
 };

@@ -1,73 +1,73 @@
-// Contact Form Module
-const ContactForm = {
-    form: null,
+// Module Formulaire Contact
+const FormulaireContact = {
+    formulaire: null,
 
     init() {
-        this.form = document.getElementById('contactForm');
-        if (this.form) {
-            this.bindEvents();
+        this.formulaire = document.getElementById('contactForm');
+        if (this.formulaire) {
+            this.lierEvenements();
         }
     },
 
-    bindEvents() {
-        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    lierEvenements() {
+        this.formulaire.addEventListener('submit', (e) => this.gererSoumission(e));
     },
 
-    async handleSubmit(e) {
+    async gererSoumission(e) {
         e.preventDefault();
         
-        // Get form data
-        const formData = new FormData(this.form);
-        const data = Object.fromEntries(formData);
+        // Récupérer les données du formulaire
+        const donneesFormulaire = new FormData(this.formulaire);
+        const donnees = Object.fromEntries(donneesFormulaire);
         
-        // Show loading state
-        const submitBtn = this.form.querySelector('.submit-btn');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
-        submitBtn.disabled = true;
+        // Afficher l'état de chargement
+        const boutonSoumettre = this.formulaire.querySelector('.submit-btn');
+        const texteOriginal = boutonSoumettre.innerHTML;
+        boutonSoumettre.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+        boutonSoumettre.disabled = true;
         
         try {
-            // Send data to PHP backend
-            const response = await fetch('contact-handler.php', {
+            // Envoyer les données au backend PHP
+            const reponse = await fetch('contact-handler.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(donnees)
             });
 
-            const result = await response.json();
+            const resultat = await reponse.json();
 
-            if (response.ok && result.success) {
-                // Reset form
-                this.form.reset();
+            if (reponse.ok && resultat.success) {
+                // Réinitialiser le formulaire
+                this.formulaire.reset();
                 
-                // Show success message
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé !';
-                submitBtn.style.background = '#28a745';
+                // Afficher message de succès
+                boutonSoumettre.innerHTML = '<i class="fas fa-check"></i> Message envoyé !';
+                boutonSoumettre.style.background = '#28a745';
                 
-                // Show success alert
+                // Afficher alerte de succès
                 alert('Merci pour votre message ! Nous vous recontacterons très prochainement.');
             } else {
-                throw new Error(result.error || 'Erreur lors de l\'envoi');
+                throw new Error(resultat.error || 'Erreur lors de l\'envoi');
             }
-        } catch (error) {
-            console.error('Form submission error:', error);
-            submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erreur';
-            submitBtn.style.background = '#dc3545';
+        } catch (erreur) {
+            console.error('Erreur soumission formulaire:', erreur);
+            boutonSoumettre.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erreur';
+            boutonSoumettre.style.background = '#dc3545';
             alert('Une erreur est survenue. Veuillez réessayer.');
         }
         
-        // Reset button after 3 seconds
+        // Réinitialiser le bouton après 3 secondes
         setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.style.background = '';
-            submitBtn.disabled = false;
+            boutonSoumettre.innerHTML = texteOriginal;
+            boutonSoumettre.style.background = '';
+            boutonSoumettre.disabled = false;
         }, 3000);
     }
 };
 
-// Global utility functions
+// Fonctions utilitaires globales
 window.scrollToContact = function() {
     document.getElementById('contact').scrollIntoView({
         behavior: 'smooth',
@@ -76,18 +76,18 @@ window.scrollToContact = function() {
 };
 
 window.openQuoteForm = function() {
-    // Pre-select "Devis gratuit" option in the contact form
-    const serviceSelect = document.getElementById('service');
-    if (serviceSelect) {
-        // Add devis option if it doesn't exist
-        const devisOption = Array.from(serviceSelect.options).find(option => option.value === 'devis');
-        if (!devisOption) {
-            const newOption = document.createElement('option');
-            newOption.value = 'devis';
-            newOption.textContent = 'Demande de devis gratuit';
-            serviceSelect.appendChild(newOption);
+    // Pré-sélectionner l'option "Devis gratuit" dans le formulaire de contact
+    const selectService = document.getElementById('service');
+    if (selectService) {
+        // Ajouter option devis si elle n'existe pas
+        const optionDevis = Array.from(selectService.options).find(option => option.value === 'devis');
+        if (!optionDevis) {
+            const nouvelleOption = document.createElement('option');
+            nouvelleOption.value = 'devis';
+            nouvelleOption.textContent = 'Demande de devis gratuit';
+            selectService.appendChild(nouvelleOption);
         }
-        serviceSelect.value = 'devis';
+        selectService.value = 'devis';
     }
     scrollToContact();
 };

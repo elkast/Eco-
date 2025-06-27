@@ -208,7 +208,145 @@
     opacity: 0.3;
 }
 
+/* Section Partenaires avec cartes défilantes */
+.partners-section {
+    width: 100%;
+}
+
+.partners-section h3 {
+    font-family: var(--font-secondary);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.partners-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-blue) var(--light-gray);
+}
+
+.partners-slider::-webkit-scrollbar {
+    height: 6px;
+}
+
+.partners-slider::-webkit-scrollbar-track {
+    background: var(--light-gray);
+    border-radius: 3px;
+}
+
+.partners-slider::-webkit-scrollbar-thumb {
+    background: var(--primary-blue);
+    border-radius: 3px;
+}
+
+.partner-card {
+    flex: 0 0 250px;
+    background: var(--white);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    transition: var(--transition-fast);
+    border: 2px solid var(--border-color);
+}
+
+.partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary-blue);
+}
+
+.partner-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.partner-card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin-bottom: 10px;
+}
+
+.partner-card p {
+    font-size: 13px;
+    color: var(--medium-gray);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Styles pour les pages légales */
+.legal-page {
+    min-height: 80vh;
+    padding: 120px 0 80px;
+    background: var(--light-gray);
+}
+
+.legal-page h1 {
+    font-family: var(--font-secondary);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.legal-section {
+    background: var(--white);
+    margin-bottom: 30px;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow-light);
+}
+
+.legal-section h2 {
+    font-family: var(--font-secondary);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.legal-content p {
+    color: var(--medium-gray);
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.legal-content ul {
+    color: var(--medium-gray);
+    line-height: 1.7;
+    padding-left: 20px;
+}
+
+.legal-content li {
+    margin-bottom: 8px;
+}
+
+.legal-content strong {
+    color: var(--dark-gray);
+    font-weight: 600;
+}
+
 @media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
     .ceo-content {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -241,6 +379,52 @@
     .mission-list li {
         padding: 8px 0;
         font-size: 15px;
+    }
+    
+    /* Partenaires responsive */
+    .partners-section h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .partner-card {
+        flex: 0 0 200px;
+        padding: 15px;
+    }
+    
+    .partner-card img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 12px;
+    }
+    
+    .partner-card h4 {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+    
+    .partner-card p {
+        font-size: 12px;
+    }
+    
+    /* Pages légales responsive */
+    .legal-page {
+        padding: 100px 0 60px;
+    }
+    
+    .legal-page h1 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    .legal-section {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .legal-section h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
     }
 }
 
@@ -289,5 +473,40 @@
     
     .ceo-signature p {
         font-size: 13px;
+    }
+    
+    /* Partenaires très petit écran */
+    .partner-card {
+        flex: 0 0 180px;
+        padding: 12px;
+    }
+    
+    .partner-card img {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    
+    .partner-card h4 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    
+    .partner-card p {
+        font-size: 11px;
+    }
+    
+    /* Pages légales très petit écran */
+    .legal-page h1 {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+    
+    .legal-section {
+        padding: 15px;
+    }
+    
+    .legal-section h2 {
+        font-size: 18px;
     }
 }

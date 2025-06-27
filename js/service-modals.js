@@ -1,35 +1,35 @@
-// Service Modals Module
-const ServiceModals = {
-    modal: null,
-    modalContent: null,
-    closeBtn: null,
+// Module Modales Services
+const ModalesServices = {
+    modale: null,
+    contenuModale: null,
+    boutonFermer: null,
 
     init() {
-        this.modal = document.getElementById('serviceModal');
-        this.modalContent = document.getElementById('modalContent');
-        this.closeBtn = document.querySelector('.close');
+        this.modale = document.getElementById('serviceModal');
+        this.contenuModale = document.getElementById('modalContent');
+        this.boutonFermer = document.querySelector('.close');
         
-        this.bindEvents();
-        this.addModalStyles();
+        this.lierEvenements();
+        this.ajouterStylesModale();
     },
 
-    bindEvents() {
-        if (this.closeBtn) {
-            this.closeBtn.addEventListener('click', () => this.closeModal());
+    lierEvenements() {
+        if (this.boutonFermer) {
+            this.boutonFermer.addEventListener('click', () => this.fermerModale());
         }
 
         window.addEventListener('click', (e) => {
-            if (e.target === this.modal) {
-                this.closeModal();
+            if (e.target === this.modale) {
+                this.fermerModale();
             }
         });
     },
 
-    showServiceDetails(serviceType) {
-        const serviceDetails = {
+    afficherDetailsService(typeService) {
+        const detailsServices = {
             'eco-holding': {
-                title: 'Eco+Holding - Services Comptables et Fiscaux',
-                content: `
+                titre: 'Eco+Holding - Services Comptables et Fiscaux',
+                contenu: `
                     <h3>Nos services comptables et fiscaux</h3>
                     <div class="service-detail-visual">
                         <div class="chart-animation">
@@ -52,8 +52,8 @@ const ServiceModals = {
                 `
             },
             'eco-immobilier': {
-                title: 'Eco+Immobilier - Services Immobiliers',
-                content: `
+                titre: 'Eco+Immobilier - Services Immobiliers',
+                contenu: `
                     <h3>Vos projets immobiliers entre nos mains</h3>
                     <div class="service-detail-visual">
                         <div class="building-animation">
@@ -78,8 +78,8 @@ const ServiceModals = {
                 `
             },
             'eco-trans': {
-                title: 'Eco+Trans-Logistique - Transport et Logistique',
-                content: `
+                titre: 'Eco+Trans-Logistique - Transport et Logistique',
+                contenu: `
                     <h3>Solutions de transport premium</h3>
                     <div class="service-detail-visual">
                         <div class="car-animation">
@@ -105,26 +105,27 @@ const ServiceModals = {
             }
         };
         
-        if (this.modalContent && serviceDetails[serviceType]) {
-            this.modalContent.innerHTML = serviceDetails[serviceType].content;
-            this.modal.style.display = 'block';
+        if (this.contenuModale && detailsServices[typeService]) {
+            this.contenuModale.innerHTML = detailsServices[typeService].contenu;
+            this.modale.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
     },
 
-    closeModal() {
-        if (this.modal) {
-            this.modal.style.display = 'none';
+    fermerModale() {
+        if (this.modale) {
+            this.modale.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     },
 
-    addModalStyles() {
-        // Add CSS for animations if not already present
+    ajouterStylesModale() {
+        // Ajouter CSS pour animations si pas déjà présent
         if (!document.querySelector('#service-modal-styles')) {
             const style = document.createElement('style');
             style.id = 'service-modal-styles';
             style.textContent = `
+                /* Styles d'animation pour les modales de services */
                 .service-detail-visual { text-align: center; margin: 30px 0; height: 200px; display: flex; align-items: center; justify-content: center; }
                 .chart-animation { display: flex; align-items: end; gap: 10px; height: 120px; }
                 .chart-bar { width: 40px; background: linear-gradient(to top, var(--primary-blue), var(--secondary-pink)); border-radius: 4px 4px 0 0; animation: chartGrow 1.5s ease-out forwards; opacity: 0; }
@@ -157,5 +158,5 @@ const ServiceModals = {
     }
 };
 
-// Make function globally available
-window.showServiceDetails = (serviceType) => ServiceModals.showServiceDetails(serviceType);
+// Rendre la fonction accessible globalement
+window.showServiceDetails = (typeService) => ModalesServices.afficherDetailsService(typeService);

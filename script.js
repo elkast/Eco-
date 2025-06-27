@@ -1,6 +1,6 @@
-// Main application initialization
+// Initialisation principale de l'application
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS (Animate On Scroll)
+    // Initialiser AOS (Animation en défilement)
     AOS.init({
         duration: 800,
         easing: 'ease-in-out',
@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
         offset: 100
     });
     
-    // Initialize de tout les  modules
+    // Initialiser tous les modules
     Navigation.init();
-    HeroAnimations.init();
-    ServiceModals.init();
-    ContactForm.init();
-    ScrollEffects.init();
-    UIEnhancements.init();
+    AnimationsHero.init();
+    ModalesServices.init();
+    FormulaireContact.init();
+    EffetsDefilement.init();
+    AmeliorationsUI.init();
 });

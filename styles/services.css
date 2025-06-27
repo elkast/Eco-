@@ -58,36 +58,46 @@
     box-shadow: var(--shadow-heavy);
 }
 
-.service-icon {
-    width: 80px;
-    height: 80px;
+/* Remplacer l'icône par une section d'images défilantes */
+.service-images {
+    width: 100%;
+    height: 120px;
     margin: 0 auto 30px;
-    background: var(--light-gray);
-    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.image-slider {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    transition: var(--transition-fast);
+    width: 300%;
+    height: 100%;
+    animation: slideImages 8s infinite;
 }
 
-.eco-holding .service-icon {
-    background: rgba(11, 61, 145, 0.1);
-    color: var(--primary-blue);
+.service-image {
+    width: 33.333%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
-.eco-immobilier .service-icon {
-    background: rgba(229, 46, 113, 0.1);
-    color: var(--secondary-pink);
+@keyframes slideImages {
+    0%, 30% { transform: translateX(0); }
+    35%, 65% { transform: translateX(-33.333%); }
+    70%, 100% { transform: translateX(-66.666%); }
 }
 
-.eco-trans .service-icon {
-    background: rgba(40, 167, 69, 0.1);
-    color: #28a745;
+.eco-holding .image-slider {
+    animation-delay: 0s;
 }
 
-.service-card:hover .service-icon {
-    transform: scale(1.1);
+.eco-immobilier .image-slider {
+    animation-delay: -2.5s;
+}
+
+.eco-trans .image-slider {
+    animation-delay: -5s;
 }
 
 .service-card h3 {
@@ -139,4 +149,3 @@
     color: var(--white);
     transform: translateY(-2px);
 }
-

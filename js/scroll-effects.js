@@ -1,46 +1,46 @@
-// Scroll Effects Module
-const ScrollEffects = {
+// Module Effets de Défilement
+const EffetsDefilement = {
     init() {
-        this.initStatsAnimation();
-        this.initScrollToTop();
+        this.initAnimationStatistiques();
+        this.initRetourHaut();
     },
 
-    initStatsAnimation() {
-        // Animate stats numbers when they come into view
-        const stats = document.querySelectorAll('.stat-number');
+    initAnimationStatistiques() {
+        // Animer les chiffres des statistiques quand ils entrent dans la vue
+        const statistiques = document.querySelectorAll('.stat-number');
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const target = entry.target;
-                    const finalValue = parseInt(target.textContent);
-                    let currentValue = 0;
-                    const increment = finalValue / 50;
+        const observateur = new IntersectionObserver((entrees) => {
+            entrees.forEach((entree) => {
+                if (entree.isIntersecting) {
+                    const cible = entree.target;
+                    const valeurFinale = parseInt(cible.textContent);
+                    let valeurActuelle = 0;
+                    const increment = valeurFinale / 50;
                     
-                    const timer = setInterval(() => {
-                        currentValue += increment;
-                        if (currentValue >= finalValue) {
-                            target.textContent = finalValue + (target.textContent.includes('+') ? '+' : '');
-                            clearInterval(timer);
+                    const minuteur = setInterval(() => {
+                        valeurActuelle += increment;
+                        if (valeurActuelle >= valeurFinale) {
+                            cible.textContent = valeurFinale + (cible.textContent.includes('+') ? '+' : '');
+                            clearInterval(minuteur);
                         } else {
-                            target.textContent = Math.floor(currentValue) + (target.textContent.includes('+') ? '+' : '');
+                            cible.textContent = Math.floor(valeurActuelle) + (cible.textContent.includes('+') ? '+' : '');
                         }
                     }, 50);
                     
-                    observer.unobserve(target);
+                    observateur.unobserve(cible);
                 }
             });
         });
         
-        stats.forEach((stat) => {
-            observer.observe(stat);
+        statistiques.forEach((stat) => {
+            observateur.observe(stat);
         });
     },
 
-    initScrollToTop() {
-        const scrollBtn = document.createElement('div');
-        scrollBtn.className = 'scroll-to-top';
-        scrollBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    initRetourHaut() {
+        const boutonRetour = document.createElement('div');
+        boutonRetour.className = 'scroll-to-top';
+        boutonRetour.innerHTML = '<i class="fas fa-chevron-up"></i>';
         
         const style = document.createElement('style');
         style.textContent = `
@@ -84,19 +84,19 @@ const ScrollEffects = {
         `;
         
         document.head.appendChild(style);
-        document.body.appendChild(scrollBtn);
+        document.body.appendChild(boutonRetour);
         
-        // Show/hide scroll button
+        // Afficher/masquer le bouton de défilement
         window.addEventListener('scroll', function() {
             if (window.pageYOffset > 300) {
-                scrollBtn.classList.add('visible');
+                boutonRetour.classList.add('visible');
             } else {
-                scrollBtn.classList.remove('visible');
+                boutonRetour.classList.remove('visible');
             }
         });
         
-        // Scroll to top functionality
-        scrollBtn.addEventListener('click', function() {
+        // Fonctionnalité de retour en haut
+        boutonRetour.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -104,3 +104,4 @@ const ScrollEffects = {
         });
     }
 };
+

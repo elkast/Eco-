@@ -1,25 +1,25 @@
-// Hero Animations Module
-const HeroAnimations = {
+// Module Animations Hero
+const AnimationsHero = {
     init() {
-        this.initParallax();
-        this.initScrollIndicator();
+        this.initParallaxe();
+        this.initIndicateurDefilement();
     },
 
-    initParallax() {
-        // Add parallax effect to hero section
+    initParallaxe() {
+        // Ajouter effet parallaxe à la section hero
         window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
+            const positionDefilement = window.pageYOffset;
             const hero = document.querySelector('.hero');
             if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.transform = `translateY(${positionDefilement * 0.5}px)`;
             }
         });
     },
 
-    initScrollIndicator() {
-        const scrollIndicator = document.querySelector('.scroll-indicator');
-        if (scrollIndicator) {
-            scrollIndicator.addEventListener('click', function() {
+    initIndicateurDefilement() {
+        const indicateurDefilement = document.querySelector('.scroll-indicator');
+        if (indicateurDefilement) {
+            indicateurDefilement.addEventListener('click', function() {
                 document.getElementById('services').scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
@@ -28,3 +28,4 @@ const HeroAnimations = {
         }
     }
 };
+
