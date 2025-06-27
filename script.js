@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         offset: 100
     });
     
-    // Initialize all modules
+    // Initialize de tout les  modules
     Navigation.init();
     HeroAnimations.init();
     ServiceModals.init();
