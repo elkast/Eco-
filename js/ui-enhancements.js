@@ -8,7 +8,7 @@ const UIEnhancements = {
         const whatsappBtn = document.createElement('div');
         whatsappBtn.className = 'whatsapp-float';
         whatsappBtn.innerHTML = `
-            <a href="https://wa.me/2250000000000?text=Bonjour, je souhaite obtenir plus d'informations sur vos services" target="_blank">
+            <a href="https://wa.me/message/LHUEHGKHUIBHJ1?text=Bonjour, je souhaite obtenir plus d'informations sur vos services" target="_blank">
                 <i class="fab fa-whatsapp"></i>
             </a>
         `;
