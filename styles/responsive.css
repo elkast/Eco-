@@ -5,57 +5,170 @@
     }
     
     .nav-menu {
-        display: none;
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--white);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 40px 0;
+        transition: var(--transition-fast);
+        box-shadow: var(--shadow-medium);
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu .nav-link {
+        font-size: 18px;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--border-color);
+        width: 90%;
+        text-align: center;
+    }
+    
+    .nav-dropdown .dropdown-content {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: var(--light-gray);
+        margin-top: 10px;
+        border-radius: 8px;
+    }
+    
+    .hero {
+        padding: 100px 20px 80px;
+        height: auto;
+        min-height: 80vh;
     }
     
     .hero-title {
         font-size: 28px;
+        line-height: 1.3;
+        margin-bottom: 25px;
     }
     
     .logo-main {
-        font-size: 32px;
+        font-size: 36px;
     }
     
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 15px;
+    }
+    
+    .cta-button {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 18px 30px;
+        font-size: 16px;
+    }
+    
+    .services {
+        padding: 60px 0;
     }
     
     .services-grid {
         grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 40px;
+    }
+    
+    .service-card {
+        padding: 30px 20px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
+    
+    .ceo-section {
+        padding: 60px 0;
+    }
+    
+    .about {
+        padding: 60px 0;
     }
     
     .about-content {
         grid-template-columns: 1fr;
         gap: 40px;
+        text-align: center;
     }
     
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
+    .about-text h2 {
+        font-size: 28px;
     }
     
     .stats {
         justify-content: center;
         flex-wrap: wrap;
         gap: 30px;
+        margin-top: 30px;
+    }
+    
+    .testimonials {
+        padding: 60px 0;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 40px;
+    }
+    
+    .testimonial-card {
+        padding: 30px 20px;
+    }
+    
+    .contact {
+        padding: 60px 0;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-top: 40px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .contact-form {
+        padding: 30px 20px;
+    }
+    
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
     }
     
     .footer-bottom {
         flex-direction: column;
         text-align: center;
+        gap: 15px;
     }
     
-    .section-title {
-        font-size: 28px;
-    }
-    
-    .about-text h2 {
-        font-size: 28px;
+    .footer-links {
+        justify-content: center;
+        gap: 20px;
     }
 }
 
@@ -64,26 +177,147 @@
         padding: 0 15px;
     }
     
+    .nav-container {
+        padding: 0 15px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+    
+    .logo-subtitle {
+        font-size: 10px;
+    }
+    
+    .hero {
+        padding: 80px 15px 60px;
+        min-height: 70vh;
+    }
+    
     .hero-title {
         font-size: 24px;
+        line-height: 1.2;
+    }
+    
+    .logo-main {
+        font-size: 28px;
     }
     
     .cta-button {
-        padding: 12px 25px;
-        font-size: 14px;
+        padding: 15px 25px;
+        font-size: 15px;
+        max-width: 260px;
+    }
+    
+    .services, .about, .testimonials, .contact {
+        padding: 50px 0;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 30px;
     }
     
     .service-card {
-        padding: 30px 20px;
+        padding: 25px 15px;
+    }
+    
+    .service-card h3 {
+        font-size: 20px;
+    }
+    
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .about-text h2 {
+        font-size: 24px;
+    }
+    
+    .lead {
+        font-size: 16px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+    }
+    
+    .visual-element {
+        padding: 40px 20px;
+    }
+    
+    .visual-element i {
+        font-size: 48px;
     }
     
     .contact-form {
-        padding: 30px 20px;
+        padding: 20px 15px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 15px;
+    }
+    
+    .submit-btn {
+        padding: 15px 25px;
+        font-size: 15px;
     }
     
     .modal-content {
-        margin: 10% auto;
-        padding: 30px 20px;
+        margin: 5% auto;
+        padding: 20px 15px;
+        width: 95%;
+    }
+    
+    .close {
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
     }
 }
 
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .cta-button,
+    .service-btn,
+    .submit-btn {
+        min-height: 48px;
+    }
+    
+    .nav-link {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .contact-item {
+        padding: 10px 0;
+    }
+    
+    .social-links a {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding: 60px 20px 40px;
+    }
+    
+    .hero-title {
+        font-size: 26px;
+    }
+    
+    .logo-main {
+        font-size: 32px;
+    }
+}
