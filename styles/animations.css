@@ -1,77 +1,132 @@
-/* Animation Keyframes */
+/* Animations professionnelles avec dégradé bleu */
 @keyframes logoFadeIn {
     0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes balanceAnimation {
-    0%, 100% { transform: rotate(-10deg); }
-    50% { transform: rotate(10deg); }
+@keyframes pulseBleu {
+    0%, 100% { 
+        box-shadow: 0 0 0 0 rgba(11, 61, 145, 0.7);
+        background: linear-gradient(135deg, #0b3d91, #1e5bb8);
+    }
+    50% { 
+        box-shadow: 0 0 0 20px rgba(11, 61, 145, 0);
+        background: linear-gradient(135deg, #1e5bb8, #2563eb);
+    }
 }
 
-@keyframes balanceBar {
-    0%, 100% { transform: translateX(-50%) rotate(-5deg); }
-    50% { transform: translateX(-50%) rotate(5deg); }
+@keyframes slideInBleu {
+    0% { 
+        opacity: 0; 
+        transform: translateX(-50px);
+        background: rgba(11, 61, 145, 0);
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateX(0);
+        background: linear-gradient(135deg, rgba(11, 61, 145, 0.05), rgba(30, 91, 184, 0.05));
+    }
 }
 
-@keyframes titleSlideUp {
-    0% { opacity: 0; transform: translateY(50px); }
-    100% { opacity: 1; transform: translateY(0); }
+@keyframes expertiseCardEntree {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+        box-shadow: 0 0 0 rgba(11, 61, 145, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        box-shadow: 0 10px 40px rgba(11, 61, 145, 0.1);
+    }
 }
 
-@keyframes buttonsSlideUp {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
+@keyframes degradeRotation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-@keyframes scrollBounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(10px); }
+/* Application des animations aux éléments */
+.expertise-card {
+    animation: expertiseCardEntree 0.8s ease-out forwards;
 }
 
-@keyframes modalSlideIn {
-    0% { opacity: 0; transform: translateY(-50px) scale(0.9); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+.nav-logo {
+    animation: logoFadeIn 1s ease-out;
 }
 
-/* AOS Animation Styles */
-[data-aos] {
-    pointer-events: none;
+.btn-primary {
+    background: linear-gradient(135deg, #0b3d91, #1e5bb8, #2563eb);
+    background-size: 200% 200%;
+    animation: degradeRotation 3s ease infinite;
 }
 
-[data-aos].aos-animate {
-    pointer-events: auto;
+.service-card:hover {
+    animation: pulseBleu 2s ease-in-out infinite;
 }
 
-[data-aos="fade-up"] {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-[data-aos="fade-up"].aos-animate {
-    opacity: 1;
-    transform: translateY(0);
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-[data-aos="fade-right"] {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-[data-aos="fade-right"].aos-animate {
-    opacity: 1;
-    transform: translateX(0);
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
-[data-aos="fade-left"] {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+@keyframes starBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
 }
 
-[data-aos="fade-left"].aos-animate {
-    opacity: 1;
-    transform: translateX(0);
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

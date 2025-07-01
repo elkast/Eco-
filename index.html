@@ -1,41 +1,94 @@
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECO+HOLDING - Cabinet d'affaires & d'intermédiations</title>
-    <meta name="description" content="Cabinet multidisciplinaire ECO+HOLDING en Côte d'Ivoire. Comptabilité, fiscalité, immobilier, logistique. Accompagnons vos ambitions !">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- SEO Meta Tags -->
+    <title>Eco+ - Cabinet de Services Professionnels | Comptabilité, Immobilier, Transport</title>
+    <meta name="description" content="Cabinet professionnel Eco+ en Côte d'Ivoire. Services de comptabilité, expertise immobilière et transport de qualité. Devis gratuit et conseil personnalisé.">
+    <meta name="keywords" content="cabinet comptable, expertise immobilière, transport professionnel, Côte d'Ivoire, gestion d'entreprise, conseil fiscal">
+    <meta name="author" content="Eco+ Cabinet">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Eco+ - Cabinet de Services Professionnels">
+    <meta property="og:description" content="Services professionnels de comptabilité, immobilier et transport en Côte d'Ivoire">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ecoplus-ci.com">
+    <meta property="og:image" content="https://www.ecoplus-ci.com/images/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eco+ - Cabinet de Services Professionnels">
+    <meta name="twitter:description" content="Services professionnels de comptabilité, immobilier et transport en Côte d'Ivoire">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.ecoplus-ci.com">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Eco+ Cabinet",
+        "description": "Cabinet professionnel offrant des services de comptabilité, expertise immobilière et transport",
+        "url": "https://www.ecoplus-ci.com",
+        "telephone": "+33 1 23 45 67 89",
+        "email": "contact@ecoplus-services.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Avenue des Champs",
+            "addressLocality": "Paris",
+            "postalCode": "75008",
+            "addressCountry": "FR"
+        },
+        "serviceType": ["Comptabilité", "Immobilier", "Transport"],
+        "areaServed": "France"
+    }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/hero.css">
+    <link rel="stylesheet" href="styles/services.css">
+    <link rel="stylesheet" href="styles/about.css">
+    <link rel="stylesheet" href="styles/testimonials.css">
+    <link rel="stylesheet" href="styles/contact.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/navigation.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/responsive.css">
 </head>
+
 <body>
-    <!-- Navigation -->
+    <!-- Navigation avec logo -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo-container">
-                <div class="logo">
-                    <span class="logo-text">ECO<span class="plus">+</span>HOLDING</span>
-                    <div class="logo-subtitle">Cabinet de Gestion d'affaires</div>
-                </div>
-            </div>
-            
-            <div class="nav-menu">
-                <a href="#accueil" class="nav-link">Accueil</a>
-                <div class="nav-dropdown">
-                    <a href="#services" class="nav-link">Nos services <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="#eco-holding">Services Eco+Holding</a>
-                        <a href="#eco-immobilier">Services Eco+Immobilier</a>
-                        <a href="#eco-trans">Services Eco+Trans-Logistique</a>
+            <div class="nav-logo">
+                <div class="logo-complet">
+                    <div class="logo-icone">
+    <img src="logo.jpg" alt="Eco+ Logo" width="40" height="40">
+                    </div>
+                    <div class="logo-texte">
+                        <h2>Eco<span class="logo-accent">+</span></h2>
+                        <span class="logo-sous-titre">Cabinet Professionnel</span>
                     </div>
                 </div>
-                <a href="#about" class="nav-link">À propos</a>                <a href="#testimonials" class="nav-link">Témoignages</a>
-                <a href="#contact" class="nav-link">Contact</a>
             </div>
-
-            <div class="mobile-menu-toggle">
+            <ul class="nav-menu">
+                <li><a href="#accueil" class="nav-link">Accueil</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">À Propos</a></li>
+                <li><a href="#temoignages" class="nav-link">Témoignages</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -43,35 +96,107 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Section Hero avec dégradé bleu -->
     <section id="accueil" class="hero">
-        <div class="hero-content">
-            <div class="hero-logo">
-                <div class="animated-logo">
-                    <span class="logo-main">ECO<span class="plus-animated">+</span>HOLDING</span>
-                    <div class="balance-animation"></div>
-                </div>
-            </div>
-            
-            <h1 class="hero-title">
-                Cabinet de gestion d'affaires & d'intermédiations<br>
-                <span class="highlight">pour accompagner vos ambitions !</span>
-            </h1>
-            
-            <div class="hero-buttons">
-                <button class="cta-button primary" onclick="scrollToContact()">
-                    <i class="fas fa-phone"></i> Prendre contact
-                </button>
-                <button class="cta-button secondary" onclick="openQuoteForm()">
-                    <i class="fas fa-calculator"></i> Devis gratuit
-                </button>
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+            <div class="floating-elements">
+                <div class="element element-1"></div>
+                <div class="element element-2"></div>
+                <div class="element element-3"></div>
             </div>
         </div>
-        
-        <div class="hero-scroll">
-            <div class="scroll-indicator">
-                <span>Découvrir</span>
-                <i class="fas fa-chevron-down"></i>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Excellence Professionnelle <span class="hero-accent">Garantie</span></h1>
+                <p class="hero-subtitle">Services comptables, immobiliers et de transport de qualité supérieure pour votre réussite</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Découvrir nos services</button>
+                    <button class="btn btn-secondary">Nous contacter</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Expertise Comptable</h3>
+                    <p>Solutions financières sur mesure</p>
+                </div>
+                <div class="hero-card">
+                    <div class="card-icon">🏢</div>
+                    <h3>Immobilier</h3>
+                    <p>Gestion patrimoniale complète</p>
+                </div>
+                <div class="hero-card">
+                    <div class="card-icon">🚗</div>
+                    <h3>Transport</h3>
+                    <p>Solutions de mobilité premium</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Expertise avec animations d'images -->
+    <section id="expertise" class="expertise-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2>Notre Expertise en Action</h2>
+                <p>Découvrez nos domaines d'excellence à travers nos réalisations</p>
+            </div>
+            
+            <div class="expertise-grid">
+                <!-- Expertise Immobilière -->
+                <div class="expertise-card immobilier" data-aos="fade-up">
+                    <div class="expertise-images">
+                        <div class="image-carousel">
+                            <img src="immobilier-image1.png" alt="Gestion immobilière moderne" class="carousel-image active">
+                            <img src="immobilier-image2.png" alt="Transaction immobilière" class="carousel-image">
+                            <img src="immobilier-image3.png" alt="Conseil en investissement" class="carousel-image">
+                        </div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <h3>Expertise Immobilière</h3>
+                                <p>Gestion patrimoniale complète</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="expertise-details">
+                        <div class="detail-item">
+                            <i class="fas fa-home"></i>
+                            <span>500+ Biens Gérés</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>98% Satisfaction Client</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expertise Transport -->
+                <div class="expertise-card transport" data-aos="fade-up" data-aos-delay="200">
+                    <div class="expertise-images">
+                        <div class="image-carousel">
+                            <img src="transport-image1.png" alt="Service VTC premium" class="carousel-image active">
+                            <img src="transport-image2.png" alt="Flotte véhicules" class="carousel-image">
+                            <img src="transport-image3.png" alt="Showroom automobiles" class="carousel-image">
+                        </div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <h3>Solutions Transport</h3>
+                                <p>Mobilité professionnelle premium</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="expertise-details">
+                        <div class="detail-item">
+                            <i class="fas fa-car"></i>
+                            <span>Flotte 50+ Véhicules</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Service 24h/24</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -79,158 +204,123 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
-            <h2 class="section-title">Nos pôles d'expertise</h2>
+            <div class="section-header">
+                <h2>Nos Services</h2>
+                <p>Des solutions professionnelles adaptées à vos besoins</p>
+            </div>
             
             <div class="services-grid">
-                <div class="service-card eco-holding" data-aos="fade-up">
-                    <div class="service-images">
-                        <div class="image-slider">
-                            <img src="comptabilite-image1.png" alt="Services comptables" class="service-image">
-                            <img src="comptabilite-image2.png" alt="Fiscalité entreprise" class="service-image">
-                            <img src="comptabilite-image3.png" alt="Conseil gestion" class="service-image">
-                        </div>
+                <!-- Comptabilité -->
+                <div class="service-card" data-service="comptabilite">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"/>
+                            <path d="M7 12h10"/>
+                            <path d="M7 8h7"/>
+                            <path d="M7 16h6"/>
+                        </svg>
                     </div>
-                    <h3>Eco+Holding</h3>
-                    <p>Comptabilité, Fiscalité, Création d'entreprise, Recouvrement, Financement, Conseil</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> Suivi fiscal et financier</li>
-                        <li><i class="fas fa-check"></i> Création d'entreprise</li>
-                        <li><i class="fas fa-check"></i> Conseil stratégique</li>
-                        <li><i class="fas fa-check"></i> Recouvrement de créances</li>
+                    <h3>Comptabilité & Finance</h3>
+                    <p>Expertise comptable complète pour optimiser votre gestion financière</p>
+                    <ul class="service-features">
+                        <li>Tenue de comptabilité</li>
+                        <li>Déclarations fiscales</li>
+                        <li>Conseil en gestion</li>
+                        <li>Audit & révision</li>
                     </ul>
-                    <button class="service-btn" onclick="showServiceDetails('eco-holding')">En savoir plus</button>
+                    <button class="btn-service">En savoir plus</button>
                 </div>
 
-                <div class="service-card eco-immobilier" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-images">
-                        <div class="image-slider">
-                            <img src="immobilier-image1.png" alt="Gestion immobilière" class="service-image">
-                            <img src="immobilier-image2.png" alt="Vente immobilier" class="service-image">
-                            <img src="immobilier-image3.png" alt="Location appartement" class="service-image">
-                        </div>
+                <!-- Immobilier -->
+                <div class="service-card" data-service="immobilier">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 21h18"/>
+                            <path d="M5 21V7l8-4v18"/>
+                            <path d="M19 21V11l-6-4"/>
+                            <path d="M9 9v1"/>
+                            <path d="M9 12v1"/>
+                            <path d="M9 15v1"/>
+                        </svg>
                     </div>
-                    <h3>Eco+Immobilier</h3>
-                    <p>Gestion immobilière, Location, Vente, Mandat de gestion</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> Gestion locative</li>
-                        <li><i class="fas fa-check"></i> Transaction immobilière</li>
-                        <li><i class="fas fa-check"></i> Conseil en investissement</li>
-                        <li><i class="fas fa-check"></i> Mandat de gestion</li>
+                    <h3>Services Immobiliers</h3>
+                    <p>Accompagnement complet dans vos projets immobiliers</p>
+                    <ul class="service-features">
+                        <li>Gestion locative</li>
+                        <li>Transactions immobilières</li>
+                        <li>Conseil en investissement</li>
+                        <li>Évaluation de biens</li>
                     </ul>
-                    <button class="service-btn" onclick="showServiceDetails('eco-immobilier')">En savoir plus</button>
+                    <button class="btn-service">En savoir plus</button>
                 </div>
 
-                <div class="service-card eco-trans" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-images">
-                        <div class="image-slider">
-                            <img src="transport-image1.png" alt="Services VTC" class="service-image">
-                            <img src="transport-image2.png" alt="Gestion flotte" class="service-image">
-                            <img src="transport-image3.png" alt="Vente véhicules" class="service-image">
-                        </div>
+                <!-- Transport -->
+                <div class="service-card" data-service="transport">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+                            <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+                            <path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"/>
+                        </svg>
                     </div>
-                    <h3>Eco+Trans-Logistique</h3>
-                    <p>Gestion de véhicules, VTC, Vente automobile</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check"></i> Services VTC premium</li>
-                        <li><i class="fas fa-check"></i> Gestion de flotte</li>
-                        <li><i class="fas fa-check"></i> Vente de véhicules</li>
-                        <li><i class="fas fa-check"></i> Logistique transport</li>
+                    <h3>Transport & Logistique</h3>
+                    <p>Solutions de transport professionnel et personnalisé</p>
+                    <ul class="service-features">
+                        <li>Transport VIP</li>
+                        <li>Logistique entreprise</li>
+                        <li>Événements spéciaux</li>
+                        <li>Service 24h/24</li>
                     </ul>
-                    <button class="service-btn" onclick="showServiceDetails('eco-trans')">En savoir plus</button>
+                    <button class="btn-service">En savoir plus</button>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- CEO Section -->
-    <section id="ceo" class="ceo-section">
-        <div class="container">
-            <h2 class="section-title">Leadership</h2>
-            <div class="ceo-card" data-aos="fade-up">
-                <div class="ceo-content">
-                    <div class="ceo-info">
-                        <h3>Mot du Directeur Général</h3>
-                        <div class="ceo-quote">
-                            <p>"Notre mission chez ECO+HOLDING est de démocratiser l'accès aux services professionnels de qualité en Côte d'Ivoire. Nous croyons fermement qu'chaque entrepreneur, chaque investisseur et chaque particulier mérite un accompagnement d'excellence pour concrétiser ses ambitions."</p>
-                        </div>
-                        <div class="ceo-details">
-                            <h4>Notre Engagement</h4>
-                            <ul class="mission-list">
-                                <li><i class="fas fa-handshake"></i> Proximité et écoute client</li>
-                                <li><i class="fas fa-shield-alt"></i> Transparence totale dans nos relations</li>
-                                <li><i class="fas fa-chart-line"></i> Excellence opérationnelle</li>
-                                <li><i class="fas fa-users"></i> Solutions personnalisées</li>
-                            </ul>
-                        </div>
-                        <div class="ceo-signature">
-                            <strong>Directeur Général, ECO+HOLDING</strong>
-                            <p>Expert-Finance & Conseil en gestion d'entreprise</p>
-                        </div>
-                    </div>
-                    <div class="ceo-photo">
-                        <div class="photo-container">
-                            <img src="ceo-photo.png" alt="Directeur Général ECO+HOLDING" />
-                            <div class="photo-frame"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Service Details Modal -->
-    <div id="serviceModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modalContent"></div>
-        </div>
-    </div>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <h2>À propos d'ECO+HOLDING</h2>
-                    <p class="lead">
-                        Fort de notre expertise multidisciplinaire, ECO+HOLDING accompagne entreprises et particuliers 
-                        en Côte d'Ivoire dans leurs projets les plus ambitieux.
-                    </p>
-                    <p>
-                        Notre cabinet réunit des professionnels expérimentés dans trois domaines complémentaires : 
-                        la gestion d'entreprise, l'immobilier et la logistique. Cette approche intégrée nous permet 
-                        d'offrir des solutions complètes et personnalisées à nos clients.
-                    </p>
-                    <div class="stats">
-                        <div class="stat">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Clients satisfaits</span>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>À Propos d'Eco+</h2>
+                    <p class="about-intro">Cabinet de services professionnels reconnu pour son excellence et son expertise dans les domaines comptable, immobilier et du transport.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Années d'expérience</div>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number">5</span>
-                            <span class="stat-label">Années d'expérience</span>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Clients satisfaits</div>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Pôles d'expertise</span>
+                        <div class="stat-item">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">Taux de satisfaction</div>
+                        </div>
+                    </div>
+
+                    <div class="about-values">
+                        <div class="value-item">
+                            <h4>🎯 Excellence</h4>
+                            <p>Engagement constant vers la qualité et la perfection dans chaque service</p>
+                        </div>
+                        <div class="value-item">
+                            <h4>🤝 Confiance</h4>
+                            <p>Relations durables basées sur la transparence et l'intégrité</p>
+                        </div>
+                        <div class="value-item">
+                            <h4>⚡ Innovation</h4>
+                            <p>Solutions modernes et adaptées aux défis contemporains</p>
                         </div>
                     </div>
                 </div>
-                <div class="about-visual" data-aos="fade-left">
-                    <div class="partners-section">
-                        <h3>Nos partenaires de confiance</h3>
-                        <div class="partners-slider">
-                            <div class="partner-card">
-                                <img src="partenaire2.png" alt="Cabinet Juridique SARL">
-                                <h4>Cabinet Juridique SARL</h4>
-                                <p>Expertise juridique pour toutes vos démarches légales</p>
-                            </div>
-                            <div class="partner-card">
-                                <img src="partenaire3.png" alt="Assurance NSIA">
-                                <h4>NSIA Assurances</h4>
-                                <p>Solutions d'assurance adaptées à vos besoins professionnels</p>
-                            </div>
-                        </div>
+                
+                <div class="about-image">
+                    <img src="pdg.jpg" alt="Directeur Eco+" class="ceo-photo">
+                    <div class="image-overlay">
+                        <h4>Notre Directeur</h4>
+                        <p>Expert en gestion d'entreprise avec plus de 15 ans d'expérience</p>
                     </div>
                 </div>
             </div>
@@ -238,32 +328,44 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
+    <section id="temoignages" class="testimonials">
         <div class="container">
-            <h2 class="section-title">Ce que disent nos clients</h2>
+            <div class="section-header">
+                <h2>Témoignages Clients</h2>
+                <p>Ce que nos clients disent de nos services</p>
+            </div>
+            
             <div class="testimonials-grid">
-                <div class="testimonial-card" data-aos="fade-up">
-                    <div class="stars">★★★★★</div>
-                    <p>"ECO+HOLDING nous a accompagnés dans la création de notre entreprise. Service professionnel et conseils précieux !"</p>
-                    <div class="client-info">
-                        <strong>Marie Kouassi</strong>
-                        <span>Directrice, StartUp Tech CI</span>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>"Service comptable exceptionnel. Eco+ a transformé notre gestion financière avec professionnalisme et expertise."</p>
+                    <div class="testimonial-author">
+                        <strong>Marie Dubois</strong>
+                        <span>Directrice, Tech Solutions</span>
                     </div>
                 </div>
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stars">★★★★★</div>
-                    <p>"Excellente gestion de notre portefeuille immobilier. Équipe réactive et transparente."</p>
-                    <div class="client-info">
-                        <strong>Jean-Baptiste Traoré</strong>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>"Accompagnement immobilier parfait. Équipe réactive et conseils précieux pour nos investissements."</p>
+                    <div class="testimonial-author">
+                        <strong>Jean Martin</strong>
                         <span>Investisseur immobilier</span>
                     </div>
                 </div>
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="stars">★★★★★</div>
-                    <p>"Services VTC de qualité premium. Ponctualité et professionnalisme garantis."</p>
-                    <div class="client-info">
-                        <strong>Fatou Diallo</strong>
-                        <span>Entreprise Multinationale</span>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>"Service de transport impeccable. Ponctualité et confort garantis pour tous nos déplacements professionnels."</p>
+                    <div class="testimonial-author">
+                        <strong>Sophie Laurent</strong>
+                        <span>DRH, Global Corp</span>
                     </div>
                 </div>
             </div>
@@ -273,88 +375,90 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Contactez-nous</h2>
-            <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right">
-                    <h3>Prenons contact</h3>
+            <div class="section-header">
+                <h2>Contactez-nous</h2>
+                <p>Parlons de vos projets et besoins</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-icon">📧</div>
                         <div>
-                            <strong>Adresse</strong>
-                            <p>Abidjan, Cocody Riviera<br>Côte d'Ivoire</p>
+                            <h4>Email</h4>
+                            <p>contact@ecoplus-services.com</p>
                         </div>
                     </div>
+                    
                     <div class="contact-item">
-                        <i class="fas fa-clock"></i>
+                        <div class="contact-icon">📞</div>
                         <div>
-                            <strong>Horaires</strong>
-                            <p>Lun - Ven: 08h00 - 18h00<br>Sam: 09h00 - 13h00</p>
+                            <h4>Téléphone</h4>
+                            <p>+225 XX XX XX XX XX</p>
                         </div>
                     </div>
+                    
                     <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
+                        <div class="contact-icon">📍</div>
                         <div>
-                            <strong>Email</strong>
-                            <p>ecoholding192@gmail.com</p>
+                            <h4>Adresse</h4>
+                            <p>Abidjan, Palmeraie
+                                <br> Côte d'Ivoire</p>
                         </div>
                     </div>
+                    
                     <div class="contact-item">
-                        <i class="fab fa-whatsapp"></i>
+                        <div class="contact-icon">🕒</div>
                         <div>
-                            <strong>WhatsApp</strong>
-                            <p>+225 05 04 47 72 68</p>
-                            <p>+225 07 05 92 87 80</p>
+                            <h4>Horaires</h4>
+                            <p>Lun-Ven: 9h-18h<br>Sam: 9h-12h</p>
                         </div>
                     </div>
                 </div>
-
-                <form class="contact-form" data-aos="fade-left" id="contactForm">
+                
+                <form class="contact-form" id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="text" id="firstName" name="firstName" placeholder="Prénom" required>
+                            <input type="text" id="nom" name="nom" placeholder="Nom *" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="lastName" name="lastName" placeholder="Nom" required>
+                            <input type="email" id="email" name="email" placeholder="Email *" required>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="phone" name="phone" placeholder="Téléphone" required>
-                        </div>
-                    </div>
+                    
                     <div class="form-group">
-                        <select id="clientType" name="clientType" required>
-                            <option value="">Vous êtes...</option>
-                            <option value="particulier">Particulier</option>
-                            <option value="entreprise">Entreprise</option>
-                            <option value="investisseur">Investisseur</option>
-                        </select>
+                        <input type="tel" id="telephone" name="telephone" placeholder="Téléphone">
                     </div>
+                    
                     <div class="form-group">
                         <select id="service" name="service" required>
-                            <option value="">Service recherché...</option>
-                            <option value="comptabilite">Comptabilité & Fiscalité</option>
-                            <option value="creation">Création d'entreprise</option>
-                            <option value="recouvrement">Recouvrement</option>
-                            <option value="immobilier-gestion">Gestion immobilière</option>
-                            <option value="immobilier-vente">Vente immobilière</option>
-                            <option value="vtc">Services VTC</option>
-                            <option value="logistique">Transport & Logistique</option>
+                            <option value="">Sélectionnez un service *</option>
+                            <option value="comptabilite">Comptabilité & Finance</option>
+                            <option value="immobilier">Services Immobiliers</option>
+                            <option value="transport">Transport & Logistique</option>
+                            <option value="autre">Autre</option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
-                        <input type="text" id="location" name="location" placeholder="Zone géographique">
+                        <textarea id="message" name="message" placeholder="Votre message *" rows="5" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Votre message..." rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Envoyer
-                    </button>
+                    
+                    <button type="submit" class="btn btn-primary">Envoyer le message</button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <div class="container">
+            <h3>Nos Partenaires de Confiance</h3>
+            <div class="partners-grid">
+                <img src="partenaire1.png" alt="Banque Atlantique" class="partner-logo">
+                <img src="partenaire2.png" alt="BN Varii" class="partner-logo">
+                <img src="partenaire3.png" alt="SIA Assurances" class="partner-logo">
+                <img src="partenaire4.png" alt="Partenaire 4" class="partner-logo">
             </div>
         </div>
     </section>
@@ -364,62 +468,198 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <div class="footer-logo">
-                        <span class="logo-text">ECO<span class="plus">+</span>HOLDING</span>
-                        <p>Votre partenaire de confiance pour tous vos projets d'affaires en Côte d'Ivoire.</p>
+                    <h3>Eco<span class="logo-accent">+</span></h3>
+                    <p>Votre partenaire de confiance pour tous vos besoins professionnels.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Facebook</a>
                     </div>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Nos services</h4>
+                    <h4>Services</h4>
                     <ul>
-                        <li><a href="#eco-holding">Eco+Holding</a></li>
-                        <li><a href="#eco-immobilier">Eco+Immobilier</a></li>
-                        <li><a href="#eco-trans">Eco+Trans-Logistique</a></li>
+                        <li><a href="#services">Comptabilité</a></li>
+                        <li><a href="#services">Immobilier</a></li>
+                        <li><a href="#services">Transport</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Liens utiles</h4>
+                    <h4>Entreprise</h4>
                     <ul>
-                        <li><a href="#about">À propos</a></li>                        <li><a href="#testimonials">Témoignages</a></li>
+                        <li><a href="#about">À propos</a></li>
                         <li><a href="#contact">Contact</a></li>
                         <li><a href="mentions-legales.html">Mentions légales</a></li>
-                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="politique-confidentialite.html">Confidentialité</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Suivez-nous</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/message/LHUEHGKHUIBHJ1"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+                    <h4>Contact</h4>
+                    <p>📧 contact@ecoplus-services.com</p>
+                    <p>📞 +225 XX XX XX XX</p>
+                    <p>📍 Abidjan, Palmeraie<br> Côte d'Ivoire</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 ECO+HOLDING. Tous droits réservés.</p>
-                <div class="footer-links">
-                    <a href="mentions-legales.html">Mentions légales</a>
-                    <a href="politique-confidentialite.html">Politique de confidentialité</a>
-                </div>
+                <p>&copy; 2025 Eco+Holding. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
-    <!-- AOS Animation Library -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Load JavaScript modules -->
+    <!-- Service Modals -->
+    <div id="comptabiliteModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>Comptabilité & Finance</h2>
+                <div class="modal-icon">📊</div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="comptabilite-image1.png" alt="Services comptables">
+                </div>
+                <div class="modal-text">
+                    <p>Nos experts-comptables vous accompagnent dans la gestion complète de votre comptabilité avec des solutions adaptées à votre secteur d'activité.</p>
+                    
+                    <h3>Nos Services Comptables</h3>
+                    <ul>
+                        <li><strong>Tenue de comptabilité complète</strong> - Saisie, révision et validation</li>
+                        <li><strong>Déclarations fiscales</strong> - TVA, IS, CFE et autres obligations</li>
+                        <li><strong>Paie et social</strong> - Bulletins, déclarations sociales</li>
+                        <li><strong>Conseil en gestion</strong> - Tableaux de bord, analyse financière</li>
+                        <li><strong>Audit et révision</strong> - Contrôle et certification des comptes</li>
+                        <li><strong>Dématérialisation</strong> - Solutions digitales modernes</li>
+                    </ul>
+                    
+                    <div class="modal-features">
+                        <div class="feature-item">
+                            <h4>🎯 Expertise Secteur</h4>
+                            <p>Connaissance approfondie de votre secteur d'activité</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>⚡ Réactivité</h4>
+                            <p>Réponses rapides et conseil en temps réel</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🔒 Sécurité</h4>
+                            <p>Protection maximale de vos données financières</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary">Demander un devis</button>
+                <button class="btn btn-secondary">Prendre rendez-vous</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="immobilierModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>Services Immobiliers</h2>
+                <div class="modal-icon">🏢</div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="immobilier-image1.png" alt="Services immobiliers">
+                </div>
+                <div class="modal-text">
+                    <p>Accompagnement complet dans tous vos projets immobiliers, de l'investissement à la gestion locative.</p>
+                    
+                    <h3>Nos Services Immobiliers</h3>
+                    <ul>
+                        <li><strong>Gestion locative complète</strong> - Administration, entretien, contentieux</li>
+                        <li><strong>Transactions immobilières</strong> - Achat, vente, négociation</li>
+                        <li><strong>Conseil en investissement</strong> - Stratégies patrimoniales optimisées</li>
+                        <li><strong>Évaluation de biens</strong> - Expertise professionnelle certifiée</li>
+                        <li><strong>Gestion de patrimoine</strong> - Optimisation fiscale et juridique</li>
+                        <li><strong>Syndic de copropriété</strong> - Gestion d'immeubles professionnelle</li>
+                    </ul>
+                    
+                    <div class="modal-features">
+                        <div class="feature-item">
+                            <h4>📈 ROI Optimisé</h4>
+                            <p>Maximisation de vos rendements locatifs</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🛡️ Sérénité</h4>
+                            <p>Gestion complète sans stress ni tracas</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>📊 Transparence</h4>
+                            <p>Reporting détaillé et suivi en temps réel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary">Évaluer mon bien</button>
+                <button class="btn btn-secondary">Consultation gratuite</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="transportModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>Transport & Logistique</h2>
+                <div class="modal-icon">🚗</div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="transport-image1.png" alt="Services de transport">
+                </div>
+                <div class="modal-text">
+                    <p>Solutions de transport premium pour particuliers et entreprises avec un service personnalisé de haute qualité.</p>
+                    
+                    <h3>Nos Services de Transport</h3>
+                    <ul>
+                        <li><strong>Transport VIP</strong> - Véhicules de luxe avec chauffeur professionnel</li>
+                        <li><strong>Transport d'entreprise</strong> - Solutions dédiées aux professionnels</li>
+                        <li><strong>Événements spéciaux</strong> - Mariages, galas, réceptions</li>
+                        <li><strong>Transferts aéroports</strong> - Service ponctuel et fiable</li>
+                        <li><strong>Mise à disposition</strong> - Chauffeur et véhicule à la journée</li>
+                        <li><strong>Service 24h/24</strong> - Disponibilité permanente</li>
+                    </ul>
+                    
+                    <div class="modal-features">
+                        <div class="feature-item">
+                            <h4>🚘 Flotte Premium</h4>
+                            <p>Véhicules haut de gamme entretenus régulièrement</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>👔 Chauffeurs Experts</h4>
+                            <p>Professionnels formés et expérimentés</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>📱 Suivi Temps Réel</h4>
+                            <p>Application mobile pour suivre vos trajets</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary">Réserver maintenant</button>
+                <button class="btn btn-secondary">Demander un devis</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="js/navigation.js"></script>
     <script src="js/hero-animations.js"></script>
+    <script src="js/scroll-effects.js"></script>
     <script src="js/service-modals.js"></script>
     <script src="js/contact-form.js"></script>
-    <script src="js/scroll-effects.js"></script>
     <script src="js/ui-enhancements.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

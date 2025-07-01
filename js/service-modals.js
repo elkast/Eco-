@@ -1,162 +1,324 @@
-// Module Modales Services
-const ModalesServices = {
-    modale: null,
-    contenuModale: null,
-    boutonFermer: null,
+class ServiceModals {
+    constructor() {
+        this.modals = {};
+        this.activeModal = null;
+        this.init();
+    }
 
     init() {
-        this.modale = document.getElementById('serviceModal');
-        this.contenuModale = document.getElementById('modalContent');
-        this.boutonFermer = document.querySelector('.close');
-        
-        this.lierEvenements();
-        this.ajouterStylesModale();
-    },
+        this.setupModals();
+        this.bindEvents();
+        this.setupKeyboardNavigation();
+    }
 
-    lierEvenements() {
-        if (this.boutonFermer) {
-            this.boutonFermer.addEventListener('click', () => this.fermerModale());
-        }
+    setupModals() {
+        // Get all modal elements
+        const modalElements = document.querySelectorAll('.modal');
+        modalElements.forEach(modal => {
+            const modalId = modal.id;
+            this.modals[modalId] = {
+                element: modal,
+                content: modal.querySelector('.modal-content'),
+                closeBtn: modal.querySelector('.close')
+            };
+        });
+    }
 
-        window.addEventListener('click', (e) => {
-            if (e.target === this.modale) {
-                this.fermerModale();
+    bindEvents() {
+        // Bind service card clicks
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                const service = card.dataset.service;
+                this.openModal(`${service}Modal`);
+            });
+
+            // Add hover effects
+            card.addEventListener('mouseenter', () => {
+                this.addHoverEffect(card);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                this.removeHoverEffect(card);
+            });
+        });
+
+        // Bind modal close events
+        Object.values(this.modals).forEach(modal => {
+            // Close button
+            if (modal.closeBtn) {
+                modal.closeBtn.addEventListener('click', () => {
+                    this.closeModal(modal.element.id);
+                });
+            }
+
+            // Click outside to close
+            modal.element.addEventListener('click', (e) => {
+                if (e.target === modal.element) {
+                    this.closeModal(modal.element.id);
+                }
+            });
+
+            // Prevent closing when clicking inside modal content
+            modal.content.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+
+        // Bind modal footer buttons
+        this.bindModalButtons();
+    }
+
+    bindModalButtons() {
+        const modalButtons = document.querySelectorAll('.modal-footer .btn');
+        modalButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const buttonText = button.textContent.trim();
+                this.handleModalAction(buttonText);
+            });
+        });
+    }
+
+    setupKeyboardNavigation() {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.activeModal) {
+                this.closeModal(this.activeModal);
             }
         });
-    },
+    }
 
-    afficherDetailsService(typeService) {
-        const detailsServices = {
-            'eco-holding': {
-                titre: 'Eco+Holding - Services Comptables et Fiscaux',
-                contenu: `
-                    <h3>Nos services comptables et fiscaux</h3>
-                    <div class="service-detail-visual">
-                        <div class="chart-animation">
-                            <div class="chart-bar" style="height: 60%; animation-delay: 0.2s;"></div>
-                            <div class="chart-bar" style="height: 80%; animation-delay: 0.4s;"></div>
-                            <div class="chart-bar" style="height: 45%; animation-delay: 0.6s;"></div>
-                            <div class="chart-bar" style="height: 90%; animation-delay: 0.8s;"></div>
-                            <div class="chart-bar" style="height: 70%; animation-delay: 1s;"></div>
-                        </div>
-                    </div>
-                    <ul class="detail-list">
-                        <li><i class="fas fa-calculator"></i> Tenue de comptabilité complète</li>
-                        <li><i class="fas fa-chart-line"></i> Suivi fiscal et déclarations</li>
-                        <li><i class="fas fa-building"></i> Création et formalités d'entreprise</li>
-                        <li><i class="fas fa-handshake"></i> Conseil en gestion d'entreprise</li>
-                        <li><i class="fas fa-euro-sign"></i> Recouvrement de créances</li>
-                        <li><i class="fas fa-credit-card"></i> Recherche de financement</li>
-                    </ul>
-                    <p>Notre équipe d'experts-comptables vous accompagne dans toutes vos démarches fiscales et comptables, de la création de votre entreprise à son développement.</p>
-                `
-            },
-            'eco-immobilier': {
-                titre: 'Eco+Immobilier - Services Immobiliers',
-                contenu: `
-                    <h3>Vos projets immobiliers entre nos mains</h3>
-                    <div class="service-detail-visual">
-                        <div class="building-animation">
-                            <div class="building-3d">
-                                <div class="building-face front"></div>
-                                <div class="building-face back"></div>
-                                <div class="building-face left"></div>
-                                <div class="building-face right"></div>
-                                <div class="building-face top"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="detail-list">
-                        <li><i class="fas fa-key"></i> Gestion locative complète</li>
-                        <li><i class="fas fa-home"></i> Vente et achat immobilier</li>
-                        <li><i class="fas fa-search"></i> Recherche de biens</li>
-                        <li><i class="fas fa-chart-bar"></i> Évaluation immobilière</li>
-                        <li><i class="fas fa-file-contract"></i> Mandat de gestion</li>
-                        <li><i class="fas fa-coins"></i> Conseil en investissement</li>
-                    </ul>
-                    <p>Que vous soyez propriétaire, locataire ou investisseur, nous gérons votre patrimoine immobilier avec expertise et transparence.</p>
-                `
-            },
-            'eco-trans': {
-                titre: 'Eco+Trans-Logistique - Transport et Logistique',
-                contenu: `
-                    <h3>Solutions de transport premium</h3>
-                    <div class="service-detail-visual">
-                        <div class="car-animation">
-                            <div class="luxury-car">
-                                <div class="car-body"></div>
-                                <div class="car-wheel wheel-1"></div>
-                                <div class="car-wheel wheel-2"></div>
-                                <div class="car-window"></div>
-                            </div>
-                            <div class="road-line"></div>
-                        </div>
-                    </div>
-                    <ul class="detail-list">
-                        <li><i class="fas fa-car"></i> Services VTC premium</li>
-                        <li><i class="fas fa-users"></i> Transport d'entreprise</li>
-                        <li><i class="fas fa-truck"></i> Gestion de flotte véhicules</li>
-                        <li><i class="fas fa-shopping-cart"></i> Vente de véhicules</li>
-                        <li><i class="fas fa-route"></i> Logistique et livraison</li>
-                        <li><i class="fas fa-clock"></i> Disponibilité 24h/7j</li>
-                    </ul>
-                    <p>Des solutions de transport sur mesure pour particuliers et entreprises, avec un service de qualité premium et une flotte moderne.</p>
-                `
-            }
-        };
+    openModal(modalId) {
+        const modal = this.modals[modalId];
+        if (!modal) return;
+
+        // Close any currently open modal
+        if (this.activeModal) {
+            this.closeModal(this.activeModal);
+        }
+
+        // Animate modal opening
+        modal.element.style.display = 'flex';
+        modal.element.classList.add('show');
         
-        if (this.contenuModale && detailsServices[typeService]) {
-            this.contenuModale.innerHTML = detailsServices[typeService].contenu;
-            this.modale.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-    },
+        // Add body scroll lock
+        document.body.style.overflow = 'hidden';
+        
+        // Set active modal
+        this.activeModal = modalId;
 
-    fermerModale() {
-        if (this.modale) {
-            this.modale.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    },
+        // Focus management
+        modal.content.setAttribute('tabindex', '-1');
+        modal.content.focus();
 
-    ajouterStylesModale() {
-        // Ajouter CSS pour animations si pas déjà présent
-        if (!document.querySelector('#service-modal-styles')) {
-            const style = document.createElement('style');
-            style.id = 'service-modal-styles';
-            style.textContent = `
-                /* Styles d'animation pour les modales de services */
-                .service-detail-visual { text-align: center; margin: 30px 0; height: 200px; display: flex; align-items: center; justify-content: center; }
-                .chart-animation { display: flex; align-items: end; gap: 10px; height: 120px; }
-                .chart-bar { width: 40px; background: linear-gradient(to top, var(--primary-blue), var(--secondary-pink)); border-radius: 4px 4px 0 0; animation: chartGrow 1.5s ease-out forwards; opacity: 0; }
-                @keyframes chartGrow { 0% { height: 0; opacity: 0; } 100% { opacity: 1; } }
-                .building-3d { width: 120px; height: 120px; position: relative; transform-style: preserve-3d; animation: buildingRotate 3s ease-in-out infinite; }
-                .building-face { position: absolute; width: 120px; height: 120px; background: var(--secondary-pink); border: 2px solid var(--primary-blue); }
-                .building-face.front { transform: translateZ(60px); }
-                .building-face.back { transform: translateZ(-60px) rotateY(180deg); }
-                .building-face.left { transform: rotateY(-90deg) translateZ(60px); }
-                .building-face.right { transform: rotateY(90deg) translateZ(60px); }
-                .building-face.top { transform: rotateX(90deg) translateZ(60px); background: var(--primary-blue); }
-                @keyframes buildingRotate { 0%, 100% { transform: rotateY(0deg) rotateX(0deg); } 50% { transform: rotateY(180deg) rotateX(10deg); } }
-                .car-animation { position: relative; width: 200px; height: 100px; }
-                .luxury-car { position: relative; width: 120px; height: 50px; animation: carMove 2s ease-in-out infinite; }
-                .car-body { width: 100%; height: 30px; background: linear-gradient(to right, var(--primary-blue), var(--secondary-pink)); border-radius: 15px; position: relative; top: 10px; }
-                .car-wheel { width: 20px; height: 20px; background: var(--dark-gray); border-radius: 50%; position: absolute; bottom: 0; animation: wheelSpin 1s linear infinite; }
-                .wheel-1 { left: 10px; } .wheel-2 { right: 10px; }
-                .car-window { width: 40px; height: 15px; background: rgba(255,255,255,0.8); border-radius: 8px; position: absolute; top: 15px; left: 50%; transform: translateX(-50%); }
-                .road-line { position: absolute; bottom: 10px; left: 0; right: 0; height: 2px; background: repeating-linear-gradient(to right, var(--medium-gray) 0px, var(--medium-gray) 20px, transparent 20px, transparent 40px); animation: roadMove 1s linear infinite; }
-                @keyframes carMove { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(20px) scale(1.05); } }
-                @keyframes wheelSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-                @keyframes roadMove { 0% { background-position: 0px; } 100% { background-position: 40px; } }
-                .detail-list { list-style: none; padding: 0; margin: 30px 0; }
-                .detail-list li { padding: 10px 0; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--border-color); }
-                .detail-list li:last-child { border-bottom: none; }
-                .detail-list i { color: var(--primary-blue); width: 20px; }
-            `;
-            document.head.appendChild(style);
+        // Animate modal content
+        this.animateModalContent(modal.content, 'in');
+
+        // Track modal opening
+        this.trackModalEvent('open', modalId);
+    }
+
+    closeModal(modalId) {
+        const modal = this.modals[modalId];
+        if (!modal) return;
+
+        // Animate modal closing
+        this.animateModalContent(modal.content, 'out', () => {
+            modal.element.classList.remove('show');
+            modal.element.style.display = 'none';
+            
+            // Remove body scroll lock
+            document.body.style.overflow = '';
+            
+            // Clear active modal
+            this.activeModal = null;
+        });
+
+        // Track modal closing
+        this.trackModalEvent('close', modalId);
+    }
+
+    animateModalContent(content, direction, callback) {
+        const keyframes = direction === 'in' 
+            ? [
+                { opacity: 0, transform: 'translateY(50px) scale(0.9)' },
+                { opacity: 1, transform: 'translateY(0) scale(1)' }
+            ]
+            : [
+                { opacity: 1, transform: 'translateY(0) scale(1)' },
+                { opacity: 0, transform: 'translateY(-50px) scale(0.9)' }
+            ];
+
+        const animation = content.animate(keyframes, {
+            duration: 300,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            fill: 'forwards'
+        });
+
+        if (callback) {
+            animation.addEventListener('finish', callback);
         }
     }
-};
 
-// Rendre la fonction accessible globalement
-window.showServiceDetails = (typeService) => ModalesServices.afficherDetailsService(typeService);
+    addHoverEffect(card) {
+        const icon = card.querySelector('.service-icon');
+        const button = card.querySelector('.btn-service');
+        
+        // Add pulse effect to icon
+        icon.style.animation = 'pulse 1.5s ease-in-out infinite';
+        
+        // Animate button
+        if (button) {
+            button.style.transform = 'translateY(-2px)';
+            button.style.boxShadow = '0 4px 12px rgba(37, 99, 235, 0.3)';
+        }
+    }
+
+    removeHoverEffect(card) {
+        const icon = card.querySelector('.service-icon');
+        const button = card.querySelector('.btn-service');
+        
+        // Remove pulse effect
+        icon.style.animation = '';
+        
+        // Reset button
+        if (button) {
+            button.style.transform = '';
+            button.style.boxShadow = '';
+        }
+    }
+
+    handleModalAction(action) {
+        const actions = {
+            'Demander un devis': () => this.requestQuote(),
+            'Prendre rendez-vous': () => this.scheduleAppointment(),
+            'Évaluer mon bien': () => this.evaluateProperty(),
+            'Consultation gratuite': () => this.freeConsultation(),
+            'Réserver maintenant': () => this.bookNow(),
+            'En savoir plus': () => this.learnMore()
+        };
+
+        const actionFn = actions[action];
+        if (actionFn) {
+            actionFn();
+        }
+    }
+
+    requestQuote() {
+        this.closeCurrentModal();
+        this.scrollToContact();
+        this.populateContactForm('devis');
+    }
+
+    scheduleAppointment() {
+        this.closeCurrentModal();
+        this.scrollToContact();
+        this.populateContactForm('rendez-vous');
+    }
+
+    evaluateProperty() {
+        this.closeCurrentModal();
+        this.scrollToContact();
+        this.populateContactForm('evaluation');
+    }
+
+    freeConsultation() {
+        this.closeCurrentModal();
+        this.scrollToContact();
+        this.populateContactForm('consultation');
+    }
+
+    bookNow() {
+        this.closeCurrentModal();
+        this.scrollToContact();
+        this.populateContactForm('reservation');
+    }
+
+    learnMore() {
+        this.closeCurrentModal();
+        this.scrollToContact();
+    }
+
+    closeCurrentModal() {
+        if (this.activeModal) {
+            this.closeModal(this.activeModal);
+        }
+    }
+
+    scrollToContact() {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+
+    populateContactForm(type) {
+        const messageField = document.getElementById('message');
+        const serviceField = document.getElementById('service');
+        
+        const messages = {
+            'devis': 'Bonjour, je souhaiterais recevoir un devis pour vos services. Merci de me recontacter.',
+            'rendez-vous': 'Bonjour, j\'aimerais prendre rendez-vous pour discuter de mes besoins. Merci.',
+            'evaluation': 'Bonjour, je souhaiterais faire évaluer mon bien immobilier. Pouvez-vous me recontacter ?',
+            'consultation': 'Bonjour, j\'aimerais bénéficier d\'une consultation gratuite. Merci de me recontacter.',
+            'reservation': 'Bonjour, je souhaiterais réserver un service de transport. Merci de me recontacter.'
+        };
+
+        if (messageField && messages[type]) {
+            messageField.value = messages[type];
+            messageField.focus();
+        }
+
+        // Auto-select service if possible
+        if (serviceField && this.activeModal) {
+            const serviceMap = {
+                'comptabiliteModal': 'comptabilite',
+                'immobilierModal': 'immobilier',
+                'transportModal': 'transport'
+            };
+            
+            const serviceValue = serviceMap[this.activeModal];
+            if (serviceValue) {
+                serviceField.value = serviceValue;
+            }
+        }
+    }
+
+    trackModalEvent(action, modalId) {
+        // Analytics tracking
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'modal_' + action, {
+                'modal_id': modalId,
+                'event_category': 'engagement'
+            });
+        }
+    }
+
+    // Public methods for external use
+    getActiveModal() {
+        return this.activeModal;
+    }
+
+    isModalOpen() {
+        return this.activeModal !== null;
+    }
+
+    closeAllModals() {
+        Object.keys(this.modals).forEach(modalId => {
+            this.closeModal(modalId);
+        });
+    }
+}
+
+// Initialize service modals when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.serviceModals = new ServiceModals();
+});
+
+// Export for module systems
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = ServiceModals;
+}
+
