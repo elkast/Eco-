@@ -57,7 +57,7 @@ function initOptimisationsSEO() {
     // Mise à jour du titre de page selon la section visible
     const sections = document.querySelectorAll('section[id]');
     const titres = {
-        'accueil': 'Eco+ - Cabinet de Services Professionnels',
+        'accueil': 'Eco+Holding - Cabinet de Services Professionnels',
         'services': 'Nos Services - Eco+ Cabinet',
         'about': 'À Propos - Eco+ Cabinet',
         'contact': 'Contact - Eco+ Cabinet'
