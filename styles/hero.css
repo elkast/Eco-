@@ -1,37 +1,63 @@
-/* Section Hero avec dégradé bleu professionnel */
+/* ===== SECTION HERO AVEC DÉGRADÉ BLEU PROFESSIONNEL ===== */
+
+/* Variables CSS pour la section Hero */
+:root {
+    --hero-gradient-primary: #0b3d91;
+    --hero-gradient-secondary: #1e5bb8;
+    --hero-gradient-tertiary: #2563eb;
+    --hero-gradient-quaternary: #1d4ed8;
+    --hero-text-primary: #ffffff;
+    --hero-text-secondary: rgba(255, 255, 255, 0.9);
+    --hero-glass-bg: rgba(255, 255, 255, 0.1);
+    --hero-glass-border: rgba(255, 255, 255, 0.2);
+    --hero-shadow-light: rgba(255, 255, 255, 0.1);
+    --hero-shadow-dark: rgba(0, 0, 0, 0.1);
+}
+
+/* Section Hero principale */
 .hero {
+    min-height: 100vh;
     height: 100vh;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
-    color: white;
+    justify-content: center;
+    color: var(--hero-text-primary, #ffffff);
+    isolation: isolate;
 }
 
+/* Arrière-plan de la section Hero */
 .hero-background {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
 }
 
+/* Overlay avec dégradé animé */
 .gradient-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, 
-        #0b3d91 0%, 
-        #1e5bb8 25%, 
-        #2563eb 50%, 
-        #1d4ed8 75%, 
-        #0b3d91 100%);
+    z-index: -1;
+    background: linear-gradient(135deg,
+        var(--hero-gradient-primary, #0b3d91) 0%,
+        var(--hero-gradient-secondary, #1e5bb8) 25%,
+        var(--hero-gradient-tertiary, #2563eb) 50%,
+        var(--hero-gradient-quaternary, #1d4ed8) 75%,
+        var(--hero-gradient-primary, #0b3d91) 100%);
+    background-size: 400% 400%;
     animation: gradientShift 8s ease-in-out infinite;
 }
 
+/* Motif de grille en overlay */
 .gradient-overlay::before {
     content: '';
     position: absolute;
@@ -39,10 +65,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hero-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23hero-grid)"/></svg>');
     opacity: 0.3;
+    pointer-events: none;
 }
 
+/* Éléments flottants décoratifs */
 .floating-elements {
     position: absolute;
     top: 0;
@@ -50,13 +78,15 @@
     right: 0;
     bottom: 0;
     pointer-events: none;
+    z-index: 0;
 }
 
 .element {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--hero-glass-bg, rgba(255, 255, 255, 0.1));
     backdrop-filter: blur(10px);
+    border: 1px solid var(--hero-glass-border, rgba(255, 255, 255, 0.2));
 }
 
 .element-1 {
@@ -81,121 +111,38 @@
     top: 60%;
     right: 30%;
     animation: float 10s ease-in-out infinite;
+    animation-delay: -2s;
 }
 
-/* Animations du dégradé */
+/* ===== ANIMATIONS ===== */
+
+/* Animation du dégradé de fond */
 @keyframes gradientShift {
-    0%, 100% { 
-        background: linear-gradient(135deg, #0b3d91 0%, #1e5bb8 25%, #2563eb 50%, #1d4ed8 75%, #0b3d91 100%);
+    0%, 100% {
+        background-position: 0% 50%;
     }
-    50% { 
-        background: linear-gradient(135deg, #1e5bb8 0%, #2563eb 25%, #0b3d91 50%, #1e5bb8 75%, #2563eb 100%);
+    50% {
+        background-position: 100% 50%;
     }
 }
 
+/* Animation de flottement des éléments */
 @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) rotate(120deg); }
-    66% { transform: translateY(10px) rotate(240deg); }
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.7;
+    }
+    33% { 
+        transform: translateY(-20px) rotate(120deg);
+        opacity: 1;
+    }
+    66% { 
+        transform: translateY(10px) rotate(240deg);
+        opacity: 0.8;
+    }
 }
 
-.hero-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-xl) var(--spacing-lg);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-3xl);
-    align-items: center;
-    position: relative;
-    z-index: 1;
-}
-
-.hero-content {
-    color: var(--white);
-    animation: slideInLeft 1s ease-out;
-}
-
-.hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: var(--spacing-lg);
-}
-
-.hero-accent {
-    background: linear-gradient(45deg, #60a5fa, #3b82f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.hero-subtitle {
-    font-size: var(--font-size-xl);
-    font-weight: 300;
-    line-height: 1.6;
-    margin-bottom: var(--spacing-2xl);
-    opacity: 0.9;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: var(--spacing-lg);
-    flex-wrap: wrap;
-}
-
-.hero-buttons .btn {
-    padding: var(--spacing-md) var(--spacing-xl);
-    font-size: var(--font-size-lg);
-    min-width: 180px;
-}
-
-.hero-visual {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-    animation: slideInRight 1s ease-out;
-}
-
-.hero-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius-xl);
-    padding: var(--spacing-xl);
-    text-align: center;
-    color: var(--white);
-    transition: all var(--transition-normal);
-    cursor: pointer;
-}
-
-.hero-card:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-.card-icon {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-md);
-    display: block;
-}
-
-.hero-card h3 {
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-    margin-bottom: var(--spacing-sm);
-    color: var(--white);
-}
-
-.hero-card p {
-    font-size: var(--font-size-base);
-    opacity: 0.9;
-    line-height: 1.5;
-}
-
-/* Animations */
+/* Animations d'entrée */
 @keyframes slideInLeft {
     from {
         opacity: 0;
@@ -218,51 +165,941 @@
     }
 }
 
-/* Responsive Design */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== CONTENU PRINCIPAL ===== */
+
+/* Conteneur principal du Hero */
+.hero-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl, 2rem) var(--spacing-lg, 1rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl, 4rem);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Contenu textuel */
+.hero-content {
+    color: var(--hero-text-primary, #ffffff);
+    animation: slideInLeft 1s ease-out;
+}
+
+/* Titre principal */
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-lg, 1rem);
+    color: var(--hero-text-primary, #ffffff);
+}
+
+/* Texte avec accent coloré */
+.hero-accent {
+    background: linear-gradient(45deg, #60a5fa, #3b82f6, #1d4ed8);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientText 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes gradientText {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Sous-titre */
+.hero-subtitle {
+    font-size: var(--font-size-xl, 1.25rem);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-2xl, 2rem);
+    color: var(--hero-text-secondary, rgba(255, 255, 255, 0.9));
+    max-width: 90%;
+}
+
+/* Conteneur des boutons */
+.hero-buttons {
+    display: flex;
+    gap: var(--spacing-lg, 1rem);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Styles des boutons dans le Hero */
+.hero-buttons .btn {
+    padding: var(--spacing-md, 1rem) var(--spacing-xl, 2rem);
+    font-size: var(--font-size-lg, 1.125rem);
+    min-width: 180px;
+    font-weight: 500;
+    border-radius: var(--radius-lg, 12px);
+    transition: all var(--transition-normal, 0.3s ease);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+/* Bouton primaire */
+.hero-buttons .btn-primary {
+    background: var(--white, #ffffff);
+    color: var(--hero-gradient-primary, #0b3d91);
+    border-color: var(--white, #ffffff);
+}
+
+.hero-buttons .btn-primary:hover {
+    background: transparent;
+    color: var(--white, #ffffff);
+    border-color: var(--white, #ffffff);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Bouton secondaire */
+.hero-buttons .btn-secondary {
+    background: transparent;
+    color: var(--white, #ffffff);
+    border-color: var(--white, #ffffff);
+}
+
+.hero-buttons .btn-secondary:hover {
+    background: var(--white, #ffffff);
+    color: var(--hero-gradient-primary, #0b3d91);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* ===== SECTION VISUELLE ===== */
+
+/* Conteneur des éléments visuels */
+.hero-visual {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg, 1rem);
+    animation: slideInRight 1s ease-out;
+}
+
+/* Cartes Hero avec effet glassmorphism */
+.hero-card {
+    background: var(--hero-glass-bg, rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--hero-glass-border, rgba(255, 255, 255, 0.2));
+    border-radius: var(--radius-xl, 16px);
+    padding: var(--spacing-xl, 2rem);
+    text-align: center;
+    color: var(--hero-text-primary, #ffffff);
+    transition: all var(--transition-normal, 0.3s ease);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Effet de survol des cartes */
+.hero-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 20px 40px var(--hero-shadow-dark, rgba(0, 0, 0, 0.1)),
+        0 0 0 1px var(--hero-shadow-light, rgba(255, 255, 255, 0.1));
+}
+
+/* Effet de brillance au survol */
+.hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.hero-card:hover::before {
+    left: 100%;
+}
+
+/* Icône des cartes */
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md, 1rem);
+    display: block;
+    color: var(--hero-text-primary, #ffffff);
+    transition: transform var(--transition-normal, 0.3s ease);
+}
+
+.hero-card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Titre des cartes */
+.hero-card h3 {
+    font-size: var(--font-size-xl, 1.25rem);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm, 0.5rem);
+    color: var(--hero-text-primary, #ffffff);
+}
+
+/* Description des cartes */
+.hero-card p {
+    font-size: var(--font-size-base, 1rem);
+    color: var(--hero-text-secondary, rgba(255, 255, 255, 0.9));
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablettes et écrans moyens */
+@media (max-width: 1024px) {
+    .hero-container {
+        max-width: 900px;
+        gap: var(--spacing-2xl, 2rem);
+    }
+    
+    .hero-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
+    
+    .element-1 {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .element-2 {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .element-3 {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Tablettes en mode portrait */
 @media (max-width: 768px) {
+    .hero {
+        min-height: 100vh;
+        padding: var(--spacing-lg, 1rem) 0;
+    }
+    
     .hero-container {
         grid-template-columns: 1fr;
-        gap: var(--spacing-2xl);
+        gap: var(--spacing-2xl, 2rem);
         text-align: center;
-        padding: var(--spacing-2xl) var(--spacing-md);
+        padding: var(--spacing-2xl, 2rem) var(--spacing-md, 1rem);
     }
     
     .hero-content {
         order: 1;
+        animation: fadeInUp 1s ease-out;
     }
     
     .hero-visual {
         order: 2;
         grid-template-columns: 1fr;
+        animation: fadeInUp 1s ease-out 0.2s both;
+    }
+    
+    .hero-subtitle {
+        max-width: 100%;
     }
     
     .hero-buttons {
         justify-content: center;
+        gap: var(--spacing-md, 1rem);
     }
     
     .hero-buttons .btn {
         min-width: auto;
         width: 100%;
         max-width: 250px;
+        padding: var(--spacing-sm, 0.75rem) var(--spacing-lg, 1rem);
     }
-    
     .hero-card {
         margin: 0 auto;
-        max-width: 300px;
+        max-width: 400px;
+        padding: var(--spacing-lg, 1rem);
+    }
+    
+    .card-icon {
+        font-size: 2.5rem;
+    }
+    
+    /* Réduction des éléments flottants sur mobile */
+    .element-1 {
+        width: 100px;
+        height: 100px;
+        top: 10%;
+        right: 5%;
+    }
+    
+    .element-2 {
+        width: 80px;
+        height: 80px;
+        bottom: 20%;
+        left: 5%;
+    }
+    
+    .element-3 {
+        display: none; /* Masquer le troisième élément sur mobile */
     }
 }
 
+/* Mobiles en mode portrait */
 @media (max-width: 480px) {
+    .hero {
+        min-height: 100vh;
+        height: auto;
+    }
+    
+    .hero-container {
+        padding: var(--spacing-xl, 2rem) var(--spacing-sm, 0.5rem);
+        gap: var(--spacing-xl, 2rem);
+    }
+    
     .hero-title {
-        font-size: 2rem;
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
+        margin-bottom: var(--spacing-md, 1rem);
     }
     
     .hero-subtitle {
-        font-size: var(--font-size-lg);
+        font-size: var(--font-size-lg, 1.125rem);
+        margin-bottom: var(--spacing-xl, 2rem);
     }
     
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        width: 100%;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        font-size: var(--font-size-base, 1rem);
+    }
+    
+    .hero-card {
+        padding: var(--spacing-md, 1rem);
+        max-width: 100%;
+    }
+    
+    .hero-card h3 {
+        font-size: var(--font-size-lg, 1.125rem);
+    }
+    
+    .hero-card p {
+        font-size: var(--font-size-sm, 0.875rem);
+    }
+    
+    .card-icon {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-sm, 0.5rem);
+    }
+    
+    /* Simplification des éléments flottants */
+    .element-1,
+    .element-2 {
+        width: 60px;
+        height: 60px;
+        opacity: 0.5;
+    }
+    
+    .element-1 {
+        top: 15%;
+        right: 10%;
+    }
+    
+    .element-2 {
+        bottom: 25%;
+        left: 10%;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 360px) {
+    .hero-container {
+        padding: var(--spacing-lg, 1rem) var(--spacing-xs, 0.25rem);
+    }
+    
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: var(--font-size-base, 1rem);
+    }
+    
+    .hero-card {
+        padding: var(--spacing-sm, 0.75rem);
+    }
+    
+    .floating-elements {
+        display: none; /* Masquer tous les éléments flottants */
+    }
+}
+
+/* ===== MODES D'AFFICHAGE SPÉCIAUX ===== */
+
+/* Mode paysage sur mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: var(--spacing-md, 1rem) 0;
+    }
+    
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-lg, 1rem);
+        padding: var(--spacing-lg, 1rem);
+    }
+    
+    .hero-title {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        margin-bottom: var(--spacing-sm, 0.5rem);
+    }
+    
+    .hero-subtitle {
+        font-size: var(--font-size-base, 1rem);
+        margin-bottom: var(--spacing-lg, 1rem);
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        gap: var(--spacing-sm, 0.5rem);
+    }
+    
+    .hero-buttons .btn {
+        padding: var(--spacing-xs, 0.5rem) var(--spacing-md, 1rem);
+        font-size: var(--font-size-sm, 0.875rem);
+        min-width: 120px;
+    }
+    
+    .hero-card {
+        padding: var(--spacing-sm, 0.75rem);
+    }
+    
+    .floating-elements {
+        display: none;
+    }
+}
+
+/* ===== PRÉFÉRENCES D'ACCESSIBILITÉ ===== */
+
+/* Réduction des animations */
+@media (prefers-reduced-motion: reduce) {
+    .gradient-overlay {
+        animation: none;
+        background: var(--hero-gradient-primary, #0b3d91);
+    }
+    
+    .element {
+        animation: none;
+        opacity: 0.3;
+    }
+    
+    .hero-content,
+    .hero-visual {
+        animation: none;
+    }
+    
+    .hero-accent {
+        animation: none;
+        background: linear-gradient(45deg, #60a5fa, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .hero-card::before {
+        display: none;
+    }
+    
+    .hero-card:hover {
+        transform: none;
+    }
+    
+    .hero-card:hover .card-icon {
+        transform: none;
+    }
+}
+
+/* Mode contraste élevé */
+@media (prefers-contrast: high) {
+    .gradient-overlay {
+        background: var(--hero-gradient-primary, #0b3d91);
+    }
+    
+    .hero-card {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid var(--white, #ffffff);
+    }
+    
+    .hero-buttons .btn {
+        border-width: 3px;
+        font-weight: 600;
+    }
+    
+    .floating-elements {
+        display: none;
+    }
+}
+
+/* Mode sombre (si supporté) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --hero-gradient-primary: #1e3a8a;
+        --hero-gradient-secondary: #1e40af;
+        --hero-gradient-tertiary: #2563eb;
+        --hero-gradient-quaternary: #3b82f6;
+    }
+}
+
+/* ===== OPTIMISATIONS DE PERFORMANCE ===== */
+
+/* Optimisation des transformations */
+.hero-card,
+.element,
+.hero-buttons .btn {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Optimisation des animations */
+.gradient-overlay {
+    will-change: background-position;
+}
+
+.hero-accent {
+    will-change: background-position;
+}
+
+/* Nettoyage après animations */
+.hero-content.animation-complete,
+.hero-visual.animation-complete {
+    will-change: auto;
+}
+
+/* ===== ÉTATS SPÉCIAUX ===== */
+
+/* État de chargement */
+.hero.loading {
+    pointer-events: none;
+}
+
+.hero.loading .hero-content,
+.hero.loading .hero-visual {
+    opacity: 0.5;
+    animation: none;
+}
+
+.hero.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid var(--white, #ffffff);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 1s linear infinite;
+    z-index: 10;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* État d'erreur */
+.hero.error {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.hero.error .gradient-overlay {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    animation: none;
+}
+
+/* ===== VARIANTES DE THÈME ===== */
+
+/* Thème minimal */
+.hero.theme-minimal {
+    background: var(--white, #ffffff);
+    color: var(--gray-900, #111827);
+}
+
+.hero.theme-minimal .gradient-overlay {
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    animation: none;
+}
+
+.hero.theme-minimal .hero-content,
+.hero.theme-minimal .hero-card {
+    color: var(--gray-900, #111827);
+}
+
+.hero.theme-minimal .hero-subtitle {
+    color: var(--gray-600, #4b5563);
+}
+
+.hero.theme-minimal .hero-card {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.hero.theme-minimal .floating-elements {
+    display: none;
+}
+
+/* Thème sombre */
+.hero.theme-dark {
+    background: var(--gray-900, #111827);
+    color: var(--white, #ffffff);
+}
+
+.hero.theme-dark .gradient-overlay {
+    background: linear-gradient(135deg, #111827, #1f2937, #374151);
+}
+
+.hero.theme-dark .hero-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== INTÉGRATIONS ET EXTENSIONS ===== */
+
+/* Support pour les vidéos de fond */
+.hero-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Support pour les images de fond */
+.hero-background img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Overlay pour vidéo/image de fond */
+.hero-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(11, 61, 145, 0.7);
+    z-index: 0;
+}
+
+/* ===== CLASSES UTILITAIRES ===== */
+
+/* Centrage vertical complet */
+.hero.center-content {
+    align-items: center;
+    justify-content: center;
+}
+
+.hero.center-content .hero-container {
+    align-items: center;
+    text-align: center;
+}
+
+/* Hauteur personnalisée */
+.hero.height-auto {
+    height: auto;
+    min-height: 80vh;
+}
+
+.hero.height-full {
+    height: 100vh;
+    min-height: 100vh;
+}
+
+.hero.height-screen {
+    height: 100svh; /* Support pour les nouveaux viewports */
+    min-height: 100svh;
+}
+
+/* Espacement personnalisé */
+.hero.spacing-compact .hero-container {
+    gap: var(--spacing-lg, 1rem);
+    padding: var(--spacing-lg, 1rem);
+}
+
+.hero.spacing-wide .hero-container {
+    gap: var(--spacing-4xl, 5rem);
+    padding: var(--spacing-3xl, 4rem) var(--spacing-xl, 2rem);
+}
+
+/* ===== CORRECTIONS ET AMÉLIORATIONS FINALES ===== */
+
+/* Correction des z-index */
+.hero {
+    z-index: 1;
+}
+
+.hero-background {
+    z-index: -3;
+}
+
+.gradient-overlay {
+    z-index: -2;
+}
+
+.floating-elements {
+    z-index: -1;
+}
+
+.hero-container {
+    z-index: 1;
+}
+
+/* Correction des débordements */
+.hero-title,
+.hero-subtitle {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Amélioration de l'accessibilité */
+.hero-card {
+    outline: none;
+    transition: all var(--transition-normal, 0.3s ease), outline 0.2s ease;
+}
+
+.hero-card:focus {
+    outline: 3px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+.hero-buttons .btn:focus {
+    outline: 3px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Amélioration des performances sur les appareils tactiles */
+@media (hover: none) and (pointer: coarse) {
+    .hero-card:hover {
+        transform: none;
+        background: var(--hero-glass-bg, rgba(255, 255, 255, 0.1));
+    }
+    
+    .hero-card:active {
+        transform: scale(0.98);
+        background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .hero-buttons .btn:hover {
+        transform: none;
+    }
+    
+    .hero-buttons .btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Support pour les écrans haute résolution */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .gradient-overlay::before {
+        background-size: 40px 40px;
+    }
+}
+
+/* Nettoyage final */
+.hero * {
+    box-sizing: border-box;
+}
+
+.hero img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Variables CSS pour personnalisation avancée */
+.hero.custom {
+    --hero-height: 100vh;
+    --hero-padding: var(--spacing-xl, 2rem);
+    --hero-gap: var(--spacing-3xl, 4rem);
+    --hero-title-size: clamp(2.5rem, 5vw, 4rem);
+    --hero-subtitle-size: var
+    --hero-subtitle-size: var(--font-size-xl, 1.25rem);
+    --hero-card-padding: var(--spacing-xl, 2rem);
+    --hero-button-padding: var(--spacing-md, 1rem) var(--spacing-xl, 2rem);
+}
+
+.hero.custom {
+    height: var(--hero-height);
+}
+
+.hero.custom .hero-container {
+    padding: var(--hero-padding);
+    gap: var(--hero-gap);
+}
+
+.hero.custom .hero-title {
+    font-size: var(--hero-title-size);
+}
+
+.hero.custom .hero-subtitle {
+    font-size: var(--hero-subtitle-size);
+}
+
+.hero.custom .hero-card {
+    padding: var(--hero-card-padding);
+}
+
+.hero.custom .hero-buttons .btn {
+    padding: var(--hero-button-padding);
+}
+
+/* ===== FALLBACKS POUR ANCIENS NAVIGATEURS ===== */
+
+/* Fallback pour backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+    .hero-card {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .element {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+}
+
+/* Fallback pour CSS Grid */
+@supports not (display: grid) {
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .hero-content,
+    .hero-visual {
+        width: 100%;
+        max-width: 600px;
+    }
+}
+
+/* Fallback pour CSS custom properties */
+.no-css-custom-properties .hero {
+    height: 100vh;
+    background: linear-gradient(135deg, #0b3d91 0%, #2563eb 100%);
+}
+
+.no-css-custom-properties .hero-container {
+    padding: 2rem 1rem;
+    gap: 4rem;
+}
+
+.no-css-custom-properties .hero-title {
+    font-size: 3rem;
+    color: #ffffff;
+}
+
+.no-css-custom-properties .hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.no-css-custom-properties .hero-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+/* ===== OPTIMISATIONS FINALES ===== */
+
+/* Préchargement des transformations critiques */
+.hero-card:hover,
+.hero-buttons .btn:hover {
+    will-change: transform, box-shadow;
+}
+
+.hero-card:not(:hover),
+.hero-buttons .btn:not(:hover) {
+    will-change: auto;
+}
+
+/* Optimisation du rendu */
+.hero {
+    contain: layout style paint;
+}
+
+.floating-elements {
+    contain: layout style paint;
+    transform: translateZ(0);
+}
+
+/* Nettoyage des animations terminées */
+.hero-content,
+.hero-visual {
+    animation-fill-mode: both;
+}
+
+@media (max-width: 768px) {
+    .hero-content,
+    .hero-visual {
+        animation-duration: 0.8s;
+    }
+}
+
+/* Support pour les écrans pliables */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--spacing-xl, 2rem);
+    }
+    
+    .hero-visual {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }

@@ -1,5 +1,5 @@
+<!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,24 +34,28 @@
         "name": "Eco+ Cabinet",
         "description": "Cabinet professionnel offrant des services de comptabilité, expertise immobilière et transport",
         "url": "https://www.ecoplus-ci.com",
-        "telephone": "+33 1 23 45 67 89",
-        "email": "contact@ecoplus-services.com",
+        "telephone": "+225 XX XX XX XX",
+        "email": "contact@ecoplus-holding.com",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "123 Avenue des Champs",
-            "addressLocality": "Paris",
-            "postalCode": "75008",
-            "addressCountry": "FR"
+            "streetAddress": "Abidjan, Palmeraie",
+            "addressLocality": "Abidjan",
+            "postalCode": "00225",
+            "addressCountry": "CI"
         },
         "serviceType": ["Comptabilité", "Immobilier", "Transport"],
-        "areaServed": "France"
+        "areaServed": "Côte d'Ivoire"
     }
     </script>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <!-- Styles -->
+     <link rel="stylesheet" href="styles/burger-menu-fix.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/hero.css">
@@ -65,7 +69,6 @@
     <link rel="stylesheet" href="styles/animations.css">
     <link rel="stylesheet" href="styles/responsive.css">
 </head>
-
 <body>
     <!-- Navigation avec logo -->
     <nav class="navbar">
@@ -73,7 +76,7 @@
             <div class="nav-logo">
                 <div class="logo-complet">
                     <div class="logo-icone">
-    <img src="logo.jpg" alt="Eco+ Logo" width="40" height="40">
+                        <img src="logo.jpg" alt="Eco+ Logo" width="40" height="40">
                     </div>
                     <div class="logo-texte">
                         <h2>Eco<span class="logo-accent">+</span>Holding</h2>
@@ -106,30 +109,13 @@
                 <div class="element element-3"></div>
             </div>
         </div>
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Excellence Professionnelle <span class="hero-accent">Garantie</span></h1>
-                <p class="hero-subtitle">Services comptables, immobiliers et de transport de qualité supérieure pour votre réussite</p>
+        <div class="hero-content">
+            <div class="container">
+                <h1>Eco<span class="logo-accent">+</span>Holding</h1>
+                <p>Votre partenaire de confiance pour tous vos besoins professionnels</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary">Découvrir nos services</button>
-                    <button class="btn btn-secondary">Nous contacter</button>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-card">
-                    <div class="card-icon">📊</div>
-                    <h3>Expertise Comptable</h3>
-                    <p>Solutions financières sur mesure</p>
-                </div>
-                <div class="hero-card">
-                    <div class="card-icon">🏢</div>
-                    <h3>Immobilier</h3>
-                    <p>Gestion patrimoniale complète</p>
-                </div>
-                <div class="hero-card">
-                    <div class="card-icon">🚗</div>
-                    <h3>Transport</h3>
-                    <p>Solutions de mobilité premium</p>
+                    <a href="#services" class="btn btn-primary">Nos Services</a>
+                    <a href="#contact" class="btn btn-secondary">Nous Contacter</a>
                 </div>
             </div>
         </div>
@@ -148,9 +134,9 @@
                 <div class="expertise-card immobilier" data-aos="fade-up">
                     <div class="expertise-images">
                         <div class="image-carousel">
-                            <img src="immobilier-image1.png" alt="Gestion immobilière moderne" class="carousel-image active">
-                            <img src="immobilier-image2.png" alt="Transaction immobilière" class="carousel-image">
-                            <img src="immobilier-image3.png" alt="Conseil en investissement" class="carousel-image">
+                            <img src="immobilier-image1.jpeg" alt="Gestion immobilière moderne" class="carousel-image active">
+                            <img src="immobilier-image2.jpeg" alt="Transaction immobilière" class="carousel-image">
+                            <img src="immobilier-image3.jpeg" alt="Conseil en investissement" class="carousel-image">
                         </div>
                         <div class="image-overlay">
                             <div class="overlay-content">
@@ -175,7 +161,7 @@
                 <div class="expertise-card transport" data-aos="fade-up" data-aos-delay="200">
                     <div class="expertise-images">
                         <div class="image-carousel">
-                            <img src="transport-image1.png" alt="Service VTC premium" class="carousel-image active">
+                            <img src="transport-image1.avif" alt="Service VTC premium" class="carousel-image active">
                             <img src="transport-image2.png" alt="Flotte véhicules" class="carousel-image">
                             <img src="transport-image3.png" alt="Showroom automobiles" class="carousel-image">
                         </div>
@@ -311,6 +297,7 @@
                         </div>
                         <div class="value-item">
                             <h4>⚡ Innovation</h4>
+                            <p>Solutions
                             <p>Solutions modernes et adaptées aux défis contemporains</p>
                         </div>
                     </div>
@@ -320,7 +307,7 @@
                     <img src="pdg.jpg" alt="Directeur Eco+" class="ceo-photo">
                     <div class="image-overlay">
                         <h4>Notre Directeur</h4>
-                        <p>Expert en gestion d'entreprise avec plus de 15 ans d'expérience</p>
+                        <p>Expert en finance et gestion d'entreprise avec plus de 15 ans d'expérience</p>
                     </div>
                 </div>
             </div>
@@ -340,9 +327,9 @@
                     <div class="testimonial-rating">
                         <span>⭐⭐⭐⭐⭐</span>
                     </div>
-                    <p>"Service comptable exceptionnel. Eco+ a transformé notre gestion financière avec professionnalisme et expertise."</p>
+                    <p>"Service comptable exceptionnel. Eco+Holding a transformé notre gestion financière avec professionnalisme et expertise."</p>
                     <div class="testimonial-author">
-                        <strong>Marie Dubois</strong>
+                        <strong>Marie Janne</strong>
                         <span>Directrice, Tech Solutions</span>
                     </div>
                 </div>
@@ -353,7 +340,7 @@
                     </div>
                     <p>"Accompagnement immobilier parfait. Équipe réactive et conseils précieux pour nos investissements."</p>
                     <div class="testimonial-author">
-                        <strong>Jean Martin</strong>
+                        <strong>Jean Jacques</strong>
                         <span>Investisseur immobilier</span>
                     </div>
                 </div>
@@ -364,7 +351,7 @@
                     </div>
                     <p>"Service de transport impeccable. Ponctualité et confort garantis pour tous nos déplacements professionnels."</p>
                     <div class="testimonial-author">
-                        <strong>Sophie Laurent</strong>
+                        <strong>Claire Konan</strong>
                         <span>DRH, Global Corp</span>
                     </div>
                 </div>
@@ -386,7 +373,7 @@
                         <div class="contact-icon">📧</div>
                         <div>
                             <h4>Email</h4>
-                            <p>contact@ecoplus-services.com</p>
+                            <p>contact@ecoplus-holding.com</p>
                         </div>
                     </div>
                     
@@ -402,8 +389,7 @@
                         <div class="contact-icon">📍</div>
                         <div>
                             <h4>Adresse</h4>
-                            <p>Abidjan, Palmeraie
-                                <br> Côte d'Ivoire</p>
+                            <p>Abidjan, Palmeraie<br>Côte d'Ivoire</p>
                         </div>
                     </div>
                     
@@ -432,7 +418,7 @@
                     
                     <div class="form-group">
                         <select id="service" name="service" required>
-                            <option value="">Sélectionnez un service *</option>
+                            <option value="">Sélectionnez un service</option>
                             <option value="comptabilite">Comptabilité & Finance</option>
                             <option value="immobilier">Services Immobiliers</option>
                             <option value="transport">Transport & Logistique</option>
@@ -468,12 +454,12 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Eco<span class="logo-accent">+</span></h3>
+                    <h3>Eco<span class="logo-accent">+</span>Holding</h3>
                     <p>Votre partenaire de confiance pour tous vos besoins professionnels.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link">LinkedIn</a>
-                        <a href="#" class="social-link">Twitter</a>
-                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">LinkedIn</a>
+                        <a href="#" class="social-link" aria-label="Twitter">Twitter</a>
+                        <a href="#" class="social-link" aria-label="Facebook">Facebook</a>
                     </div>
                 </div>
                 
@@ -498,9 +484,9 @@
                 
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>📧 contact@ecoplus-services.com</p>
+                    <p>📧 contact@ecoplus-holding.com</p>
                     <p>📞 +225 XX XX XX XX</p>
-                    <p>📍 Abidjan, Palmeraie<br> Côte d'Ivoire</p>
+                    <p>📍 Abidjan, Palmeraie<br>Côte d'Ivoire</p>
                 </div>
             </div>
             
@@ -567,7 +553,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-image">
-                    <img src="immobilier-image1.png" alt="Services immobiliers">
+                    <img src="immobilier-image1.jpeg" alt="Services immobiliers">
                 </div>
                 <div class="modal-text">
                     <p>Accompagnement complet dans tous vos projets immobiliers, de l'investissement à la gestion locative.</p>
@@ -614,7 +600,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-image">
-                    <img src="transport-image1.png" alt="Services de transport">
+                    <img src="transport-image1.avif" alt="Services de transport">
                 </div>
                 <div class="modal-text">
                     <p>Solutions de transport premium pour particuliers et entreprises avec un service personnalisé de haute qualité.</p>
@@ -628,7 +614,6 @@
                         <li><strong>Mise à disposition</strong> - Chauffeur et véhicule à la journée</li>
                         <li><strong>Service 24h/24</strong> - Disponibilité permanente</li>
                     </ul>
-                    
                     <div class="modal-features">
                         <div class="feature-item">
                             <h4>🚘 Flotte Premium</h4>
@@ -653,6 +638,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="js/burger-menu.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/hero-animations.js"></script>
     <script src="js/scroll-effects.js"></script>
@@ -661,5 +647,4 @@
     <script src="js/ui-enhancements.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>

@@ -1,33 +1,63 @@
-/* Animations professionnelles avec dégradé bleu */
+/* ===== ANIMATIONS PROFESSIONNELLES AVEC DÉGRADÉ BLEU ===== */
+
+/* Variables pour les animations */
+:root {
+    --animation-duration-fast: 0.3s;
+    --animation-duration-normal: 0.6s;
+    --animation-duration-slow: 1s;
+    --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --blue-primary: #0b3d91;
+    --blue-secondary: #1e5bb8;
+    --blue-tertiary: #2563eb;
+    --blue-light: #3b82f6;
+}
+
+/* ===== ANIMATIONS PRINCIPALES ===== */
+
+/* Animation d'apparition du logo */
 @keyframes logoFadeIn {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulseBleu {
-    0%, 100% { 
-        box-shadow: 0 0 0 0 rgba(11, 61, 145, 0.7);
-        background: linear-gradient(135deg, #0b3d91, #1e5bb8);
-    }
-    50% { 
-        box-shadow: 0 0 0 20px rgba(11, 61, 145, 0);
-        background: linear-gradient(135deg, #1e5bb8, #2563eb);
-    }
-}
-
-@keyframes slideInBleu {
     0% { 
         opacity: 0; 
-        transform: translateX(-50px);
-        background: rgba(11, 61, 145, 0);
+        transform: translateY(30px) scale(0.8); 
     }
     100% { 
         opacity: 1; 
-        transform: translateX(0);
-        background: linear-gradient(135deg, rgba(11, 61, 145, 0.05), rgba(30, 91, 184, 0.05));
+        transform: translateY(0) scale(1); 
     }
 }
 
+/* Animation de pulsation bleue */
+@keyframes pulseBleu {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(11, 61, 145, 0.7);
+        background: linear-gradient(135deg, var(--blue-primary), var(--blue-secondary));
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 20px rgba(11, 61, 145, 0);
+        background: linear-gradient(135deg, var(--blue-secondary), var(--blue-tertiary));
+        transform: scale(1.05);
+    }
+}
+
+/* Animation de glissement avec fond bleu */
+@keyframes slideInBleu {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+        background: rgba(11, 61, 145, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        background: linear-gradient(135deg, 
+            rgba(11, 61, 145, 0.05), 
+            rgba(30, 91, 184, 0.05));
+    }
+}
+
+/* Animation d'entrée des cartes d'expertise */
 @keyframes expertiseCardEntree {
     0% {
         opacity: 0;
@@ -41,31 +71,22 @@
     }
 }
 
+/* Animation de rotation du dégradé */
 @keyframes degradeRotation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+    100% { 
+        background-position: 0% 50%; 
+    }
 }
 
-/* Application des animations aux éléments */
-.expertise-card {
-    animation: expertiseCardEntree 0.8s ease-out forwards;
-}
+/* ===== ANIMATIONS GÉNÉRIQUES ===== */
 
-.nav-logo {
-    animation: logoFadeIn 1s ease-out;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #0b3d91, #1e5bb8, #2563eb);
-    background-size: 200% 200%;
-    animation: degradeRotation 3s ease infinite;
-}
-
-.service-card:hover {
-    animation: pulseBleu 2s ease-in-out infinite;
-}
-
+/* Apparition par le bas */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -77,6 +98,7 @@
     }
 }
 
+/* Glissement depuis la gauche */
 @keyframes slideInLeft {
     from {
         opacity: 0;
@@ -88,6 +110,7 @@
     }
 }
 
+/* Glissement depuis la droite */
 @keyframes slideInRight {
     from {
         opacity: 0;
@@ -99,6 +122,7 @@
     }
 }
 
+/* Animation de flottement */
 @keyframes float {
     0%, 100% {
         transform: translateY(0px);
@@ -108,6 +132,7 @@
     }
 }
 
+/* Rebond des étoiles */
 @keyframes starBounce {
     0%, 100% {
         transform: scale(1);
@@ -117,6 +142,7 @@
     }
 }
 
+/* Pulsation simple */
 @keyframes pulse {
     0%, 100% {
         opacity: 0.5;
@@ -126,7 +152,350 @@
     }
 }
 
+/* Rotation */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { 
+        transform: rotate(0deg); 
+    }
+    100% { 
+        transform: rotate(360deg); 
+    }
+}
+
+/* ===== ANIMATIONS POUR MENU BURGER ===== */
+
+/* Animation d'ouverture du menu mobile */
+@keyframes menuSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+}
+
+/* Animation de fermeture du menu mobile */
+@keyframes menuSlideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+        visibility: hidden;
+    }
+}
+
+/* Animation des barres du burger */
+@keyframes burgerToX1 {
+    0% {
+        transform: rotate(0deg) translateY(0);
+    }
+    50% {
+        transform: rotate(0deg) translateY(8px);
+    }
+    100% {
+        transform: rotate(45deg) translateY(8px);
+    }
+}
+
+@keyframes burgerToX2 {
+    0% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    50% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+}
+
+@keyframes burgerToX3 {
+    0% {
+        transform: rotate(0deg) translateY(0);
+    }
+    50% {
+        transform: rotate(0deg) translateY(-8px);
+    }
+    100% {
+        transform: rotate(-45deg) translateY(-8px);
+    }
+}
+
+/* Animation inverse (X vers burger) */
+@keyframes xToBurger1 {
+    0% {
+        transform: rotate(45deg) translateY(8px);
+    }
+    50% {
+        transform: rotate(0deg) translateY(8px);
+    }
+    100% {
+        transform: rotate(0deg) translateY(0);
+    }
+}
+
+@keyframes xToBurger2 {
+    0% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    50% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes xToBurger3 {
+    0% {
+        transform: rotate(-45deg) translateY(-8px);
+    }
+    50% {
+        transform: rotate(0deg) translateY(-8px);
+    }
+    100% {
+        transform: rotate(0deg) translateY(0);
+    }
+}
+
+/* ===== APPLICATION DES ANIMATIONS ===== */
+
+/* Logo */
+.nav-logo {
+    animation: logoFadeIn var(--animation-duration-slow) var(--animation-easing);
+}
+
+/* Boutons primaires */
+.btn-primary {
+    background: linear-gradient(135deg, 
+        var(--blue-primary), 
+        var(--blue-secondary), 
+        var(--blue-tertiary));
+    background-size: 200% 200%;
+    animation: degradeRotation 3s ease infinite;
+    transition: all var(--animation-duration-fast) var(--animation-easing);
+}
+
+.btn-primary:hover {
+    animation-play-state: paused;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(11, 61, 145, 0.3);
+}
+
+/* Cartes d'expertise */
+.expertise-card {
+    animation: expertiseCardEntree var(--animation-duration-normal) var(--animation-easing) forwards;
+    animation-delay: calc(var(--animation-delay, 0) * 0.1s);
+}
+
+/* Cartes de service avec effet hover */
+.service-card {
+    transition: all var(--animation-duration-fast) var(--animation-easing);
+}
+
+.service-card:hover {
+    animation: pulseBleu 2s ease-in-out infinite;
+    transform: translateY(-5px);
+}
+
+/* ===== ANIMATIONS POUR MENU BURGER (CORRECTION) ===== */
+
+/* Menu mobile */
+.nav-menu {
+    transition: all var(--animation-duration-fast) var(--animation-easing);
+}
+
+.nav-menu.active {
+    animation: menuSlideIn var(--animation-duration-fast) var(--animation-easing) forwards;
+}
+
+.nav-menu.closing {
+    animation: menuSlideOut var(--animation-duration-fast) var(--animation-easing) forwards;
+}
+
+/* Burger button */
+.burger-menu {
+    cursor: pointer;
+    padding: 8px;
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 1001;
+}
+
+.burger-menu span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--blue-primary);
+    border-radius: 2px;
+    transition: all var(--animation-duration-fast) var(--animation-easing);
+    transform-origin: center;
+}
+
+/* États du burger */
+.burger-menu.active span:nth-child(1) {
+    animation: burgerToX1 var(--animation-duration-fast) var(--animation-easing) forwards;
+}
+
+.burger-menu.active span:nth-child(2) {
+    animation: burgerToX2 var(--animation-duration-fast) var(--animation-easing) forwards;
+}
+
+.burger-menu.active span:nth-child(3) {
+    animation: burgerToX3 var(--animation-duration-fast) var(--animation-easing) forwards;
+}
+
+/* Animation de retour */
+.burger-menu:not(.active) span:nth-child(1) {
+    animation: xToBurger1 var(--animation-duration-fast) var(--animation-easing) forwards;
+}
+
+.burger-menu:not(.active) span:nth-child(2) {
+    animation: xToBurger2 var(--animation-duration-fast) var(--animation-easing) forwards;
+}
+
+.burger-menu:not(.active) span:nth-child(3) {
+    animation: xToBurger3 var(--animation-duration-fast) var(--animation-easing) forwards;
+}
+
+/* ===== ANIMATIONS AVEC DÉLAIS ===== */
+
+/* Animation en cascade pour les éléments de liste */
+.animate-cascade > * {
+    opacity: 0;
+    animation: fadeInUp var(--animation-duration-normal) var(--animation-easing) forwards;
+}
+
+.animate-cascade > *:nth-child(1) { animation-delay: 0.1s; }
+.animate-cascade > *:nth-child(2) { animation-delay: 0.2s; }
+.animate-cascade > *:nth-child(3) { animation-delay: 0.3s; }
+.animate-cascade > *:nth-child(4) { animation-delay: 0.4s; }
+.animate-cascade > *:nth-child(5) { animation-delay: 0.5s; }
+.animate-cascade > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* ===== ANIMATIONS RESPONSIVES ===== */
+
+/* Réduction des animations sur mobile */
+@media (max-width: 768px) {
+    .service-card:hover {
+        animation: none;
+        transform: none;
+    }
+    
+    .btn-primary {
+        animation-duration: 2s;
+    }
+    
+    .expertise-card {
+        animation-duration: 0.4s;
+    }
+}
+
+/* ===== PRÉFÉRENCES D'ACCESSIBILITÉ ===== */
+
+/* Réduction des animations si demandée */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .burger-menu span {
+        transition: none;
+    }
+    
+    .nav-menu {
+        transition: none;
+    }
+    
+    .btn-primary {
+        animation: none;
+        background: var(--blue-primary);
+    }
+    
+    .service-card:hover {
+        animation: none;
+    }
+}
+
+/* ===== CLASSES UTILITAIRES D'ANIMATION ===== */
+
+/* Classes pour déclencher les animations */
+.animate-fade-in-up {
+    animation: fadeInUp var(--animation-duration-normal) var(--animation-easing);
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft var(--animation-duration-normal) var(--animation-easing);
+}
+
+.animate-slide-in-right {
+    animation: slideInRight var(--animation-duration-normal) var(--animation-easing);
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Classes pour contrôler les animations */
+.animation-paused {
+    animation-play-state: paused !important;
+}
+
+.animation-running {
+    animation-play-state: running !important;
+}
+
+.animation-delay-1 { animation-delay: 0.1s; }
+.animation-delay-2 { animation-delay: 0.2s; }
+.animation-delay-3 { animation-delay: 0.3s; }
+.animation-delay-4 { animation-delay: 0.4s; }
+.animation-delay-5 { animation-delay: 0.5s; }
+
+/* ===== OPTIMISATIONS DE PERFORMANCE ===== */
+
+/* Optimisation des éléments animés */
+.animate-fade-in-up,
+.animate-slide-in-left,
+.animate-slide-in-right,
+.expertise-card,
+.service-card,
+.btn-primary {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Nettoyage après animation */
+.animation-complete {
+    will-change: auto;
 }
