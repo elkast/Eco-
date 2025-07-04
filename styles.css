@@ -510,18 +510,12 @@
             align-items: center;
         }
         
-        .image-dirigeant {
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            height: 500px;
-        }
         
-        .image-dirigeant img {
+        /* .image-dirigeant img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
+        } */
         
         .nom-dirigeant {
             font-size: 2rem;
@@ -995,3 +989,35 @@
            }
        }
        
+       /* carrousel dirigeant */
+
+       .carousel-dirigeant {
+            overflow: hidden;
+            width: 100%;
+            margin-top: 30px;
+            border-radius: 10px;
+            height: 200px; /* adapte selon tes images */
+        }
+
+.carousel-track {
+    display: flex;
+    width: calc(140%); /* permet l’effet de boucle fluide */
+    animation: scrollImages 10s linear infinite;
+    gap: 10px; /* espace entre les images */
+}
+
+.carousel-image {
+    width: 50%;
+    height: 100%;
+    
+}
+
+/* Animation automatique */
+@keyframes scrollImages {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
