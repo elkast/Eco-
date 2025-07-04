@@ -1,98 +1,110 @@
-// Initialisation des animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialisation de AOS
-            AOS.init({
-                duration: 800,
-                easing: 'ease-in-out',
-                once: true,
-                mirror: false
-            });
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Menu mobile
+    const menuBtn = document.getElementById('bouton-menu');
+    const menuNav = document.getElementById('menu-nav');
+    
+    menuBtn.addEventListener('click', function() {
+        menuBtn.classList.toggle('active');
+        menuNav.classList.toggle('active');
+    });
+    
+    // Fermer le menu en cliquant sur un lien
+    const navLinks = document.querySelectorAll('.lien-nav');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            menuBtn.classList.remove('active');
+            menuNav.classList.remove('active');
+        });
+    });
+    
+    // Animation AOS
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+    
+    // Défilement fluide
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            // Menu mobile
-            const menuBtn = document.getElementById('bouton-menu');
-            const menuNav = document.getElementById('menu-nav');
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
             
-            menuBtn.addEventListener('click', function() {
-                menuBtn.classList.toggle('active');
-                menuNav.classList.toggle('active');
-            });
-            
-            // Fermer le menu en cliquant sur un lien
-            const navLinks = document.querySelectorAll('.lien-nav');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    menuBtn.classList.remove('active');
-                    menuNav.classList.remove('active');
-                    
-                    // Mettre à jour le lien actif
-                    navLinks.forEach(item => item.classList.remove('active'));
-                    link.classList.add('active');
-                });
-            });
-            
-            // Scroll vers les sections
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        window.scrollTo({
-                            top: target.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Bouton retour en haut
-            const backToTopBtn = document.querySelector('.back-to-top');
-            
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTopBtn.classList.add('active');
-                } else {
-                    backToTopBtn.classList.remove('active');
-                }
-            });
-            
-            backToTopBtn.addEventListener('click', function() {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
                 window.scrollTo({
-                    top: 0,
+                    top: targetElement.offsetTop - 70,
                     behavior: 'smooth'
                 });
-            });
-            
-            // Animation du formulaire
-            const form = document.getElementById('form-rdv');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Animation de succès
-                    form.innerHTML = `
-                        <div style="text-align: center; padding: 40px 0;">
-                            <i class="fas fa-check-circle" style="font-size: 4rem; color: #4CAF50; margin-bottom: 20px;"></i>
-                            <h3>Demande envoyée avec succès !</h3>
-                            <p>Nous vous contacterons dans les plus brefs délais.</p>
-                        </div>
-                    `;
-                });
             }
-            
-            // Effet parallaxe sur la section hero
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                window.addEventListener('scroll', function() {
-                    const scrollPosition = window.pageYOffset;
-                    hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
-                });
-            }
-            
-            // Date minimale pour le formulaire
-            const today = new Date();
-            const tomorrow = new Date(today);
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            const minDate = tomorrow.toISOString().split('T')[0];
-            document.getElementById('date').min = minDate;
         });
+    });
+    
+    // Back to top
+    const backToTopBtn = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 500) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+    
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Formulaire de contact
+    const contactForm = document.getElementById('form-rdv');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupérer les valeurs du formulaire
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simulation d'envoi
+            console.log('Données du formulaire:', data);
+            
+            // Afficher un message de succès
+            alert('Votre demande de rendez-vous a été envoyée avec succès ! Nous vous contacterons très rapidement.');
+            
+            // Réinitialiser le formulaire
+            this.reset();
+        });
+    }
+    
+    // Changement de couleur de la navigation au scroll
+    const navbar = document.querySelector('.barre-navigation');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.style.backgroundColor = 'var(--couleur-blanc)';
+            navbar.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.backgroundColor = '';
+            navbar.style.boxShadow = '';
+        }
+    });
+    
+    // Animation pour la section hero
+    const scrollDown = document.querySelector('.scroll-hero');
+    
+    if (scrollDown) {
+        scrollDown.addEventListener('click', function() {
+            window.scrollTo({
+                top: window.innerHeight - 70,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
