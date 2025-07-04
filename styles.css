@@ -152,19 +152,45 @@
             padding: 20px 0;
         }
         
-        .logo-nav {
-            display: flex;
-            align-items: center;
+        .logo-nav  {
+            display: inline-block;
             gap: 10px;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
         }
-        
+
+        small{
+            font-size: 0.8rem;
+            color: var(--gray);
+            display: block;
+            margin-top: 5px;
+        }
+
         .logo-nav i {
             color: var(--secondary);
         }
-        
+
+        /* nb */
+        .logo-nav {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            }
+
+            .logo-title {
+            font-size: 28px; /* ou plus grand selon besoin */
+            font-weight: bold;
+            color: #0a2d7d; /* bleu foncé */
+            text-transform: uppercase;
+            }
+
+            .logo-subtitle {
+            font-size: 12px;
+            color: #666666;
+            letter-spacing: 1px;
+            }
+
+        /* jkb */
         .menu-nav {
             display: flex;
             gap: 30px;
