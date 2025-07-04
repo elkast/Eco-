@@ -949,3 +949,23 @@
                 font-size: 2rem;
             }
         }
+
+       
+       .responsive-text {
+           font-size: 0.9rem;
+           line-height: 1.4;
+           margin: 10px 0;
+       }
+       
+       @media (max-width: 768px) {
+           .responsive-text {
+               font-size: 0.8rem;
+           }
+       }
+       
+       @media (max-width: 576px) {
+           .responsive-text {
+               font-size: 0.7rem;
+           }
+       }
+       
