@@ -960,8 +960,8 @@
                 padding: 80px 0;
             }
         }
-        
-        @media (max-width: 576px) {
+
+        @media (max-width: 768px) {
             .titre-section {
                 font-size: 2rem;
             }
@@ -987,8 +987,8 @@
                font-size: 0.8rem;
            }
        }
-       
-       @media (max-width: 576px) {
+
+       @media (max-width: 768px) {
            .responsive-text {
                font-size: 0.7rem;
            }
