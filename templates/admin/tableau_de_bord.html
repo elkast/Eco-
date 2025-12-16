@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Eco+Holding Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body class="page-admin">
+    <!-- Barre latérale -->
+    <aside class="barre-laterale">
+        <div class="logo-admin">
+            <i class="fas fa-chart-line"></i>
+            <span>Eco+Holding</span>
+        </div>
+        
+        <nav class="menu-admin">
+            <a href="#" class="lien-menu active">
+                <i class="fas fa-th-large"></i>
+                <span>Tableau de bord</span>
+            </a>
+            <a href="#" class="lien-menu">
+                <i class="fas fa-envelope"></i>
+                <span>Demandes</span>
+                <span class="badge" id="badge-nouveau">0</span>
+            </a>
+        </nav>
+        
+        <div class="utilisateur-admin">
+            <div class="info-utilisateur">
+                <i class="fas fa-user-circle"></i>
+                <span id="nom-utilisateur">Admin</span>
+            </div>
+            <button class="btn-deconnexion" id="btn-deconnexion">
+                <i class="fas fa-sign-out-alt"></i>
+                Déconnexion
+            </button>
+        </div>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="contenu-principal">
+        <!-- En-tête -->
+        <header class="en-tete-admin">
+            <h1>Tableau de bord</h1>
+            <div class="actions-en-tete">
+                <button class="btn-icone" id="btn-rafraichir" title="Rafraîchir">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Statistiques -->
+        <section class="section-statistiques">
+            <div class="carte-stat">
+                <div class="icone-stat" style="background: linear-gradient(135deg, #3B82F6, #1E3A8A);">
+                    <i class="fas fa-inbox"></i>
+                </div>
+                <div class="contenu-stat">
+                    <h3 id="stat-total">0</h3>
+                    <p>Total demandes</p>
+                </div>
+            </div>
+            
+            <div class="carte-stat">
+                <div class="icone-stat" style="background: linear-gradient(135deg, #F59E0B, #D4AF37);">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="contenu-stat">
+                    <h3 id="stat-nouveau">0</h3>
+                    <p>Nouvelles</p>
+                </div>
+            </div>
+            
+            <div class="carte-stat">
+                <div class="icone-stat" style="background: linear-gradient(135deg, #3B82F6, #1E3A8A);">
+                    <i class="fas fa-spinner"></i>
+                </div>
+                <div class="contenu-stat">
+                    <h3 id="stat-en-cours">0</h3>
+                    <p>En cours</p>
+                </div>
+            </div>
+            
+            <div class="carte-stat">
+                <div class="icone-stat" style="background: linear-gradient(135deg, #10B981, #059669);">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="contenu-stat">
+                    <h3 id="stat-traite">0</h3>
+                    <p>Traitées</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filtres -->
+        <section class="section-filtres">
+            <div class="groupe-filtres">
+                <div class="filtre">
+                    <label for="filtre-statut">Statut</label>
+                    <select id="filtre-statut">
+                        <option value="">Tous</option>
+                        <option value="nouveau">Nouveau</option>
+                        <option value="en_cours">En cours</option>
+                        <option value="traite">Traité</option>
+                    </select>
+                </div>
+                
+                <div class="filtre">
+                    <label for="filtre-service">Service</label>
+                    <select id="filtre-service">
+                        <option value="">Tous</option>
+                        <option value="expertise-comptable">Suivi fiscal</option>
+                        <option value="conseil-gestion">Conseil en gestion</option>
+                        <option value="creation-entreprise">Création d'entreprise</option>
+                        <option value="recouvrement">Recouvrement</option>
+                        <option value="immobilier">Gestion Immobilière</option>
+                        <option value="logistique">Gestion de Flotte</option>
+                        <option value="vente-voiture">Vente de voiture</option>
+                    </select>
+                </div>
+                
+                <div class="filtre filtre-recherche">
+                    <label for="recherche">Rechercher</label>
+                    <input type="text" id="recherche" placeholder="Nom, email, téléphone...">
+                </div>
+            </div>
+        </section>
+
+        <!-- Tableau des demandes -->
+        <section class="section-tableau">
+            <div class="carte-tableau">
+                <div class="en-tete-tableau">
+                    <h2>Demandes clients</h2>
+                </div>
+                
+                <div class="conteneur-tableau">
+                    <table class="tableau-demandes" id="tableau-demandes">
+                        <thead>
+                            <tr>
+                                <th data-sort="nom">Nom <i class="fas fa-sort"></i></th>
+                                <th data-sort="email">Email <i class="fas fa-sort"></i></th>
+                                <th data-sort="telephone">Téléphone <i class="fas fa-sort"></i></th>
+                                <th data-sort="service">Service <i class="fas fa-sort"></i></th>
+                                <th data-sort="date_souhaitee">Date RDV <i class="fas fa-sort"></i></th>
+                                <th data-sort="statut">Statut <i class="fas fa-sort"></i></th>
+                                <th data-sort="date_creation">Date création <i class="fas fa-sort"></i></th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corps-tableau">
+                            <tr class="ligne-chargement">
+                                <td colspan="8" style="text-align: center; padding: 2rem;">
+                                    <i class="fas fa-circle-notch fa-spin fa-2x"></i>
+                                    <p>Chargement des demandes...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination" id="pagination">
+                    <button class="btn-page" id="btn-precedent" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        Précédent
+                    </button>
+                    <span class="info-page" id="info-page">Page 1 sur 1</span>
+                    <button class="btn-page" id="btn-suivant" disabled>
+                        Suivant
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal détails -->
+    <div class="modal" id="modal-details">
+        <div class="modal-contenu">
+            <div class="modal-en-tete">
+                <h2>Détails de la demande</h2>
+                <button class="btn-fermer" id="btn-fermer-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-corps" id="modal-corps">
+                <!-- Contenu dynamique -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/admin-dashboard.js"></script>
+</body>
+</html>

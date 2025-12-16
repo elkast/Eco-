@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Admin - Eco+Holding</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body class="page-connexion">
+    <div class="conteneur-connexion">
+        <div class="carte-connexion">
+            <div class="en-tete-connexion">
+                <div class="logo-connexion">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h1>Eco+Holding</h1>
+                <p>Administration</p>
+            </div>
+
+            <form id="formulaire-connexion" class="formulaire-connexion">
+                <div class="message-erreur" id="message-erreur" style="display: none;"></div>
+                
+                <div class="groupe-formulaire">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i>
+                        Email
+                    </label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                </div>
+
+                <div class="groupe-formulaire">
+                    <label for="mot_de_passe">
+                        <i class="fas fa-lock"></i>
+                        Mot de passe
+                    </label>
+                    <input type="password" id="mot_de_passe" name="mot_de_passe" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn btn-primaire btn-connexion" id="btn-connexion">
+                    <span class="texte-bouton">Se connecter</span>
+                    <span class="spinner" style="display: none;">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                    </span>
+                </button>
+            </form>
+
+            <div class="pied-connexion">
+                <a href="/">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour au site
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/admin-connexion.js"></script>
+</body>
+</html>
