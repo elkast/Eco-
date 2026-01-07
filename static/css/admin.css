@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 :root {
-    --couleur-primaire: #1E3A8A;
-    --couleur-primaire-claire: #3B82F6;
-    --couleur-accent: #D4AF37;
-    --couleur-accent-claire: #F59E0B;
+    --couleur-primaire: #002395;
+    --couleur-primaire-claire: #0039A6;
+    --couleur-accent: #ED2939;
+    --couleur-accent-claire: #FF4655;
     --couleur-succes: #10B981;
     --couleur-erreur: #EF4444;
     --couleur-avertissement: #F59E0B;
@@ -63,7 +63,7 @@ body {
 .logo-connexion {
     width: 64px;
     height: 64px;
-    background: linear-gradient(135deg, var(--couleur-primaire), var(--couleur-primaire-claire));
+    background: linear-gradient(135deg, #002395, #ED2939);
     border-radius: 1rem;
     display: flex;
     align-items: center;
@@ -156,7 +156,7 @@ body {
 }
 
 .btn-primaire {
-    background: linear-gradient(135deg, var(--couleur-primaire), var(--couleur-primaire-claire));
+    background: linear-gradient(135deg, #002395, #ED2939);
     color: var(--couleur-blanc);
     width: 100%;
 }
@@ -260,7 +260,7 @@ body {
 }
 
 .lien-menu.active {
-    background: linear-gradient(135deg, var(--couleur-primaire), var(--couleur-primaire-claire));
+    background: linear-gradient(135deg, #002395, #ED2939);
     color: var(--couleur-blanc);
 }
 

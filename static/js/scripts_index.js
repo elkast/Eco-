@@ -17,11 +17,13 @@
                 });
             });
             
-            // Animation AOS
+            // Animation AOS avec paramètres améliorés
             AOS.init({
-                duration: 800,
+                duration: 1000,
                 once: true,
-                offset: 100
+                offset: 80,
+                easing: 'ease-out-cubic',
+                delay: 100
             });
             
             // Défilement fluide
@@ -110,17 +112,38 @@
                 });
             }
             
-            // Changement de couleur de la navigation au scroll
+            // Navigation au scroll - Effet glassmorphic
             const navbar = document.querySelector('.barre-navigation');
             
             window.addEventListener('scroll', function() {
                 if (window.scrollY > 50) {
-                    navbar.style.backgroundColor = 'var(--couleur-blanc)';
-                    navbar.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 4px 20px rgba(0, 65, 106, 0.1)';
                 } else {
-                    navbar.style.backgroundColor = '';
-                    navbar.style.boxShadow = '';
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
                 }
+            });
+            
+            // Active link highlighting on scroll
+            const sections = document.querySelectorAll('section[id]');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
             });
             
             // Animation pour la section hero

@@ -4,9 +4,28 @@ __pycache__/
 *$py.class
 *.so
 .Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environnement virtuel
 venv/
 env/
 ENV/
+env.bak/
+venv.bak/
 
 # Flask
 instance/
@@ -15,25 +34,55 @@ instance/
 *.sqlite
 *.sqlite3
 
-# Environment
+# Variables d'environnement
 .env
 .env.local
+.env.production
 
-# IDE
+# Migrations (garder le dossier mais pas les versions)
+migrations/versions/*.py
+!migrations/versions/__init__.py
+
+# IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# OS
 .DS_Store
-Thumbs.db
 
 # Logs
 *.log
+logs/
+celery.log
+celerybeat-schedule
+celerybeat.pid
 
-# Distribution
-build/
-dist/
-*.egg-info/
+# Cache
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Uploads
+uploads/
+temp/
+
+# Backups
+backups/
+*.bak
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Certificats et clés
+*.pem
+*.key
+*.crt
+
+# Redis
+dump.rdb
+
+# Gunicorn
+gunicorn.pid

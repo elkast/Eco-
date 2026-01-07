@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de bord - Eco+Holding Admin</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/admin.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
 </head>
 <body class="page-admin">
     <!-- Barre latérale -->
     <aside class="barre-laterale">
         <div class="logo-admin">
             <i class="fas fa-chart-line"></i>
-            <span>Eco+Holding</span>
+            <span><span style="color: #D4AF37;">Eco+</span>Holding</span>
         </div>
         
         <nav class="menu-admin">
-            <a href="#" class="lien-menu active">
+            <a href="{{ url_for('admin.tableau_de_bord') }}" class="lien-menu active">
                 <i class="fas fa-th-large"></i>
                 <span>Tableau de bord</span>
             </a>
@@ -26,12 +26,23 @@
                 <span>Demandes</span>
                 <span class="badge" id="badge-nouveau">0</span>
             </a>
+            <a href="#" class="lien-menu">
+                <i class="fas fa-chart-bar"></i>
+                <span>Statistiques</span>
+            </a>
+            <a href="#" class="lien-menu">
+                <i class="fas fa-cog"></i>
+                <span>Paramètres</span>
+            </a>
         </nav>
         
         <div class="utilisateur-admin">
             <div class="info-utilisateur">
-                <i class="fas fa-user-circle"></i>
-                <span id="nom-utilisateur">Admin</span>
+                <img src="https://i.pravatar.cc/40?u={{ session.get('utilisateur_email', 'admin') }}" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%;">
+                <div>
+                    <div style="font-weight: 600; font-size: 0.875rem;" id="nom-utilisateur">{{ session.get('utilisateur_nom', 'Admin') }}</div>
+                    <div style="font-size: 0.75rem; color: var(--couleur-texte-clair);">{{ session.get('utilisateur_role', 'admin') }}</div>
+                </div>
             </div>
             <button class="btn-deconnexion" id="btn-deconnexion">
                 <i class="fas fa-sign-out-alt"></i>
@@ -42,55 +53,76 @@
 
     <!-- Contenu principal -->
     <main class="contenu-principal">
-        <!-- En-tête -->
+        <!-- En-tête avec calendrier -->
         <header class="en-tete-admin">
-            <h1>Tableau de bord</h1>
+            <div>
+                <h1 style="margin-bottom: 0.5rem;">Bienvenue, {{ session.get('utilisateur_prenom', '') }} {{ session.get('utilisateur_nom', 'Admin') }}</h1>
+                <p style="color: var(--couleur-texte-clair); font-size: 0.875rem;">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="date-aujourdhui"></span>
+                </p>
+            </div>
             <div class="actions-en-tete">
                 <button class="btn-icone" id="btn-rafraichir" title="Rafraîchir">
                     <i class="fas fa-sync-alt"></i>
                 </button>
+                <button class="btn-icone" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                </button>
             </div>
         </header>
 
-        <!-- Statistiques -->
+        <!-- Statistiques modernes -->
         <section class="section-statistiques">
             <div class="carte-stat">
-                <div class="icone-stat" style="background: linear-gradient(135deg, #3B82F6, #1E3A8A);">
+                <div class="icone-stat" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                     <i class="fas fa-inbox"></i>
                 </div>
                 <div class="contenu-stat">
                     <h3 id="stat-total">0</h3>
                     <p>Total demandes</p>
+                    <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--couleur-succes);">
+                        <i class="fas fa-arrow-up"></i> +<span id="stat-nouvelles-aujourdhui">0</span> aujourd'hui
+                    </div>
                 </div>
             </div>
             
             <div class="carte-stat">
-                <div class="icone-stat" style="background: linear-gradient(135deg, #F59E0B, #D4AF37);">
+                <div class="icone-stat" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
                     <i class="fas fa-clock"></i>
                 </div>
                 <div class="contenu-stat">
                     <h3 id="stat-nouveau">0</h3>
-                    <p>Nouvelles</p>
+                    <p>Nouvelles demandes</p>
+                    <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--couleur-avertissement);">
+                        <i class="fas fa-exclamation-circle"></i> Nécessitent attention
+                    </div>
                 </div>
             </div>
             
             <div class="carte-stat">
-                <div class="icone-stat" style="background: linear-gradient(135deg, #3B82F6, #1E3A8A);">
-                    <i class="fas fa-spinner"></i>
+                <div class="icone-stat" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <i class="fas fa-spinner fa-pulse"></i>
                 </div>
                 <div class="contenu-stat">
                     <h3 id="stat-en-cours">0</h3>
-                    <p>En cours</p>
+                    <p>En cours de traitement</p>
+                    <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--couleur-info);">
+                        <i class="fas fa-info-circle"></i> En progression
+                    </div>
                 </div>
             </div>
             
             <div class="carte-stat">
-                <div class="icone-stat" style="background: linear-gradient(135deg, #10B981, #059669);">
+                <div class="icone-stat" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
                     <i class="fas fa-check-circle"></i>
                 </div>
                 <div class="contenu-stat">
                     <h3 id="stat-traite">0</h3>
-                    <p>Traitées</p>
+                    <p>Demandes traitées</p>
+                    <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--couleur-succes);">
+                        <i class="fas fa-check"></i> Complétées
+                    </div>
                 </div>
             </div>
         </section>
@@ -99,31 +131,28 @@
         <section class="section-filtres">
             <div class="groupe-filtres">
                 <div class="filtre">
-                    <label for="filtre-statut">Statut</label>
+                    <label for="filtre-statut"><i class="fas fa-filter"></i> Statut</label>
                     <select id="filtre-statut">
-                        <option value="">Tous</option>
+                        <option value="">Tous les statuts</option>
                         <option value="nouveau">Nouveau</option>
                         <option value="en_cours">En cours</option>
                         <option value="traite">Traité</option>
+                        <option value="annule">Annulé</option>
                     </select>
                 </div>
                 
                 <div class="filtre">
-                    <label for="filtre-service">Service</label>
+                    <label for="filtre-service"><i class="fas fa-briefcase"></i> Service</label>
                     <select id="filtre-service">
-                        <option value="">Tous</option>
-                        <option value="expertise-comptable">Suivi fiscal</option>
-                        <option value="conseil-gestion">Conseil en gestion</option>
-                        <option value="creation-entreprise">Création d'entreprise</option>
-                        <option value="recouvrement">Recouvrement</option>
-                        <option value="immobilier">Gestion Immobilière</option>
-                        <option value="logistique">Gestion de Flotte</option>
-                        <option value="vente-voiture">Vente de voiture</option>
+                        <option value="">Tous les services</option>
+                        <option value="finance">Finance</option>
+                        <option value="immobilier">Immobilier</option>
+                        <option value="logistique">Logistique</option>
                     </select>
                 </div>
                 
                 <div class="filtre filtre-recherche">
-                    <label for="recherche">Rechercher</label>
+                    <label for="recherche"><i class="fas fa-search"></i> Rechercher</label>
                     <input type="text" id="recherche" placeholder="Nom, email, téléphone...">
                 </div>
             </div>
@@ -133,28 +162,31 @@
         <section class="section-tableau">
             <div class="carte-tableau">
                 <div class="en-tete-tableau">
-                    <h2>Demandes clients</h2>
+                    <h2>Demandes clients récentes</h2>
+                    <button class="btn btn-primaire" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+                        <i class="fas fa-download"></i>
+                        Exporter
+                    </button>
                 </div>
                 
                 <div class="conteneur-tableau">
                     <table class="tableau-demandes" id="tableau-demandes">
                         <thead>
                             <tr>
-                                <th data-sort="nom">Nom <i class="fas fa-sort"></i></th>
-                                <th data-sort="email">Email <i class="fas fa-sort"></i></th>
-                                <th data-sort="telephone">Téléphone <i class="fas fa-sort"></i></th>
+                                <th data-sort="nom">Client <i class="fas fa-sort"></i></th>
+                                <th data-sort="email">Contact <i class="fas fa-sort"></i></th>
                                 <th data-sort="service">Service <i class="fas fa-sort"></i></th>
                                 <th data-sort="date_souhaitee">Date RDV <i class="fas fa-sort"></i></th>
                                 <th data-sort="statut">Statut <i class="fas fa-sort"></i></th>
-                                <th data-sort="date_creation">Date création <i class="fas fa-sort"></i></th>
+                                <th data-sort="date_creation">Créé le <i class="fas fa-sort"></i></th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="corps-tableau">
                             <tr class="ligne-chargement">
-                                <td colspan="8" style="text-align: center; padding: 2rem;">
-                                    <i class="fas fa-circle-notch fa-spin fa-2x"></i>
-                                    <p>Chargement des demandes...</p>
+                                <td colspan="7" style="text-align: center; padding: 3rem;">
+                                    <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--couleur-primaire);"></i>
+                                    <p style="margin-top: 1rem; color: var(--couleur-texte-clair);">Chargement des demandes...</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -192,6 +224,16 @@
         </div>
     </div>
 
-    <script src="/static/js/admin-dashboard.js"></script>
+    <script src="{{ url_for('static', filename='js/admin-dashboard.js') }}"></script>
+    <script>
+        // Afficher la date d'aujourd'hui
+        const dateAujourdhui = new Date().toLocaleDateString('fr-FR', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        document.getElementById('date-aujourdhui').textContent = dateAujourdhui.charAt(0).toUpperCase() + dateAujourdhui.slice(1);
+    </script>
 </body>
 </html>

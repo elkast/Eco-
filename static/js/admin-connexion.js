@@ -18,10 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const mot_de_passe = document.getElementById('mot_de_passe').value;
         
         try {
+            // Obtenir le token CSRF
+            const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+            const csrfToken = csrfMeta ? csrfMeta.content : '';
+            
             const response = await fetch('/admin/api/connexion', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
                 },
                 body: JSON.stringify({
                     email: email,

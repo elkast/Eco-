@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     await chargerDemandes();
     
     initialiserEvenements();
+    
+    // Désactiver le rafraîchissement automatique pour éviter les requêtes excessives
+    // Les utilisateurs peuvent utiliser le bouton rafraîchir manuellement
 });
 
 async function verifierSession() {
@@ -43,9 +46,17 @@ function initialiserEvenements() {
     document.getElementById('btn-deconnexion').addEventListener('click', deconnexion);
     
     // Rafraîchir
-    document.getElementById('btn-rafraichir').addEventListener('click', function() {
-        chargerStatistiques();
-        chargerDemandes();
+    document.getElementById('btn-rafraichir').addEventListener('click', async function() {
+        this.disabled = true;
+        this.innerHTML = '<i class="fas fa-sync fa-spin"></i>';
+        
+        await Promise.all([
+            chargerStatistiques(),
+            chargerDemandes()
+        ]);
+        
+        this.disabled = false;
+        this.innerHTML = '<i class="fas fa-sync"></i>';
     });
     
     // Filtres
@@ -108,6 +119,10 @@ function initialiserEvenements() {
 }
 
 async function deconnexion() {
+    if (!confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+        return;
+    }
+    
     try {
         await fetch('/admin/api/deconnexion', {
             method: 'POST'
@@ -115,6 +130,7 @@ async function deconnexion() {
         window.location.href = '/admin/connexion';
     } catch (error) {
         console.error('Erreur:', error);
+        alert('Erreur lors de la déconnexion');
     }
 }
 
@@ -130,6 +146,11 @@ async function chargerStatistiques() {
             document.getElementById('stat-en-cours').textContent = stats.en_cours;
             document.getElementById('stat-traite').textContent = stats.traite;
             document.getElementById('badge-nouveau').textContent = stats.nouveau;
+            
+            // Mettre à jour les nouvelles d'aujourd'hui
+            if (document.getElementById('stat-nouvelles-aujourdhui')) {
+                document.getElementById('stat-nouvelles-aujourdhui').textContent = stats.nouvelles_aujourdhui || 0;
+            }
         }
     } catch (error) {
         console.error('Erreur:', error);
@@ -189,8 +210,9 @@ function afficherDemandes(demandes) {
     if (demandes.length === 0) {
         corpsTableau.innerHTML = `
             <tr>
-                <td colspan="8" style="text-align: center; padding: 2rem; color: var(--couleur-texte-clair);">
-                    Aucune demande trouvée
+                <td colspan="7" style="text-align: center; padding: 3rem;">
+                    <i class="fas fa-inbox" style="font-size: 3rem; color: var(--couleur-texte-clair); margin-bottom: 1rem;"></i>
+                    <p style="color: var(--couleur-texte-clair);">Aucune demande trouvée</p>
                 </td>
             </tr>
         `;
@@ -199,19 +221,30 @@ function afficherDemandes(demandes) {
     
     corpsTableau.innerHTML = demandes.map(demande => `
         <tr>
-            <td><strong>${demande.nom}</strong></td>
-            <td>${demande.email}</td>
-            <td>${formaterTelephone(demande.telephone)}</td>
+            <td>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <img src="https://i.pravatar.cc/40?u=${demande.email}" alt="${demande.nom}" style="width: 40px; height: 40px; border-radius: 50%;">
+                    <div>
+                        <div style="font-weight: 600;">${demande.nom} ${demande.prenom || ''}</div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div style="font-size: 0.875rem;">
+                    <div style="color: var(--couleur-texte);">${demande.email}</div>
+                    <div style="color: var(--couleur-texte-clair); margin-top: 0.25rem;">${formaterTelephone(demande.telephone)}</div>
+                </div>
+            </td>
             <td>${obtenirLibelleService(demande.service)}</td>
             <td>${formaterDate(demande.date_souhaitee)}</td>
             <td><span class="badge-statut ${demande.statut}">${obtenirLibelleStatut(demande.statut)}</span></td>
             <td>${formaterDateHeure(demande.date_creation)}</td>
             <td>
                 <div class="actions-tableau">
-                    <button class="btn-action btn-voir" onclick="afficherDetails(${demande.id})">
-                        <i class="fas fa-eye"></i> Voir
+                    <button class="btn-action btn-voir" onclick="afficherDetails(${demande.id})" title="Voir les détails">
+                        <i class="fas fa-eye"></i>
                     </button>
-                    <button class="btn-action btn-supprimer" onclick="supprimerDemande(${demande.id})">
+                    <button class="btn-action btn-supprimer" onclick="supprimerDemande(${demande.id})" title="Supprimer">
                         <i class="fas fa-trash"></i>
                     </button>
                 </div>
@@ -374,13 +407,12 @@ function formaterTelephone(tel) {
 
 function obtenirLibelleService(service) {
     const services = {
-        'expertise-comptable': 'Suivi fiscal',
-        'conseil-gestion': 'Conseil en gestion',
-        'creation-entreprise': "Création d'entreprise",
-        'recouvrement': 'Recouvrement',
-        'immobilier': 'Gestion Immobilière',
-        'logistique': 'Gestion de Flotte',
-        'vente-voiture': 'Vente de voiture'
+        'gestion_affaires': 'ECO+HOLDING - Gestion d\'Affaires',
+        'prestige_immobilier': 'PRESTIGE IMMOBILIER',
+        'logistique': 'ECO+TRANS-LOGISTIQUE',
+        // Anciens services pour compatibilité
+        'finance': 'ECO+HOLDING - Gestion d\'Affaires',
+        'immobilier': 'PRESTIGE IMMOBILIER'
     };
     return services[service] || service;
 }
@@ -390,7 +422,7 @@ function obtenirLibelleStatut(statut) {
         'nouveau': 'Nouveau',
         'en_cours': 'En cours',
         'traite': 'Traité',
-        'archive': 'Archivé'
+        'annule': 'Annulé'
     };
     return statuts[statut] || statut;
 }

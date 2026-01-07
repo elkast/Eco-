@@ -1,231 +1,251 @@
-# ECO+HOLDING - Application Web Professionnelle
+# Eco+Holding - Système de Gestion d'Entreprise
 
-Application web complète pour ECO+HOLDING, un cabinet de gestion d'affaires et d'intermédiation avec trois divisions principales.
+## 📌 Description
 
-## 🏢 À propos
-
-ECO+HOLDING est un cabinet professionnel offrant des services dans trois domaines:
-
-1. **ECO+HOLDING** - Cabinet de Gestion d'affaires et d'intermédiation
-2. **PRESTIGE IMMOBILIER** - Gestion Immobilière
-3. **ECO+TRANS-LOGISTIQUE** - Import-export, Logistique et Transport
+Système Flask professionnel pour la gestion des demandes de rendez-vous et l'administration d'Eco+Holding. Interface moderne et dashboard admin complet.
 
 ## ✨ Fonctionnalités
 
-### Interface Client
-- Page d'accueil moderne avec animations
-- Présentation des trois divisions
-- Formulaire de contact avec validation
-- Pages légales (Mentions légales, CGU, etc.)
-- Design responsive (mobile, tablette, desktop)
-- Thème professionnel bleu et or
+### 🌐 Site Public
+- Landing page moderne et responsive
+- Formulaire de rendez-vous avec validation
+- Système de notifications par email
+- Témoignages clients
+- Section FAQ interactive
 
-### Interface Admin
-- Connexion sécurisée
-- Tableau de bord avec statistiques
-- Gestion des demandes clients (CRUD complet)
-- Filtrage et recherche avancés
+### 🔐 Interface Administrateur
+- Dashboard moderne inspiré des meilleures pratiques UI/UX
+- Gestion complète des demandes clients
+- Statistiques en temps réel
+- Filtres et recherche avancée
 - Tri et pagination
-- Mise à jour du statut des demandes
+- Gestion des statuts des demandes
 
-## 🚀 Installation Locale
+### 📧 Système d'Emails
+- Confirmation automatique aux clients
+- Notifications aux administrateurs
+- Relances automatiques (Celery)
+- Templates personnalisés
 
-### Prérequis
-- Python 3.10 ou supérieur
-- pip (gestionnaire de paquets Python)
+### 🔒 Sécurité
+- Protection CSRF
+- Hachage sécurisé des mots de passe (pbkdf2:sha256)
+- Sessions sécurisées
+- Variables d'environnement pour secrets
+- Prêt pour HTTPS
 
-### Étapes d'installation
+## 🛠️ Stack Technique
 
-1. **Cloner le projet**
-```powershell
-cd c:\Users\orsin\OneDrive\Desktop\Eco-
-```
+- **Backend**: Flask 3.0
+- **Base de données**: SQLite (dev) / MySQL (prod)
+- **ORM**: SQLAlchemy
+- **Migrations**: Flask-Migrate
+- **Formulaires**: Flask-WTF
+- **Emails**: Flask-Mailman
+- **Tâches async**: Celery + Redis
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Icons**: Font Awesome 6
+- **Animations**: AOS
 
-2. **Créer un environnement virtuel**
-```powershell
+## 📦 Installation
+
+### Développement Local
+
+```bash
+# Cloner le projet
+git clone <repo-url>
+cd Eco-
+
+# Créer l'environnement virtuel
 python -m venv venv
-```
 
-3. **Activer l'environnement virtuel**
-```powershell
-.\venv\Scripts\Activate.ps1
-```
+# Activer (Windows)
+venv\Scripts\activate
 
-4. **Installer les dépendances**
-```powershell
+# Activer (Linux/Mac)
+source venv/bin/activate
+
+# Installer les dépendances
 pip install -r requirements.txt
-```
 
-5. **Lancer l'application**
-```powershell
+# Copier et configurer .env
+copy .env.example .env
+# Éditer .env avec vos valeurs
+
+# Lancer l'application
 python run.py
 ```
 
-6. **Accéder à l'application**
-- Site web: http://localhost:5000
-- Admin: http://localhost:5000/admin/connexion
-  - Email: admin@ecoholding.com
-  - Mot de passe: admin123 (⚠️ À CHANGER EN PRODUCTION)
+L'application sera accessible sur http://localhost:5000
 
-## 📦 Déploiement sur PythonAnywhere
+### Compte Admin par Défaut
 
-### Étape 1: Créer un compte
-1. Aller sur https://www.pythonanywhere.com
-2. Créer un compte gratuit ou payant
+- **Email**: admin@ecoholding.com
+- **Mot de passe**: admin123
+- **⚠️ À CHANGER IMMÉDIATEMENT EN PRODUCTION**
 
-### Étape 2: Uploader les fichiers
-1. Aller dans l'onglet "Files"
-2. Uploader tous les fichiers du projet SAUF:
-   - Le dossier `venv/`
-   - Le fichier `eco_holding.db` (sera créé automatiquement)
-   - Le dossier `__pycache__/`
+## 🚀 Déploiement en Production
 
-### Étape 3: Créer un environnement virtuel
-```bash
-mkvirtualenv --python=/usr/bin/python3.10 eco-holding-env
-```
+Consultez le guide détaillé: [DEPLOIEMENT.md](DEPLOIEMENT.md)
 
-### Étape 4: Installer les dépendances
-```bash
-pip install -r requirements.txt
-```
+### Étapes Rapides
 
-### Étape 5: Configurer l'application web
-1. Aller dans l'onglet "Web"
-2. Cliquer sur "Add a new web app"
-3. Choisir "Manual configuration"
-4. Choisir Python 3.10
+1. Configurer MySQL
+2. Configurer Redis
+3. Créer .env avec valeurs de production
+4. Installer dépendances: `pip install -r requirements.txt`
+5. Migrations: `flask db upgrade`
+6. Lancer avec Gunicorn: `gunicorn -w 4 "run:creer_app('production')"`
 
-### Étape 6: Configurer le WSGI
-Éditer le fichier WSGI et remplacer son contenu par:
-
-```python
-import sys
-import os
-
-# Ajouter le chemin du projet
-project_home = '/home/VOTRE_USERNAME/Eco-'
-if project_home not in sys.path:
-    sys.path.insert(0, project_home)
-
-# Définir la variable d'environnement
-os.environ['FLASK_ENV'] = 'production'
-
-# Importer l'application
-from run import creer_app
-application = creer_app('production')
-```
-
-### Étape 7: Configurer l'environnement virtuel
-Dans l'onglet "Web", section "Virtualenv":
-```
-/home/VOTRE_USERNAME/.virtualenvs/eco-holding-env
-```
-
-### Étape 8: Configurer les fichiers statiques
-Dans l'onglet "Web", section "Static files":
-- URL: `/static/`
-- Directory: `/home/VOTRE_USERNAME/Eco-/static/`
-
-### Étape 9: Variables d'environnement (optionnel)
-Créer un fichier `.env` dans le dossier du projet:
-```
-SECRET_KEY=votre-cle-secrete-tres-longue-et-aleatoire
-FLASK_ENV=production
-```
-
-### Étape 10: Initialiser la base de données
-Dans la console Bash de PythonAnywhere:
-```bash
-cd ~/Eco-
-workon eco-holding-env
-python
->>> from run import creer_app
->>> from models import db
->>> app = creer_app('production')
->>> with app.app_context():
-...     db.create_all()
-...     print("Base de données créée!")
->>> exit()
-```
-
-### Étape 11: Recharger l'application
-Cliquer sur le bouton "Reload" dans l'onglet "Web"
-
-## 🔐 Sécurité
-
-### ⚠️ IMPORTANT - À faire avant la mise en production:
-
-1. **Changer le mot de passe admin**
-```python
-# Dans la console Python
-from run import creer_app
-from models import db, UtilisateurAdmin
-
-app = creer_app('production')
-with app.app_context():
-    admin = UtilisateurAdmin.query.filter_by(email='admin@ecoholding.com').first()
-    admin.definir_mot_de_passe('NOUVEAU_MOT_DE_PASSE_SECURISE')
-    db.session.commit()
-```
-
-2. **Générer une nouvelle SECRET_KEY**
-```python
-import secrets
-print(secrets.token_hex(32))
-```
-
-3. **Activer HTTPS** (automatique sur PythonAnywhere pour les domaines payants)
-
-## 📱 Contact
-
-- **Téléphone**: 0504477268 / 0705928780
-- **Email**: ecoholding192@gmail.com
-- **Localisation**: Riviera Palmeraie non loin du carrefour Guiro, Abidjan, Côte d'Ivoire
-
-## 🛠️ Technologies Utilisées
-
-- **Backend**: Flask 3.0, SQLAlchemy
-- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
-- **Base de données**: SQLite
-- **Animations**: AOS (Animate On Scroll)
-- **Icons**: Font Awesome 6
-- **Fonts**: Inter, Playfair Display (Google Fonts)
-
-## 📄 Structure du Projet
+## 📁 Structure du Projet
 
 ```
 Eco-/
-├── blueprint/
-│   ├── admin/          # Routes admin
-│   └── contact/        # Routes contact
-├── static/
-│   ├── css/           # Fichiers CSS
-│   ├── js/            # Fichiers JavaScript
-│   └── img/           # Images
-├── templates/
-│   ├── admin/         # Templates admin
-│   └── *.html         # Templates client
-├── config.py          # Configuration
-├── models.py          # Modèles de base de données
-├── run.py             # Point d'entrée
-└── requirements.txt   # Dépendances Python
+├── blueprint/              # Blueprints Flask
+│   ├── admin/             # Routes admin
+│   └── contact/           # Routes contact
+├── static/                 # Fichiers statiques
+│   ├── css/               # Styles
+│   ├── js/                # Scripts JavaScript
+│   └── img/               # Images et icons
+├── tasks/                  # Tâches Celery
+│   └── email_tasks.py     # Envoi emails asynchrone
+├── templates/              # Templates HTML
+│   ├── admin/             # Templates admin
+│   └── sections/          # Sections réutilisables
+├── config.py              # Configuration
+├── models.py              # Modèles SQLAlchemy
+├── forms.py               # Formulaires WTF
+├── utils.py               # Fonctions utilitaires
+├── run.py                 # Point d'entrée
+├── wsgi.py                # Point d'entrée WSGI
+├── celery_app.py          # Configuration Celery
+└── requirements.txt       # Dépendances
 ```
+
+## 🔑 Variables d'Environnement
+
+Voir `.env.example` pour la liste complète.
+
+**Essentielles:**
+- `SECRET_KEY`: Clé secrète Flask
+- `DATABASE_URL`: URL de connexion MySQL
+- `MAIL_USERNAME`: Email pour SMTP
+- `MAIL_PASSWORD`: Mot de passe application Gmail
+- `REDIS_URL`: URL Redis pour Celery
+
+## 📧 Configuration Email Gmail
+
+1. Activer la validation en 2 étapes
+2. Créer un mot de passe d'application
+3. Utiliser ce mot de passe dans `MAIL_PASSWORD`
 
 ## 🎨 Personnalisation
 
-### Couleurs
-Les couleurs sont définies dans `static/css/styles.css` et `static/css/admin.css`:
-- Bleu primaire: #1E3A8A
-- Or accent: #D4AF37
+### Couleurs (variables CSS)
 
-### Contenu
-Modifier les fichiers HTML dans le dossier `templates/`
+```css
+:root {
+    --couleur-primaire: #1E3A8A;
+    --couleur-accent: #D4AF37;
+    --couleur-succes: #10B981;
+    /* ... */
+}
+```
 
-## 📝 Licence
+### Services
 
-© 2025 Eco+Holding. Tous droits réservés.
+Modifier dans `forms.py` et `templates/index.html`
 
-## 👨‍💻 Support
+## 🧪 Tests
 
-Pour toute question ou assistance, contactez l'équipe de développement.
+```bash
+# Installer dépendances de test
+pip install pytest pytest-flask
+
+# Lancer les tests
+pytest
+```
+
+## 📊 Monitoring
+
+### Logs
+
+```bash
+# Application
+tail -f logs/eco-holding.log
+
+# Celery Worker
+celery -A celery_app:creer_celery_app worker --loglevel=info
+
+# Celery Beat
+celery -A celery_app:creer_celery_app beat --loglevel=info
+```
+
+### Santé du Système
+
+```bash
+# État des services
+systemctl status eco-holding celery-worker celery-beat
+
+# Connexions actives
+netstat -an | grep :5000
+```
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues !
+
+1. Fork le projet
+2. Créer une branche (`git checkout -b feature/AmazingFeature`)
+3. Commit (`git commit -m 'Add AmazingFeature'`)
+4. Push (`git push origin feature/AmazingFeature`)
+5. Ouvrir une Pull Request
+
+## 📄 Licence
+
+Ce projet est la propriété d'Eco+Holding.
+
+## 📞 Contact
+
+**Eco+Holding**
+- Email: ecoholding192@gmail.com
+- Site: https://www.ecoholding.com
+
+## ⚠️ Notes Importantes
+
+### Sécurité
+
+- ❌ Ne jamais commiter le fichier `.env`
+- ✅ Changer le mot de passe admin par défaut
+- ✅ Utiliser HTTPS en production
+- ✅ Configurer le firewall
+- ✅ Sauvegardes régulières de la base de données
+
+### Performance
+
+- Activer la mise en cache
+- Optimiser les requêtes SQL
+- Compresser les assets
+- Utiliser un CDN pour les fichiers statiques
+
+### Maintenance
+
+- Mettre à jour les dépendances régulièrement
+- Surveiller les logs d'erreurs
+- Tester après chaque mise à jour
+- Sauvegarder avant toute modification majeure
+
+## 🎯 Roadmap
+
+- [ ] API REST complète
+- [ ] Export des données en Excel/PDF
+- [ ] Notifications push
+- [ ] Application mobile
+- [ ] Intégration calendrier Google
+- [ ] Chat en direct
+- [ ] Analytics avancés
+
+---
+
+Développé avec ❤️ par l'équipe Eco+Holding
