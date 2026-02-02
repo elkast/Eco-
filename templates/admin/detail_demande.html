@@ -1,0 +1,112 @@
+{% extends "admin/base_admin.html" %} {% block title %}Détail de la demande{%
+endblock %} {% block content %}
+<div class="admin-demand-detail">
+  <div class="container">
+    <div class="page-header">
+      <a
+        href="{{ url_for('admin.liste_demandes_admin') }}"
+        class="btn btn-secondary"
+      >
+        <i class="fas fa-arrow-left"></i> Retour à la liste
+      </a>
+      <h1>Détail de la demande</h1>
+    </div>
+
+    <div class="demand-detail-grid">
+      <!-- Informations client -->
+      <div class="detail-section">
+        <h2>Informations client</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Nom complet:</label>
+            <span>{{ demande.nom }} {{ demande.prenom }}</span>
+          </div>
+          <div class="info-item">
+            <label>Email:</label>
+            <span>{{ demande.email }}</span>
+          </div>
+          <div class="info-item">
+            <label>Téléphone:</label>
+            <span>{{ demande.telephone }}</span>
+          </div>
+          <div class="info-item">
+            <label>Service demandé:</label>
+            <span>{{ demande.service }}</span>
+          </div>
+          <div class="info-item">
+            <label>Date souhaitée:</label>
+            <span>{{ demande.date_souhaitee | format_date }}</span>
+          </div>
+          <div class="info-item">
+            <label>Date de soumission:</label>
+            <span>{{ demande.date_creation | format_datetime }}</span>
+          </div>
+          <div class="info-item">
+            <label>Statut actuel:</label>
+            <span class="status-badge status-{{ demande.statut }}"
+              >{{ demande.statut }}</span
+            >
+          </div>
+        </div>
+
+        {% if demande.message %}
+        <div class="message-section">
+          <label>Message:</label>
+          <p>{{ demande.message }}</p>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Modification du statut -->
+      <div class="detail-section">
+        <h2>Modifier le statut</h2>
+        <form method="POST" class="status-form">
+          {{ formulaire.csrf_token }}
+
+          <div class="form-group">
+            {{ formulaire.statut.label }} {{
+            formulaire.statut(class="form-control") }}
+          </div>
+
+          <div class="form-group">
+            {{ formulaire.notes_admin.label }} {{
+            formulaire.notes_admin(class="form-control", rows=4) }}
+          </div>
+
+          <button type="submit" class="btn btn-primary">Mettre à jour</button>
+        </form>
+      </div>
+
+      <!-- Contacter le client -->
+      <div class="detail-section">
+        <h2>Contacter le client</h2>
+        <form method="POST" action="{{ url_for('admin.contacter_client', demande_id=demande.id) }}" class="status-form">
+          <div class="form-group">
+            <label for="sujet">Sujet (optionnel)</label>
+            <input type="text" id="sujet" name="sujet" class="form-control" placeholder="Sujet de votre message" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" class="form-control" rows="4" placeholder="Votre message au client..." required></textarea>
+          </div>
+          <div style="display:flex; gap: 12px; align-items:center; flex-wrap: wrap;">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Envoyer par email</button>
+            {% if whatsapp_url %}
+            <a href="{{ whatsapp_url }}" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            {% endif %}
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Historique -->
+    {% if demande.notes_admin %}
+    <div class="detail-section">
+      <h2>Notes administrateur</h2>
+      <p>{{ demande.notes_admin }}</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+{% block extra_head %}{% endblock %}

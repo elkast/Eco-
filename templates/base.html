@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ECO+HOLDING - Cabinet de gestion d'affaires et d'intermédiation à Abidjan. Nous facilitons vos affaires, vous récoltez les résultats."
+    />
+    <meta
+      name="keywords"
+      content="gestion affaires, immobilier, logistique, Abidjan, Côte d'Ivoire"
+    />
+    <title>
+      {% block title %}ECO+HOLDING - Nous facilitons vos affaires{% endblock %}
+    </title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='images/favicon.ico') }}"
+    />
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    {% block extra_css %}{% endblock %}
+    <style>
+      .dropdown { position: relative; }
+      .dropdown > a::after { content: '▾'; margin-left: 6px; font-size: 0.8em; }
+      .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #fff; box-shadow: var(--ombre-lg); border-radius: var(--rayon-md); padding: var(--espace-sm) 0; min-width: 220px; z-index: var(--z-sticky); }
+      .dropdown-menu li { list-style: none; }
+      .dropdown-menu a { display: block; padding: 10px 14px; color: var(--couleur-texte-principal); white-space: nowrap; }
+      .dropdown-menu a:hover { background: var(--couleur-gris-clair); }
+      .dropdown:hover .dropdown-menu { display: block; }
+      @media (max-width: 768px) {
+        .dropdown-menu { position: static; box-shadow: none; padding: 0; }
+        .dropdown > a::after { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container navbar-container">
+        <a href="{{ url_for('main.accueil') }}" class="navbar-logo">
+          ECO<span>+</span>HOLDING
+        </a>
+
+        <ul class="navbar-menu">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="{{ url_for('main.services') }}">Services</a></li>
+          <li class="dropdown">
+            <a href="#">À propos</a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url_for('main.presentation') }}">Présentation</a></li>
+              <li><a href="{{ url_for('main.vision_valeurs') }}">Vision & Valeurs</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">Pôles</a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url_for('main.prestige_immobilier') }}">Prestige Immobilier</a></li>
+              <li><a href="{{ url_for('main.translogistique') }}">Translogistique</a></li>
+            </ul>
+          </li>
+          <li><a href="{{ url_for('main.equipe') }}">Notre Équipe</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a
+              href="{{ url_for('admin.connexion_admin') }}"
+              class="btn btn-primary btn-small"
+              >Admin</a
+            >
+          </li>
+        </ul>
+
+        <button class="navbar-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main>{% block content %}{% endblock %}</main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- À propos -->
+          <div class="footer-section">
+            <h4>
+              ECO<span style="color: var(--couleur-rouge-accent)">+</span
+              >HOLDING
+            </h4>
+            <p>
+              Cabinet de gestion d'affaires et d'intermédiation basé à Abidjan.
+              Nous facilitons vos affaires, vous récoltez les résultats.
+            </p>
+            <div class="footer-social">
+              <a
+                href="https://www.facebook.com/share/1HxMuKV6K7/"
+                target="_blank"
+                aria-label="Facebook"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.tiktok.com/@eco.plus.holding?_r=1&_t=ZS-93ZZtAjgvqC" target="_blank" aria-label="TikTok">
+                <i class="fab fa-tiktok"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/eco-plus-holding-3ba682282?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="Envoyez un message à ECO+HOLDING sur WhatsApp. https://wa.me/22504477268"
+                target="_blank"
+                aria-label="Instagram"
+              >
+              <i class="fab fa-whatsapp"></i>
+
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div class="footer-section">
+            <h4>Nos Services</h4>
+            <ul class="footer-links">
+              <li><a href="#services">Gestion d'affaires</a></li>
+              <li><a href="#services">Prestige Immobilier</a></li>
+              <li><a href="#services">Eco+Trans-Logistique</a></li>
+              <li><a href="#services">Conseil fiscal</a></li>
+              <li><a href="#services">Création d'entreprise</a></li>
+            </ul>
+          </div>
+
+          <!-- Liens rapides -->
+          <div class="footer-section">
+            <h4>Liens rapides</h4>
+            <ul class="footer-links">
+              <li><a href="#accueil">Accueil</a></li>
+              <li><a href="#a-propos">À propos</a></li>
+              <li><a href="#equipe">Notre équipe</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li>
+                <a href="{{ url_for('admin.connexion_admin') }}"
+                  >Espace Admin</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <ul class="footer-links">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Cocody-Riviera
+                Palmeraie<br />Abidjan, Côte d'Ivoire
+              </li>
+              <li><i class="fas fa-phone"></i> +225 0504477268 / 0705928780</li>
+              <li><i class="fas fa-envelope"></i> contact@ecoholding.com</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; {{ annee_actuelle }} ECO+HOLDING. Tous droits réservés. |
+            <a href="#mentions-legales">Mentions légales</a> |
+            <a href="#politique-confidentialite"
+              >Politique de confidentialité</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      // Initialiser AOS
+      AOS.init({
+        duration: 800,
+        easing: "ease-out",
+        once: true,
+        offset: 100,
+      });
+    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

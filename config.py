@@ -1,95 +1,75 @@
 """
-Configuration de l'application Flask Eco+Holding
-Utilise les variables d'environnement pour la sécurité
+Configuration pour l'application ECO+HOLDING
 """
+
 import os
-from datetime import timedelta
 from dotenv import load_dotenv
 
-# Charger les variables d'environnement depuis .env
+# Charger les variables d'environnement
 load_dotenv()
-
-# Répertoire de base de l'application
-basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
-    """Configuration de base pour l'application Flask"""
+    """Configuration de base"""
 
-    # Clé secrète - OBLIGATOIRE pour les sessions et CSRF
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'cle-temporaire-a-changer-en-production'
+    # Clé secrète Flask
+    SECRET_KEY = os.environ.get("SECRET_KEY") or "cle-secrete-dev-a-changer"
 
-    # Configuration de la base de données
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'eco_holding.db')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_ENGINE_OPTIONS = {
-        'pool_pre_ping': True,  # Vérifie les connexions avant utilisation
-        'pool_recycle': 300,    # Recycle les connexions toutes les 5 minutes
-    }
-
-    # Configuration des sessions
-    PERMANENT_SESSION_LIFETIME = timedelta(hours=24)
-    SESSION_COOKIE_SECURE = False  # True en production avec HTTPS
-    SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SAMESITE = 'Lax'
-
-    # Configuration CSRF
-    WTF_CSRF_ENABLED = True
-    WTF_CSRF_TIME_LIMIT = None  # Pas d'expiration du token CSRF
-
-    # Configuration email (Flask-Mailman)
-    MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.gmail.com')
-    MAIL_PORT = int(os.environ.get('MAIL_PORT', 587))
-    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'True').lower() in ['true', 'on', '1']
-    MAIL_USE_SSL = False
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    MAIL_DEFAULT_SENDER = os.environ.get('ADMIN_EMAIL', 'ecoholding192@gmail.com')
+    # Configuration base de données (Railway MySQL avec PyMySQL)
+    _db_url = os.environ.get("DATABASE_URL") or "sqlite:///eco_holding.db"
     
-    # Configuration Celery pour tâches asynchrones
-    CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
-    CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+    # Normalisation de l'URL pour Railway MySQL
+    # Railway peut fournir mysql:// mais Flask+SQLAlchemy+PyMySQL nécessite mysql+pymysql://
+    if _db_url.startswith("mysql://"):
+        _db_url = _db_url.replace("mysql://", "mysql+pymysql://", 1)
+    
+    SQLALCHEMY_DATABASE_URI = _db_url
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ECHO = False
+    
+    # Options de connexion MySQL pour Railway (SSL et timeout)
+    if "mysql" in _db_url.lower():
+        SQLALCHEMY_ENGINE_OPTIONS = {
+            'pool_pre_ping': True,  # Vérifier la connexion avant utilisation
+            'pool_recycle': 300,    # Recycler les connexions toutes les 5 minutes
+            'connect_args': {
+                'connect_timeout': 10  # Timeout de connexion 10 secondes
+            }
+        }
 
-    # Configuration de pagination
-    ITEMS_PAR_PAGE = 10
+    # Configuration pagination
+    DEMANDES_PAR_PAGE = 20
+
+    # Configuration email (optionnel)
+    MAIL_SERVER = os.environ.get("MAIL_SERVER")
+    MAIL_PORT = int(os.environ.get("MAIL_PORT") or 587)
+    MAIL_USE_TLS = os.environ.get("MAIL_USE_TLS", "True") == "True"
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL") or "admin@ecoholding.com"
 
 
 class DeveloppementConfig(Config):
-    """Configuration pour le développement"""
+    """Configuration développement"""
+
     DEBUG = True
-    TESTING = False
+    SQLALCHEMY_ECHO = True
 
 
 class ProductionConfig(Config):
-    """Configuration pour la production"""
+    """Configuration production"""
+
     DEBUG = False
-    TESTING = False
-    SESSION_COOKIE_SECURE = True  # HTTPS obligatoire
-    
-    # En production, utiliser MySQL
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        f"mysql+pymysql://{os.environ.get('DB_USER', 'eco_user')}:" \
-        f"{os.environ.get('DB_PASSWORD', 'password')}@" \
-        f"{os.environ.get('DB_HOST', 'localhost')}/" \
-        f"{os.environ.get('DB_NAME', 'eco_holding')}"
-    
-    # Configuration Celery pour tâches asynchrones
-    CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
-    CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
-
-
-class TestConfig(Config):
-    """Configuration pour les tests"""
-    TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
-    WTF_CSRF_ENABLED = False
+    # URI héritée de Config ; valider MySQL ou SQLite
+    if not ("mysql" in Config.SQLALCHEMY_DATABASE_URI or "sqlite" in Config.SQLALCHEMY_DATABASE_URI):
+        raise ValueError(
+            "La configuration de production nécessite une base de données MySQL ou SQLite"
+        )
 
 
 # Dictionnaire des configurations
-configurations = {
-    'developpement': DeveloppementConfig,
-    'production': ProductionConfig,
-    'test': TestConfig,
-    'default': DeveloppementConfig
+config = {
+    "developpement": DeveloppementConfig,
+    "production": ProductionConfig,
+    "default": DeveloppementConfig,
 }

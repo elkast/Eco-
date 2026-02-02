@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Vision & Valeurs - ECO+HOLDING{% endblock %}
+{% block content %}
+<section class="hero" style="background-image: url('{{ url_for('static', filename='images/hero-vision.jpg') }}');">
+  <div class="hero__overlay"></div>
+  <div class="container hero__content" data-aos="fade-up">
+    <h1 class="hero__title">Vision & Valeurs</h1>
+    <p class="hero__subtitle">Excellence, intégrité, performance durable</p>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="grid grid-3" data-aos="fade-up">
+    <div class="card card--feature">
+      <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+      <h3>Vision</h3>
+      <p>Devenir un groupe de référence pour des solutions intégrées et durables.</p>
+    </div>
+    <div class="card card--feature">
+      <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+      <h3>Mission</h3>
+      <p>Accompagner durablement les entreprises et particuliers.</p>
+    </div>
+    <div class="card card--feature">
+      <div class="card-icon"><i class="fas fa-handshake-angle"></i></div>
+      <h3>Engagement</h3>
+      <p>Confidentialité, proximité et efficacité au service des résultats.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-3 mt-xl" data-aos="fade-up" data-aos-delay="100">
+    <div class="card card--feature"><div class="card-icon"><i class="fas fa-briefcase"></i></div><h4>Professionnalisme</h4><p class="muted">Excellence opérationnelle</p></div>
+    <div class="card card--feature"><div class="card-icon"><i class="fas fa-scale-balanced"></i></div><h4>Intégrité</h4><p class="muted">Éthique et transparence</p></div>
+    <div class="card card--feature"><div class="card-icon"><i class="fas fa-flask"></i></div><h4>Innovation</h4><p class="muted">Solutions modernes</p></div>
+    <div class="card card--feature"><div class="card-icon"><i class="fas fa-user-check"></i></div><h4>Orientation client</h4><p class="muted">Approche personnalisée</p></div>
+    <div class="card card--feature"><div class="card-icon"><i class="fas fa-heart"></i></div><h4>Engagement</h4><p class="muted">Résultats durables</p></div>
+    <div class="card card--feature"><div class="card-icon"><i class="fas fa-user-shield"></i></div><h4>Confidentialité</h4><p class="muted">Protection stricte</p></div>
+  </div>
+</section>
+{% endblock %}

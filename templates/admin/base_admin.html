@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Administration ECO+HOLDING{% endblock %}</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- Styles de base -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/admin.css') }}"
+    />
+
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    <!-- Header Admin -->
+    <header class="admin-header">
+      <div class="container">
+        <div class="admin-header-content">
+          
+          {% if session.get('admin_id') %}
+          <nav class="admin-nav">
+            <a
+              href="{{ url_for('admin.tableau_de_bord_admin') }}"
+              class="nav-link"
+            >
+              <i class="fas fa-tachometer-alt"></i> Tableau de bord
+            </a>
+            <a
+              href="{{ url_for('admin.liste_demandes_admin') }}"
+              class="nav-link"
+            >
+              <i class="fas fa-list"></i> Demandes
+            </a>
+            <a
+              href="{{ url_for('admin.deconnexion_admin') }}"
+              class="nav-link logout"
+            >
+              <i class="fas fa-sign-out-alt"></i> Déconnexion
+            </a>
+          </nav>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="admin-main">{% block content %}{% endblock %}</main>
+
+    <!-- Footer -->
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

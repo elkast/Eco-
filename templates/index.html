@@ -1,674 +1,752 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco+Holding | Solutions Financières Professionnelles</title>
-    <meta name="description" content="Eco+Holding - Votre partenaire de confiance pour la gestion financière, l'immobilier et la logistique d'entreprise.">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- AOS Animation -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal-rdv.css') }}">
-    
-    <!-- CSRF Token pour formulaire -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
-<body>
+{% extends "base.html" %} {% block content %}
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-container">
-            <a href="/" class="logo">
-                <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="Eco+Holding" style="height: 50px;">
-            </a>
-            
-            <ul class="nav-menu" id="navMenu" style="margin-bottom: 5px;">
-                <li><a href="#accueil" class="nav-link">Accueil</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#features" class="nav-link">Avantages</a></li>
-                <li><a href="#impact" class="nav-link">Témoignages</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="javascript:void(0)" class="btn btn-primary" onclick="ouvrirModalFormulaire()">Prendre RDV</a></li>
-            </ul>
+<!-- Hero Section -->
+<section id="accueil" class="hero">
+  <div class="container hero-container">
+    <div class="hero-content" data-aos="fade-up">
+      <span class="hero-badge" style="background-color: rgba(220, 20, 60, 0.15); color: var(--couleur-blanc);">VOTRE PARTENAIRE D'AFFAIRES</span>
+      <h1 class="hero-title" style="color: var(--couleur-blanc);">
+        ECO<span class="highlight" style="color: var(--couleur-rouge-accent);">+</span>HOLDING<br />
+        <span class="highlight" style="color: var(--couleur-blanc);">Nous facilitons vos affaires,</span><br />
+        vous récoltez les résultats
+      </h1>
+      <p class="hero-subtitle" style="color: rgba(255, 255, 255, 0.9);">
+        Cabinet de gestion d'affaires et d'intermédiation à Abidjan. Nous
+        accompagnons les entreprises, investisseurs et particuliers dans la
+        structuration, la sécurisation et le développement de leurs activités.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary btn-large"
+          >Demander un service</a
+        >
+        <a href="#services" class="btn btn-secondary btn-large"
+          >Découvrir nos services</a
+        >
+      </div>
+    </div>
 
-            <button class="mobile-menu-toggle" id="mobileToggle">
-                <i class="fas fa-bars"></i>
+    <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
+      <img
+        src="https://images.unsplash.com/photo-1758518727707-b023e285b709?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTAwNDR8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMGNvbnN1bHRhdGlvbiUyMG1lZXRpbmclMjBjb3Jwb3JhdGUlMjBvZmZpY2UlMjBwZW9wbGUlMjBkaXNjdXNzaW5nJTIwYnVzaW5lc3MlMjBwcm9mZXNzaW9uYWx8ZW58MHwwfHx8MTc3MDA0OTQ3OXww&ixlib=rb-4.1.0&q=85"
+        alt="Consultation d'affaires professionnelle - Photo par Vitaly Gariev"
+        class="hero-image"
+        style="width: 100%; height: auto"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Services Rapides -->
+<section id="services-rapides" class="section">
+  <div class="container">
+    <div class="section-title" data-aos="fade-up">
+      <span class="section-title-small">NOS SERVICES RAPIDES</span>
+      <h2>Documents et accompagnement en 24h</h2>
+      <p>Des services efficaces pour vos démarches administratives</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card featured" data-aos="fade-up" data-aos-delay="0">
+        <div class="card-icon">
+          <i class="fas fa-clock" style="color: white"></i>
+        </div>
+        <h3 class="card-title">Heures d'ouverture</h3>
+        <p class="card-text">Lundi - Vendredi : 8h - 18h</p>
+        <p class="card-text">Samedi : 9h - 13h</p>
+        <p class="card-text"><strong>Réponse rapide garantie</strong></p>
+        <a href="#contact" class="btn btn-secondary">Contactez-nous</a>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-icon">
+          <i class="fas fa-file-contract"></i>
+        </div>
+        <h3 class="card-title">Statuts sous 24h</h3>
+        <p class="card-text">
+          Rédaction professionnelle de statuts de société en 24 heures chrono.
+        </p>
+        <a href="#contact" class="btn btn-secondary">En savoir plus</a>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-icon">
+          <i class="fas fa-file-invoice"></i>
+        </div>
+        <h3 class="card-title">DSV prête sous 24h</h3>
+        <p class="card-text">
+          Déclaration de Souscription et de Versement préparée rapidement.
+        </p>
+        <a href="#contact" class="btn btn-secondary">En savoir plus</a>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3 class="card-title">Documents à obtenir</h3>
+        <p class="card-text">
+          RCCM, IDU, DFE, contrat de bail et tous documents nécessaires.
+        </p>
+        <a href="#contact" class="btn btn-secondary">En savoir plus</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- À Propos - Les 3 Entités -->
+<section
+  id="a-propos"
+  class="section"
+  style="background-color: var(--couleur-gris-clair)"
+>
+  <div class="container">
+    <div class="section-title" data-aos="fade-up">
+      <span class="section-title-small">À PROPOS</span>
+      <h2>Nos trois divisions au service de votre réussite</h2>
+    </div>
+
+    <!-- ECO+HOLDING -->
+    <div
+      class="grid grid-2"
+      style="margin-bottom: var(--espace-3xl); align-items: center"
+    >
+      <div data-aos="fade-right">
+        <img
+          src="https://images.pexels.com/photos/7947744/pexels-photo-7947744.jpeg"
+          alt="Gestion d'affaires et conseil - Photo par RDNE Stock project"
+          style="width: 100%; height: auto; border-radius: var(--rayon-2xl)"
+          loading="lazy"
+        />
+      </div>
+      <div data-aos="fade-left">
+        <div class="card-icon">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <h3>ECO+HOLDING</h3>
+        <h4
+          style="
+            color: var(--couleur-bleu-principal);
+            margin-bottom: var(--espace-md);
+          "
+        >
+          Cabinet de gestion d'affaires & Intermédiation
+        </h4>
+        <p>
+          Société mère du Groupe ECO+, spécialisée dans l'accompagnement des
+          entreprises, investisseurs et porteurs de projets.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-top: var(--espace-md)">
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Conseil fiscal et
+            financier
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Création et structuration
+            d'entreprise
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Intermédiation d'affaires
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Conseil juridique
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Suivi comptable
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PRESTIGE IMMOBILIER -->
+    <div
+      class="grid grid-2"
+      style="margin-bottom: var(--espace-3xl); align-items: center"
+    >
+      <div data-aos="fade-right">
+        <div class="card-icon">
+          <i class="fas fa-building"></i>
+        </div>
+        <h3>PRESTIGE IMMOBILIER</h3>
+        <h4
+          style="
+            color: var(--couleur-bleu-principal);
+            margin-bottom: var(--espace-md);
+          "
+        >
+          Gestion immobilière et valorisation
+        </h4>
+        <p>
+          Département spécialisé dans l'intermédiation, la gestion et la
+          valorisation de biens immobiliers.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-top: var(--espace-md)">
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Gestion locative
+            professionnelle
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Gestion vente et
+            intermédiation
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Conseils immobiliers
+            stratégiques
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Administration et
+            entretien
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Suivi juridique et
+            financier
+          </li>
+        </ul>
+      </div>
+      <div data-aos="fade-left">
+        <img
+          src="https://images.unsplash.com/photo-1589095093845-93a387ebc7ee?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTAwNDR8MHwxfHNlYXJjaHwyM3x8bW9kZXJuJTIwcmVhbCUyMGVzdGF0ZSUyMGJ1aWxkaW5nJTIwcHJvcGVydHklMjBhcmNoaXRlY3R1cmUlMjBhcmNoaXRlY3R1cmV8ZW58MHwwfHxibHVlfDE3NzAwNDk0Nzl8MA&ixlib=rb-4.1.0&q=85"
+          alt="Gestion immobilière - Photo par Malena Gonzalez Serena"
+          style="width: 100%; height: auto; border-radius: var(--rayon-2xl)"
+        />
+      </div>
+    </div>
+
+    <!-- ECO+TRANS-LOGISTIQUE -->
+    <div class="grid grid-2" style="align-items: center">
+      <div data-aos="fade-right">
+        <img
+          src="https://images.pexels.com/photos/9296985/pexels-photo-9296985.jpeg"
+          alt="Transport et logistique - Photo par Attie Heunis"
+          style="width: 100%; height: auto; border-radius: var(--rayon-2xl)"
+        />
+      </div>
+      <div data-aos="fade-left">
+        <div class="card-icon">
+          <i class="fas fa-truck"></i>
+        </div>
+        <h3>ECO+TRANS-LOGISTIQUE</h3>
+        <h4
+          style="
+            color: var(--couleur-bleu-principal);
+            margin-bottom: var(--espace-md);
+          "
+        >
+          Import-Export, Transport & Logistique
+        </h4>
+        <p>
+          Spécialiste des opérations d'import-export, de la vente de véhicules
+          et de la logistique.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-top: var(--espace-md)">
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Import-Export
+            international
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Vente et achat de
+            véhicules
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Gestion logistique
+            complète
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Services VTC et gestion de
+            flotte
+          </li>
+          <li style="margin-bottom: var(--espace-sm)">
+            <i class="fas fa-check text-primary"></i> Transport de marchandises
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nos Valeurs -->
+<section id="valeurs" class="section">
+  <div class="container">
+    <div class="section-title" data-aos="fade-up">
+      <span class="section-title-small">NOS VALEURS</span>
+      <h2>Les principes qui nous guident</h2>
+      <p>Des valeurs fortes au service de votre satisfaction</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card" data-aos="fade-up" data-aos-delay="0">
+        <div class="card-icon">
+          <i class="fas fa-award"></i>
+        </div>
+        <h4 class="card-title">Professionnalisme</h4>
+        <p class="card-text">
+          Rigueur, compétence et qualité du service au cœur de chacune de nos
+          interventions.
+        </p>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h4 class="card-title">Intégrité et transparence</h4>
+        <p class="card-text">
+          Honnêteté, éthique et transparence dans toutes nos relations avec
+          clients et partenaires.
+        </p>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <h4 class="card-title">Engagement</h4>
+        <p class="card-text">
+          Pleinement engagés aux côtés de nos clients pour atteindre leurs
+          objectifs.
+        </p>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-icon">
+          <i class="fas fa-lock"></i>
+        </div>
+        <h4 class="card-title">Confidentialité</h4>
+        <p class="card-text">
+          Discrétion absolue et protection stricte des informations qui nous
+          sont confiées.
+        </p>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="400">
+        <div class="card-icon">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <h4 class="card-title">Innovation et efficacité</h4>
+        <p class="card-text">
+          Méthodes modernes et solutions innovantes pour des services
+          performants.
+        </p>
+      </div>
+
+      <div class="card" data-aos="fade-up" data-aos-delay="500">
+        <div class="card-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h4 class="card-title">Orientation client</h4>
+        <p class="card-text">
+          Approche personnalisée fondée sur l'écoute, la proximité et la
+          satisfaction durable.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Équipe / CEO -->
+<section
+  id="equipe"
+  class="section"
+  style="background-color: var(--couleur-gris-clair)"
+>
+  <div class="container">
+    <div class="section-title" data-aos="fade-up">
+      <span class="section-title-small">NOTRE ÉQUIPE</span>
+      <h2>Rencontrez notre direction</h2>
+      <p>Une équipe expérimentée et dévouée à votre réussite</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div
+        class="card"
+        data-aos="zoom-in"
+        data-aos-delay="0"
+        style="text-align: center"
+      >
+        <img
+          src="static/images/ceo.jpeg"
+          alt="CEO ECO+HOLDING"
+          style="
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto var(--espace-md);
+            object-fit: cover;
+            border: 4px solid var(--couleur-bleu-principal);
+          "
+        />
+        <h4 class="card-title">Nom du CEO</h4>
+        <p
+          style="
+            color: var(--couleur-bleu-principal);
+            font-weight: 600;
+            margin-bottom: var(--espace-sm);
+          "
+        >
+          Directeur Général
+        </p>
+        <p class="card-text">
+          Expert en gestion d'affaires avec plus de 15 ans d'expérience dans
+          l'accompagnement des entreprises.
+        </p>
+        <div
+          class="footer-social"
+          style="justify-content: center; margin-top: var(--espace-md)"
+        >
+          <a href="#" aria-label="LinkedIn"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div
+        class="card"
+        data-aos="zoom-in"
+        data-aos-delay="100"
+        style="text-align: center"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1736939666660-d4c776e0532c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTAwNDR8MHwxfHNlYXJjaHwzfHxidXNpbmVzcyUyMHdvbWFuJTIwcHJvZmVzc2lvbmFsJTIwZXhlY3V0aXZlJTIwbWFuYWdlciUyMGJ1c2luZXNzJTIwcHJvZmVzc2lvbmFsfGVufDB8MXx8fDE3NzAwNDk0Nzl8MA&ixlib=rb-4.1.0&q=85"
+          alt="Directrice Prestige Immobilier - Photo par TRAN NHU TUAN"
+          style="
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto var(--espace-md);
+            object-fit: cover;
+            border: 4px solid var(--couleur-bleu-principal);
+          "
+        />
+        <h4 class="card-title">Nom Directrice</h4>
+        <p
+          style="
+            color: var(--couleur-bleu-principal);
+            font-weight: 600;
+            margin-bottom: var(--espace-sm);
+          "
+        >
+          Directrice Prestige Immobilier
+        </p>
+        <p class="card-text">
+          Spécialiste en gestion immobilière et valorisation de patrimoine avec
+          une expertise reconnue.
+        </p>
+        <div
+          class="footer-social"
+          style="justify-content: center; margin-top: var(--espace-md)"
+        >
+          <a href="#" aria-label="LinkedIn"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div
+        class="card"
+        data-aos="zoom-in"
+        data-aos-delay="200"
+        style="text-align: center"
+      >
+        <img
+          src="https://images.pexels.com/photos/7433880/pexels-photo-7433880.jpeg"
+          alt="Directeur Logistique - Photo par Vlada Karpovich"
+          style="
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto var(--espace-md);
+            object-fit: cover;
+            border: 4px solid var(--couleur-bleu-principal);
+          "
+        />
+        <h4 class="card-title">Nom Directeur</h4>
+        <p
+          style="
+            color: var(--couleur-bleu-principal);
+            font-weight: 600;
+            margin-bottom: var(--espace-sm);
+          "
+        >
+          Directeur Eco+Trans-Logistique
+        </p>
+        <p class="card-text">
+          Expert en logistique internationale et gestion des chaînes
+          d'approvisionnement.
+        </p>
+        <div
+          class="footer-social"
+          style="justify-content: center; margin-top: var(--espace-md)"
+        >
+          <a href="#" aria-label="LinkedIn"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-title" data-aos="fade-up">
+      <span class="section-title-small">CONTACTEZ-NOUS</span>
+      <h2>Demandez un service</h2>
+      <p>
+        Remplissez ce formulaire et notre équipe vous contactera dans les plus
+        brefs délais
+      </p>
+    </div>
+
+    <div class="grid grid-2" style="gap: var(--espace-2xl)">
+      <!-- Formulaire -->
+      <div data-aos="fade-right">
+        <div class="card">
+          <form
+            id="contact-form"
+            method="POST"
+            action="{{ url_for('main.soumettre_demande') }}"
+          >
+            <div class="form-group">
+              <label class="form-label" for="nom"
+                >Nom <span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="nom"
+                name="nom"
+                class="form-control"
+                required
+              />
+              <div id="nom-error" class="form-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prenom">Prénom</label>
+              <input
+                type="text"
+                id="prenom"
+                name="prenom"
+                class="form-control"
+              />
+              <div id="prenom-error" class="form-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email"
+                >Email <span class="required">*</span></label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                required
+              />
+              <div id="email-error" class="form-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="telephone"
+                >Téléphone <span class="required">*</span></label
+              >
+              <input
+                type="tel"
+                id="telephone"
+                name="telephone"
+                class="form-control"
+                required
+              />
+              <div id="telephone-error" class="form-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="service"
+                >Service souhaité <span class="required">*</span></label
+              >
+              <select id="service" name="service" class="form-control" required>
+                <option value="">Sélectionnez un service</option>
+                <option value="gestion_affaires">
+                  Gestion d'affaires & Intermédiation
+                </option>
+                <option value="prestige_immobilier">Prestige Immobilier</option>
+                <option value="logistique">Eco+Trans-Logistique</option>
+              </select>
+              <div id="service-error" class="form-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="date_souhaitee"
+                >Date souhaitée <span class="required">*</span></label
+              >
+              <input
+                type="date"
+                id="date_souhaitee"
+                name="date_souhaitee"
+                class="form-control"
+                required
+              />
+              <div id="date_souhaitee-error" class="form-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-control"
+                rows="4"
+                placeholder="Décrivez votre besoin..."
+              ></textarea>
+              <div id="message-error" class="form-error"></div>
+            </div>
+
+            <div
+              id="form-message"
+              style="
+                display: none;
+                margin-bottom: var(--espace-md);
+                padding: var(--espace-md);
+                border-radius: var(--rayon-md);
+              "
+            ></div>
+
+            <button
+              type="submit"
+              class="btn btn-primary btn-large"
+              style="width: 100%"
+            >
+              <i class="fas fa-paper-plane"></i> Envoyer ma demande
             </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Informations de contact -->
+      <div data-aos="fade-left">
+        <div
+          class="card"
+          style="
+            background: linear-gradient(
+              135deg,
+              var(--couleur-bleu-principal) 0%,
+              var(--couleur-bleu-clair) 100%
+            );
+            color: white;
+            margin-bottom: var(--espace-lg);
+          "
+        >
+          <h3 style="color: white; margin-bottom: var(--espace-md)">
+            Informations de contact
+          </h3>
+
+          <div style="margin-bottom: var(--espace-md)">
+            <div
+              style="
+                display: flex;
+                align-items: flex-start;
+                gap: var(--espace-md);
+                margin-bottom: var(--espace-md);
+              "
+            >
+              <i
+                class="fas fa-map-marker-alt"
+                style="font-size: 1.5rem; margin-top: 4px"
+              ></i>
+              <div>
+                <h4 style="color: white; font-size: 1rem; margin-bottom: 4px">
+                  Adresse
+                </h4>
+                <p style="color: rgba(255, 255, 255, 0.9); margin: 0">
+                  Cocody-Riviera Palmeraie<br />
+                  Non loin du carrefour Guireau<br />
+                  Abidjan, Côte d'Ivoire
+                </p>
+              </div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: flex-start;
+                gap: var(--espace-md);
+                margin-bottom: var(--espace-md);
+              "
+            >
+              <i
+                class="fas fa-phone"
+                style="font-size: 1.5rem; margin-top: 4px"
+              ></i>
+              <div>
+                <h4 style="color: white; font-size: 1rem; margin-bottom: 4px">
+                  Téléphone
+                </h4>
+                <p style="color: rgba(255, 255, 255, 0.9); margin: 0">
+                  +225  0504477268 / 0705928780
+                </p>
+              </div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: flex-start;
+                gap: var(--espace-md);
+              "
+            >
+              <i
+                class="fas fa-envelope"
+                style="font-size: 1.5rem; margin-top: 4px"
+              ></i>
+              <div>
+                <h4 style="color: white; font-size: 1rem; margin-bottom: 4px">
+                  Email
+                </h4>
+                <p style="color: rgba(255, 255, 255, 0.9); margin: 0">
+                  Email : ecoholding192@gmail.com
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="accueil">
-        <div class="hero-background"></div>
-        <div class="hero-pattern"></div>
-        
-        <div class="container hero-container">
-            <div class="hero-content" data-aos="fade-right">
-                <h1 class="hero-main-title">Votre Partenaire en <span class="highlight">Gestion d'Affaires</span> et Intermédiation</h1>
-                <p class="hero-description">Eco+Holding vous accompagne dans la réussite de vos projets avec des solutions complètes en gestion financière, immobilier et logistique. Cabinet d'affaires de confiance en Côte d'Ivoire.</p>
-                
-                <ul class="hero-features">
-                    <li><i class="fas fa-check-circle"></i> Suivi Fiscal, Comptable et Financier</li>
-                    <li><i class="fas fa-check-circle"></i> Gestion Immobilière Professionnelle</li>
-                    <li><i class="fas fa-check-circle"></i> Logistique et Transport</li>
-                </ul>
-                
-                <div class="hero-cta">
-                    <a href="#contact" class="btn btn-primary">
-                        Prendre RDV
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">En savoir plus</a>
-                </div>
-                
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <span class="hero-stat-number">{{ divisions if divisions else 3 }}</span>
-                        <span class="hero-stat-label">Divisions Spécialisées</span>
-                    </div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-number" id="client-count">+{{ total_clients if total_clients else 127 }}</span>
-                        <span class="hero-stat-label">Clients Accompagnés</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-image" data-aos="fade-left">
-                <img src="{{ url_for('static', filename='img/pdg.jpg') }}" alt="PDG Eco+Holding">
-                
-                <div class="hero-badge">
-                    <div class="hero-badge-icon">
-                        <img src="https://i.pravatar.cc/40?u=kouassi.yao" alt="Kouassi Yao">
-                        <img src="https://i.pravatar.cc/40?u=aya.diop" alt="Aya Diop">
-                        <img src="https://i.pravatar.cc/40?u=koffi.assi" alt="Koffi Assi">
-                    </div>
-                    <div class="hero-badge-text">
-                        <div class="hero-badge-number">+{{ total_clients if total_clients else 127 }}</div>
-                        <div class="hero-badge-label">Clients Accompagnés</div>
-                    </div>
-                </div>
-            </div>
+        <!-- Carte de localisation -->
+        <div class="card" style="padding: 0; overflow: hidden">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.0779745733457!2d-3.9887778!3d5.404667699999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMjQnMTYuOCJOIDPCsDU5JzE5LjYiVw!5e0!3m2!1sfr!2sci!4v1234567890123!5m2!1sfr!2sci"
+            width="100%"
+            height="300"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          >
+          </iframe>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Services Section -->
-    <section class="section" id="services">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-subtitle">Nos Divisions</div>
-                <h2 class="section-title">Les Services d'<span class="highlight">Eco+Holding</span></h2>
-                <p class="section-description">Trois divisions complémentaires pour accompagner votre entreprise dans tous ses besoins : gestion d'affaires, immobilier et logistique.</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">I- ECO+HOLDING</h3>
-                    <p style="font-weight: 600; margin-bottom: 1rem; font-size: 0.95rem;">Cabinet de Gestion D'affaires et d'intermédiation</p>
-                    <ul style="text-align: left; list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.8;">
-                        <li style="margin-bottom: 0.5rem;">✓ Élaboration des États financiers</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Suivi Fiscal, Comptable et Financier</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Accompagnement Création D'entreprise</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Intermédiaire Financière</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Formation et Insertion professionnelle</li>
-                    </ul>
-                    <a href="javascript:void(0)" onclick="ouvrirModalFormulaire()" class="service-link" style="margin-top: 1rem; display: inline-flex;">
-                        Prendre RDV
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">II- PRESTIGE IMMOBILIER</h3>
-                    <p style="font-weight: 600; margin-bottom: 1rem; font-size: 0.95rem;">Gestion immobilière professionnelle</p>
-                    <ul style="text-align: left; list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.8;">
-                        <li style="margin-bottom: 0.5rem;">✓ Gestion Immobilière complète</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Location et vente de biens</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Conseil en investissement</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Administration de propriétés</li>
-                    </ul>
-                    <a href="javascript:void(0)" onclick="ouvrirModalFormulaire()" class="service-link" style="margin-top: 1rem; display: inline-flex;">
-                        Prendre RDV
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">III- ECO+TRANS-LOGISTIQUE</h3>
-                    <p style="font-weight: 600; margin-bottom: 1rem; font-size: 0.95rem;">Transport et logistique</p>
-                    <ul style="text-align: left; list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.8;">
-                        <li style="margin-bottom: 0.5rem;">✓ Import-export</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Logistique et Transport</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Vente et Location de véhicules</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Gestion de flotte</li>
-                    </ul>
-                    <a href="javascript:void(0)" onclick="ouvrirModalFormulaire()" class="service-link" style="margin-top: 1rem; display: inline-flex;">
-                        Prendre RDV
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+{% endblock %} {% block extra_css %}
+<style>
+  .alert {
+    padding: var(--espace-md);
+    border-radius: var(--rayon-md);
+    margin-bottom: var(--espace-md);
+  }
 
-    <!-- Features Section -->
-    <section class="section features-section" id="features">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-subtitle">Nos Avantages</div>
-                <h2 class="section-title">Développez Votre Entreprise avec Nos <span class="highlight">Fonctionnalités</span> de Pointe</h2>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon">
-                        <img src="https://api.iconify.design/mdi:account-tie.svg?color=%2310b981" alt="Expert Conseil">
-                    </div>
-                    <div class="feature-content">
-                        <h3>Conseils et Support d'Experts</h3>
-                        <p>Notre équipe dédiée est là pour vous aider à chaque étape, avec des conseils d'experts et un support personnalisé pour garantir le succès de votre entreprise.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon">
-                        <img src="https://api.iconify.design/mdi:flash.svg?color=%2310b981" alt="Processus Rapide">
-                    </div>
-                    <div class="feature-content">
-                        <h3>Processus d'Approbation Rapide</h3>
-                        <p>Obtenez l'approbation pour votre prêt professionnel en aussi peu que 24 heures, afin que vous puissiez accéder rapidement aux fonds dont vous avez besoin.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-icon">
-                        <img src="https://api.iconify.design/mdi:chart-line.svg?color=%2310b981" alt="Gamme de Produits">
-                    </div>
-                    <div class="feature-content">
-                        <h3>Large Gamme de Produits de Prêt</h3>
-                        <p>Choisissez parmi une variété d'options de prêt, y compris le capital de roulement à court terme et les investissements à long terme.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="feature-icon">
-                        <img src="https://api.iconify.design/mdi:shield-check.svg?color=%2310b981" alt="Sécurité">
-                    </div>
-                    <div class="feature-content">
-                        <h3>Confidentialité et Sécurité</h3>
-                        <p>Choisissez un plan de remboursement qui correspond à votre budget, avec des options flexibles et abordables au choix.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  .alert-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+  }
 
-    <!-- Social Impact Section -->
-    <section class="section impact-section" id="impact">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-subtitle">Communautés Autonomisées</div>
-                <h2 class="section-title">Notre Impact <span class="highlight">Social</span> Positif</h2>
-                <p class="section-description">Nos solutions de prêt sont conçues pour aider les entreprises à atteindre leurs objectifs et à stimuler la croissance économique dans leurs communautés locales.</p>
-            </div>
-            
-            <div class="trustpilot-widget" data-aos="fade-up">
-                <div class="trustpilot-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="trustpilot-info">
-                    <div class="trustpilot-rating">TrustScore 5.0</div>
-                    <div class="trustpilot-label">3,724 avis</div>
-                </div>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                    <p class="testimonial-quote">"Travailler avec Eco+Holding a été une expérience transformatrice pour mon entreprise. Les solutions sur mesure et le support personnalisé ont dépassé mes attentes. Je les recommande vivement."</p>
-                    <div class="testimonial-author">
-                        <img src="https://images.pexels.com/photos/20433564/pexels-photo-20433564.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Kouassi Yao" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>Kouassi Yao Michel</h4>
-                            <p>Directeur Général, KYM Consulting</p>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                    <p class="testimonial-quote">"L'équipe du support client a été incroyable tout au long du processus, fournissant des conseils d'experts et des solutions personnalisées pour les besoins de mon entreprise."</p>
-                    <div class="testimonial-author">
-                        <img src="https://images.pexels.com/photos/29852895/pexels-photo-29852895.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Aya Diop" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h4>Aya Diop Fatou</h4>
-                            <p>Fondatrice, Diop Immobilier</p>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section faq-section" id="faq">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-subtitle">Questions</div>
-                <h2 class="section-title">Questions Fréquemment <span class="highlight">Posées</span></h2>
-            </div>
-            
-            <div class="faq-tabs" data-aos="fade-up">
-                <button class="faq-tab active" data-category="general" onclick="changerCategoriesFAQ('general')">Général</button>
-                <button class="faq-tab" data-category="services" onclick="changerCategoriesFAQ('services')">Services</button>
-                <button class="faq-tab" data-category="gestion" onclick="changerCategoriesFAQ('gestion')">Gestion</button>
-                <button class="faq-tab" data-category="immobilier" onclick="changerCategoriesFAQ('immobilier')">Immobilier</button>
-                <button class="faq-tab" data-category="logistique" onclick="changerCategoriesFAQ('logistique')">Logistique</button>
-            </div>
-            
-            <div class="faq-list" id="faq-list">
-                <div class="faq-item" data-aos="fade-up" data-category="general">
-                    <div class="faq-question">
-                        <span>Quels sont les services proposés par Eco+Holding ?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Eco+Holding propose trois divisions : Gestion d'affaires (comptabilité, fiscal), Prestige Immobilier (gestion immobilière), et Eco+Trans-Logistique (transport et logistique).
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-category="general">
-                    <div class="faq-question">
-                        <span>Comment prendre rendez-vous ?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Cliquez sur le bouton "Prendre RDV" sur notre site ou contactez-nous au 0504477268 / 0705928780.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-category="services">
-                    <div class="faq-question">
-                        <span>Quels services comptables proposez-vous ?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Nous proposons l'élaboration des états financiers, le suivi fiscal et comptable, l'accompagnement à la création d'entreprise, et la formation professionnelle.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-category="gestion">
-                    <div class="faq-question">
-                        <span>Comment assurez-vous le suivi fiscal et comptable ?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Nous proposons un accompagnement personnalisé avec des experts comptables pour l'élaboration des états financiers, la déclaration fiscale, et le conseil en gestion.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-category="gestion">
-                    <div class="faq-question">
-                        <span>Accompagnez-vous à la création d'entreprise ?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Oui, nous offrons un accompagnement complet pour la création d'entreprise : choix de la structure juridique, constitution du dossier, et formalités administratives.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-category="immobilier">
-                    <div class="faq-question">
-                        <span>Proposez-vous des services de location immobilière ?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Oui, Prestige Immobilier gère la location, la vente de biens, et l'administration de propriétés.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-category="logistique">
-                    <div class="faq-question">
-                        <span>Quels types de transport proposez-vous ?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Eco+Trans-Logistique propose le transport de marchandises, le fret, la location de véhicules, et des solutions logistiques personnalisées.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-category="logistique">
-                    <div class="faq-question">
-                        <span>Assurez-vous le suivi des livraisons ?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Oui, nous offrons un service de suivi en temps réel de vos livraisons avec des mises à jour régulières et une équipe disponible 24/7.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools Section -->
-    <section class="section" id="outils">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-subtitle">Nos Outils</div>
-                <h2 class="section-title">Simplifiez Vos Opérations avec Nos <span class="highlight">Outils</span></h2>
-            </div>
-            
-            <div class="tools-grid">
-                <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="tool-icon">
-                        <img src="https://api.iconify.design/mdi:calculator.svg?color=%2310b981" alt="Calculateur">
-                    </div>
-                    <div class="tool-content">
-                        <h3>Calculateur de Prêt</h3>
-                        <p>Estimez facilement vos besoins mensuels</p>
-                        <ul class="tool-features">
-                            <li><i class="fas fa-check"></i> Entrez le montant et la durée du prêt</li>
-                            <li><i class="fas fa-check"></i> Calculez les paiements mensuels et les intérêts totaux</li>
-                            <li><i class="fas fa-check"></i> Comparez différentes options</li>
-                        </ul>
-                       <a href="#contact" class="tool-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                
-                <div class="tool-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="tool-icon">
-                        <img src="https://api.iconify.design/mdi:file-document-outline.svg?color=%2310b981" alt="Analyseur">
-                    </div>
-                    <div class="tool-content">
-                        <h3>Analyseur de Relevé Financier</h3>
-                        <p>Comprenez la santé financière de votre entreprise</p>
-                        <ul class="tool-features">
-                            <li><i class="fas fa-check"></i> Téléchargez vos relevés financiers</li>
-                            <li><i class="fas fa-check"></i> Générez des ratios et analyses détaillés</li>
-                            <li><i class="fas fa-check"></i> Comprenez les points forts et faiblesses</li>
-                        </ul>
-                         <a href="#contact" class="tool-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="section cta-section" id="contact">
-        <div class="container cta-container">
-            <div class="cta-content" data-aos="fade-right">
-                <h2>Prêt à Développer Votre <span class="highlight">Entreprise</span> ?</h2>
-                <p>Demandez votre prêt professionnel aujourd'hui !</p>
-                
-                <div class="cta-buttons">
-                    <a href="javascript:void(0)" onclick="ouvrirModalFormulaire()" class="btn btn-primary">
-                        Prendre RDV
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="mailto:ecoholding192@gmail.com" class="btn btn-outline">Nous Contacter</a>
-                </div>
-                
-                <div class="cta-links">
-                    <a href="mailto:ecoholding192@gmail.com" class="cta-link">
-                        <i class="fas fa-envelope"></i>
-                        ecoholding192@gmail.com
-                    </a>
-                    <a href="tel:+2250504477268" class="cta-link">
-                        <i class="fas fa-phone"></i>
-                        0504477268 / 0705928780
-                    </a>
-                    <a href="#" class="cta-link">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Riviera Palmeraie non loin du carrefour Guiro
-                    </a>
-                </div>
-            </div>
-            
-            <div class="cta-image" data-aos="fade-left">
-                <img src="{{ url_for('static', filename='img/pdg2.jpg') }}" alt="PDG Eco+Holding - Vision Professionnelle">
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3><span class="logo-accent">Eco+</span>Holding</h3>
-                    <p>Cabinet d'Affaires Et D'Intermédiation. Nous vous accompagnons dans la gestion de vos affaires, vos projets immobiliers et logistiques en Côte d'Ivoire.</p>
-                    <p style="margin-top: 1rem;">
-                        <i class="fas fa-phone"></i> 0504477268 / 0705928780<br>
-                        <i class="fas fa-envelope"></i> ecoholding192@gmail.com<br>
-                        <i class="fas fa-map-marker-alt"></i> Riviera Palmeraie non loin du carrefour Guiro
-                    </p>
-                    
-                    <div class="footer-social">
-                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Entreprise</h4>
-                    <ul class="footer-links">
-                        <li><a href="#services">À propos</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#outils">Produits</a></li>
-                        <li><a href="{{ url_for('plan_du_site') }}">Pourquoi Nous Choisir</a></li>
-                        <li><a href="#impact">Qualifications</a></li>
-                        <li><a href="#impact">Avis Clients</a></li>
-                        <li><a href="#faq">Blog</a></li>
-                        <li><a href="{{ url_for('politique_confidentialite') }}">Politique de Confidentialité</a></li>
-                        <li><a href="{{ url_for('cgu') }}">Conditions d'Utilisation</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Explorer</h4>
-                    <ul class="footer-links">
-                        <li><a href="#outils">Outils</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#outils">Qualifications</a></li>
-                        <li><a href="{{ url_for('plan_du_site') }}">Place de Marché</a></li>
-                        <li><a href="#impact">Témoignages</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Liens Rapides</h4>
-                    <ul class="footer-links">
-                        <li><a href="#accueil">Page d'Accueil</a></li>
-                        <li><a href="#services">Nos Services</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="{{ url_for('mentions_legales') }}">Mentions Légales</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Eco+Holding. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/22504477268" class="whatsapp-float" target="_blank" aria-label="Contactez-nous sur WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- AOS Animation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    
-    <!-- Custom JavaScript -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/formulaire-rdv.js') }}"></script>
-    
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-
-        // Mobile menu toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const icon = mobileToggle.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
-
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // FAQ accordion
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                
-                // Close all items
-                faqItems.forEach(faqItem => {
-                    faqItem.classList.remove('active');
-                });
-                
-                // Toggle current item
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
-        
-        // Fonction pour changer les catégories FAQ
-        window.changerCategoriesFAQ = function(categorie) {
-            // Mettre à jour les onglets
-            document.querySelectorAll('.faq-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelector(`.faq-tab[data-category="${categorie}"]`).classList.add('active');
-            
-            // Afficher les questions de la catégorie
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('data-category') === categorie || categorie === 'general') {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        };
-
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                    // Close mobile menu if open
-                    navMenu.classList.remove('active');
-                    const icon = mobileToggle.querySelector('i');
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+  .alert-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+  }
+</style>
+{% endblock %}

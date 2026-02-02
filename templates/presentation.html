@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Présentation - ECO+HOLDING{% endblock %}
+{% block content %}
+<section class="hero hero--full" style="background-image: url('{{ url_for('static', filename='images/eco.jpeg') }}');">
+  <div class="hero__overlay"></div>
+  <div class="container hero__content" data-aos="fade-up">
+    <h1 class="hero__title">ECO+HOLDING</h1>
+    <p class="hero__subtitle">Cabinet de gestion d’affaires et d’intermédiation à Abidjan</p>
+    <a href="{{ url_for('main.services') }}" class="btn btn-primary">Découvrir nos services</a>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="grid grid-3">
+    <div class="card card--feature" data-aos="fade-up">
+      <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+      <h3>Accompagnement 360°</h3>
+      <p>Juridique, fiscal, financier, logistique et immobilier.</p>
+    </div>
+    <div class="card card--feature" data-aos="fade-up" data-aos-delay="100">
+      <div class="card-icon"><i class="fas fa-bolt"></i></div>
+      <h3>Approche pragmatique</h3>
+      <p>Solutions concrètes, rapides et sécurisées.</p>
+    </div>
+    <div class="card card--feature" data-aos="fade-up" data-aos-delay="200">
+      <div class="card-icon"><i class="fas fa-shield-check"></i></div>
+      <h3>Partenaire de confiance</h3>
+      <p>Proximité, confidentialité, performance durable.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

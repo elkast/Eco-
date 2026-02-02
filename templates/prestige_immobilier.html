@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Prestige Immobilier - ECO+HOLDING{% endblock %}
+{% block content %}
+<section class="hero" style="background-image: url('{{ url_for('static', filename='images/prestige.jpeg') }}');">
+  <div class="hero__overlay"></div>
+  <div class="container hero__content" data-aos="fade-up">
+    <h1 class="hero__title">Prestige Immobilier</h1>
+    <p class="hero__subtitle">Gestion, administration et valorisation de patrimoines</p>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="grid grid-3">
+    <div class="card card--feature" data-aos="fade-up">
+      <div class="card-icon"><i class="fas fa-key"></i></div>
+      <h3>Gestion locative</h3>
+      <p>Sélection locataires, baux, loyers, relances, entretien.</p>
+    </div>
+    <div class="card card--feature" data-aos="fade-up" data-aos-delay="100">
+      <div class="card-icon"><i class="fas fa-sign-hanging"></i></div>
+      <h3>Gestion vente</h3>
+      <p>Prospection, offres, négociations, suivi juridique et administratif.</p>
+    </div>
+    <div class="card card--feature" data-aos="fade-up" data-aos-delay="200">
+      <div class="card-icon"><i class="fas fa-house-circle-check"></i></div>
+      <h3>Conseils immobiliers</h3>
+      <p>Stratégie, marché, juridique, montage financier, valorisation.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-3 mt-xl">
+    <div class="card card--overlay" style="background-image: url('{{ url_for('static', filename='images/immobilier-gestion.jpg') }}');" data-aos="zoom-in">
+      <div class="card__overlay">
+        <h3>Administration & Entretien</h3>
+        <p class="muted">Suivi, coordination, maintenance</p>
+      </div>
+    </div>
+    <div class="card card--overlay" style="background-image: url('{{ url_for('static', filename='images/immobilier-vente.jpg') }}');" data-aos="zoom-in" data-aos-delay="100">
+      <div class="card__overlay">
+        <h3>Commercialisation</h3>
+        <p class="muted">Promotion, visites, reporting</p>
+      </div>
+    </div>
+    <div class="card card--overlay" style="background-image: url('{{ url_for('static', filename='images/immobilier-conseil.jpg') }}');" data-aos="zoom-in" data-aos-delay="200">
+      <div class="card__overlay">
+        <h3>Conseil immobilier</h3>
+        <p class="muted">Études, stratégie, valorisation</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
