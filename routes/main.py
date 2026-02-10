@@ -43,6 +43,11 @@ def equipe():
     return render_template("equipe.html")
 
 
+@main_bp.route("/regime-fiscal")
+def regime_fiscal():
+    return render_template("regime-fiscal.html")
+
+
 @main_bp.route("/demande", methods=["POST"])
 def soumettre_demande():
     """Traiter la soumission du formulaire de demande"""

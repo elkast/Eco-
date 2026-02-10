@@ -39,16 +39,51 @@
 
     {% block extra_css %}{% endblock %}
     <style>
-      .dropdown { position: relative; }
-      .dropdown > a::after { content: '▾'; margin-left: 6px; font-size: 0.8em; }
-      .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #fff; box-shadow: var(--ombre-lg); border-radius: var(--rayon-md); padding: var(--espace-sm) 0; min-width: 220px; z-index: var(--z-sticky); }
-      .dropdown-menu li { list-style: none; }
-      .dropdown-menu a { display: block; padding: 10px 14px; color: var(--couleur-texte-principal); white-space: nowrap; }
-      .dropdown-menu a:hover { background: var(--couleur-gris-clair); }
-      .dropdown:hover .dropdown-menu { display: block; }
+      .dropdown {
+        position: relative;
+      }
+      .dropdown > a::after {
+        content: "▾";
+        margin-left: 6px;
+        font-size: 0.8em;
+      }
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        box-shadow: var(--ombre-lg);
+        border-radius: var(--rayon-md);
+        padding: var(--espace-sm) 0;
+        min-width: 220px;
+        z-index: var(--z-sticky);
+      }
+      .dropdown-menu li {
+        list-style: none;
+      }
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 14px;
+        color: var(--couleur-texte-principal);
+        white-space: nowrap;
+      }
+      .dropdown-menu a:hover {
+        background: var(--couleur-rouge-accent);
+        color: white;
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
       @media (max-width: 768px) {
-        .dropdown-menu { position: static; box-shadow: none; padding: 0; }
-        .dropdown > a::after { display: none; }
+        .dropdown-menu {
+          position: static;
+          box-shadow: none;
+          padding: 0;
+        }
+        .dropdown > a::after {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -62,19 +97,40 @@
 
         <ul class="navbar-menu">
           <li><a href="#accueil">Accueil</a></li>
-          <li><a href="{{ url_for('main.services') }}">Services</a></li>
+          <li class="dropdown">
+            <a href="{{ url_for('main.services') }}">Services</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="{{ url_for('main.regime_fiscal') }}">Régime Fiscal</a>
+              </li>
+            </ul>
+          </li>
           <li class="dropdown">
             <a href="#">À propos</a>
             <ul class="dropdown-menu">
-              <li><a href="{{ url_for('main.presentation') }}">Présentation</a></li>
-              <li><a href="{{ url_for('main.vision_valeurs') }}">Vision & Valeurs</a></li>
+              <li>
+                <a href="{{ url_for('main.presentation') }}">Présentation</a>
+              </li>
+              <li>
+                <a href="{{ url_for('main.vision_valeurs') }}"
+                  >Vision & Valeurs</a
+                >
+              </li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#">Pôles</a>
             <ul class="dropdown-menu">
-              <li><a href="{{ url_for('main.prestige_immobilier') }}">Prestige Immobilier</a></li>
-              <li><a href="{{ url_for('main.translogistique') }}">Translogistique</a></li>
+              <li>
+                <a href="{{ url_for('main.prestige_immobilier') }}"
+                  >Prestige Immobilier</a
+                >
+              </li>
+              <li>
+                <a href="{{ url_for('main.translogistique') }}"
+                  >Translogistique</a
+                >
+              </li>
             </ul>
           </li>
           <li><a href="{{ url_for('main.equipe') }}">Notre Équipe</a></li>
@@ -121,7 +177,11 @@
               >
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="https://www.tiktok.com/@eco.plus.holding?_r=1&_t=ZS-93ZZtAjgvqC" target="_blank" aria-label="TikTok">
+              <a
+                href="https://www.tiktok.com/@eco.plus.holding?_r=1&_t=ZS-93ZZtAjgvqC"
+                target="_blank"
+                aria-label="TikTok"
+              >
                 <i class="fab fa-tiktok"></i>
               </a>
               <a
@@ -136,10 +196,8 @@
                 target="_blank"
                 aria-label="Instagram"
               >
-              <i class="fab fa-whatsapp"></i>
-
+                <i class="fab fa-whatsapp"></i>
               </a>
-
             </div>
           </div>
 
@@ -202,10 +260,11 @@
     <script>
       // Initialiser AOS
       AOS.init({
-        duration: 800,
-        easing: "ease-out",
+        duration: 1000,
+        easing: "ease-out-cubic",
         once: true,
-        offset: 100,
+        offset: 120,
+        delay: 100,
       });
     </script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>

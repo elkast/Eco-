@@ -9,15 +9,15 @@
 /* ==================== DESIGN TOKENS ==================== */
 :root {
   /* Couleurs primaires - Corporate */
-  --couleur-bleu-principal: #0D2A52;
-  --couleur-bleu-fonce: #081729;
+  --couleur-bleu-principal: #0A1E3C;
+  --couleur-bleu-fonce: #05101F;
   --couleur-bleu-clair: #1A4B87;
   --couleur-bleu-pale: #E6EDF7;
   --couleur-bleu-hover: #061221;
   
   /* Couleurs accent */
-  --couleur-rouge-accent: #DC1F3C;
-  --couleur-rouge-hover: #B01830;
+  --couleur-rouge-accent: #DC2626;
+  --couleur-rouge-hover: #B91C1C;
   --couleur-rouge-clair: #FFEBEF;
   
   /* Couleurs neutres - Corporate */
@@ -169,10 +169,10 @@ a:hover {
 
 .section-title-small {
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--couleur-bleu-principal);
+  letter-spacing: 0.15em;
+  color: var(--couleur-rouge-accent);
   margin-bottom: var(--espace-xs);
   display: block;
 }
@@ -250,8 +250,8 @@ a:hover {
   bottom: -4px;
   left: 0;
   width: 0;
-  height: 2px;
-  background-color: var(--couleur-rouge-accent);
+  height: 3px;
+  background: linear-gradient(90deg, var(--couleur-rouge-accent) 0%, var(--couleur-bleu-principal) 100%);
   transition: width var(--transition-normale);
 }
 
@@ -358,8 +358,8 @@ a:hover {
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--ombre-xl);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(13, 42, 82, 0.18);
 }
 .card--feature { display: flex; flex-direction: column; gap: var(--espace-sm); }
 .card--image { height: 220px; background-size: cover; background-position: center; border-radius: var(--rayon-xl); overflow: hidden; }
@@ -369,16 +369,23 @@ a:hover {
 .card__overlay p { color: rgba(255,255,255,0.9); margin: 0; }
 
 .card-icon {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--couleur-bleu-pale);
+  background: var(--couleur-bleu-fonce);
   border-radius: var(--rayon-lg);
   margin-bottom: var(--espace-md);
-  color: var(--couleur-bleu-principal);
+  color: var(--couleur-blanc);
   font-size: 1.5rem;
+  transition: all var(--transition-normale);
+  box-shadow: 0 4px 12px rgba(13, 42, 82, 0.15);
+}
+
+.card:hover .card-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
 }
 
 .card-icon img,
@@ -491,7 +498,7 @@ select.form-control {
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--couleur-bleu-fonce) 0%, var(--couleur-bleu-principal) 50%, var(--couleur-bleu-clair) 100%);
+  background: linear-gradient(135deg, #000000 0%, var(--couleur-bleu-fonce) 40%, var(--couleur-bleu-principal) 100%);
   background-size: cover;
   background-position: center;
   padding-top: 80px;
@@ -563,6 +570,15 @@ select.form-control {
   display: flex;
   gap: var(--espace-md);
   flex-wrap: wrap;
+  margin-top: var(--espace-xl);
+}
+
+.hero-buttons .btn {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-buttons .btn:nth-child(2) {
+  animation-delay: 0.6s;
 }
 
 .hero-visual {
@@ -601,8 +617,8 @@ select.form-control {
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--couleur-rouge-accent), var(--couleur-bleu-principal));
+  height: 5px;
+  background: linear-gradient(90deg, var(--couleur-rouge-accent) 0%, var(--couleur-bleu-principal) 100%);
   transform: scaleX(0);
   transition: transform var(--transition-normale);
 }
@@ -612,8 +628,8 @@ select.form-control {
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--ombre-xl);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(13, 42, 82, 0.2);
 }
 
 .service-card.featured {
@@ -643,7 +659,7 @@ select.form-control {
 
 /* ==================== FOOTER ==================== */
 .footer {
-  background: linear-gradient(180deg, var(--couleur-bleu-fonce) 0%, var(--couleur-noir) 100%);
+  background: #000000;
   color: rgba(255, 255, 255, 0.75);
   padding: var(--espace-2xl) 0 var(--espace-lg);
 }
@@ -697,8 +713,9 @@ select.form-control {
 }
 
 .footer-social a:hover {
-  background-color: var(--couleur-bleu-principal);
+  background-color: var(--couleur-rouge-accent);
   transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
 }
 
 .footer-bottom {
@@ -712,7 +729,7 @@ select.form-control {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -723,11 +740,31 @@ select.form-control {
 @keyframes fadeInRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(40px);
   }
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
   }
 }
 
@@ -790,10 +827,43 @@ select.form-control {
 [data-aos] {
   opacity: 0;
   transition-property: transform, opacity;
+  will-change: transform, opacity;
 }
 
 [data-aos].aos-animate {
   opacity: 1;
+}
+
+[data-aos="fade-up"] {
+  transform: translateY(50px);
+}
+
+[data-aos="fade-up"].aos-animate {
+  transform: translateY(0);
+}
+
+[data-aos="fade-right"] {
+  transform: translateX(-50px);
+}
+
+[data-aos="fade-right"].aos-animate {
+  transform: translateX(0);
+}
+
+[data-aos="fade-left"] {
+  transform: translateX(50px);
+}
+
+[data-aos="fade-left"].aos-animate {
+  transform: translateX(0);
+}
+
+[data-aos="zoom-in"] {
+  transform: scale(0.9);
+}
+
+[data-aos="zoom-in"].aos-animate {
+  transform: scale(1);
 }
 
 /* ==================== UTILITAIRES ==================== */
@@ -1172,7 +1242,7 @@ select.form-control {
 
 /* ==================== CTA CARD ==================== */
 .cta-card {
-  background: linear-gradient(135deg, var(--couleur-bleu-fonce) 0%, var(--couleur-bleu-principal) 50%, var(--couleur-bleu-clair) 100%);
+  background: linear-gradient(135deg, var(--couleur-bleu-fonce) 0%, var(--couleur-bleu-principal) 60%, var(--couleur-rouge-accent) 100%);
   color: white;
   text-align: center;
   padding: var(--espace-3xl);
